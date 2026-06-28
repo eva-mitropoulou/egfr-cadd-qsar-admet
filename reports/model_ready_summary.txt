@@ -1,0 +1,41 @@
+EGFR Model-Ready Dataset Summary
+================================
+
+Filter Row Counts
+-----------------
+starting rows: 10834
+keeping 3 <= median_pIC50 <= 11: 10812
+keeping 150 <= MolWt <= 900: 10714
+keeping -2 <= MolLogP <= 8: 10595
+keeping TPSA <= 250: 10593
+keeping HeavyAtomCount <= 70: 10593
+
+Final Summary Statistics
+------------------------
+       median_pIC50         MolWt       MolLogP          TPSA  HeavyAtomCount           QED
+count  10593.000000  10593.000000  10593.000000  10593.000000    10593.000000  10593.000000
+mean       6.924829    474.564093      4.525496     95.106297       33.463419      0.403412
+std        1.337636    107.143978      1.355447     28.143611        7.737516      0.185966
+min        3.045757    155.160000     -1.980000      3.880000       10.000000      0.040807
+25%        5.970616    399.885000      3.648500     76.720000       28.000000      0.251622
+50%        7.026410    477.952000      4.508620     96.260000       34.000000      0.375627
+75%        7.955047    550.711000      5.423620    111.300000       39.000000      0.534302
+max       11.000000    883.889000      7.995400    241.350000       64.000000      0.942913
+
+Model-Ready pIC50 Activity Bins
+--------------------------------
+median_pIC50
+weak (<5)              845
+low/moderate (5-6)    1851
+moderate (6-7)        2493
+strong (7-8)          2872
+very strong (>8)      2532
+
+Filtering Rationale
+-------------------
+median_pIC50 between 3 and 11 removes extreme activity artifacts.
+MolWt between 150 and 900 keeps a broad small-molecule-like range.
+MolLogP between -2 and 8 removes extreme polarity/lipophilicity outliers.
+TPSA <= 250 removes very high-polar-surface-area compounds.
+HeavyAtomCount <= 70 removes unusually large non-small-molecule records.
+

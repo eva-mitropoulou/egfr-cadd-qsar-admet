@@ -1,0 +1,39 @@
+{
+  "bin_summary": [
+    {
+      "MAE": 0.4359955867163857,
+      "count": 2656,
+      "coverage_90": 0.9604668674698795,
+      "mean_uncertainty": 0.13139304854776498,
+      "uncertainty_bin": "low"
+    },
+    {
+      "MAE": 0.5434075576802011,
+      "count": 2641,
+      "coverage_90": 0.9295721317682696,
+      "mean_uncertainty": 0.23000700265091018,
+      "uncertainty_bin": "medium_low"
+    },
+    {
+      "MAE": 0.6772264227098655,
+      "count": 2653,
+      "coverage_90": 0.8857896720693554,
+      "mean_uncertainty": 0.31383168377707316,
+      "uncertainty_bin": "medium_high"
+    },
+    {
+      "MAE": 0.8162324828901111,
+      "count": 2643,
+      "coverage_90": 0.82368520620507,
+      "mean_uncertainty": 0.491804108325758,
+      "uncertainty_bin": "high"
+    }
+  ],
+  "conformal_status": "degraded_proxy_interval_from_out_of_fold_residual_quantile",
+  "coverage_90": 0.8999339186255074,
+  "degradation_reason": "RF ensemble variance was skipped for runtime reliability; applicability-domain uncertainty proxy was used.",
+  "mean_90_interval_half_width": 1.3624518116627118,
+  "prediction_rows": 10593,
+  "uncertainty_error_spearman": 0.27267396415256623,
+  "uncertainty_score": "Applicability-domain reliability proxy: 1 - max Tanimoto similarity"
+}

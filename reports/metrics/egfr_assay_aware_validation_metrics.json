@@ -1,0 +1,75 @@
+{
+  "metadata_availability": {
+    "assay_column": "assay_chembl_id",
+    "assay_metadata_available": true,
+    "document_column": "document_chembl_id",
+    "document_metadata_available": true,
+    "metadata_mapping_status": "mapped_from_raw_activity",
+    "molecules_with_assay_metadata": 10593,
+    "molecules_with_document_metadata": 10593,
+    "raw_activity_available": true,
+    "unique_assay_groups": 1084,
+    "unique_document_groups": 906
+  },
+  "reference_rows": [
+    {
+      "MAE": 0.5157747695703595,
+      "Pearson": null,
+      "R2": 0.7185380912010486,
+      "RMSE": 0.7118264643207324,
+      "Spearman": null,
+      "feature_set": "morgan_fingerprints",
+      "model": "Random Forest",
+      "split": "random_split",
+      "test_size": 2119,
+      "train_size": 8474
+    },
+    {
+      "MAE": 0.6667289260758611,
+      "Pearson": null,
+      "R2": 0.5503623893513977,
+      "RMSE": 0.8706715071513551,
+      "Spearman": null,
+      "feature_set": "morgan_fingerprints",
+      "model": "Random Forest",
+      "split": "scaffold_split",
+      "test_size": 2122,
+      "train_size": 8471
+    }
+  ],
+  "status": "completed",
+  "validation_rows": [
+    {
+      "MAE": 0.7959778908221339,
+      "Pearson": 0.6705173336586066,
+      "R2": 0.4480171002230632,
+      "RMSE": 1.0135992949202917,
+      "Spearman": 0.6870709476123784,
+      "group_overlap_count": 0,
+      "model": "Random Forest Morgan",
+      "molecule_overlap_count": 0,
+      "split": "assay_group_split",
+      "status": "completed",
+      "test_size": 2023,
+      "test_unique_groups": 217,
+      "train_size": 8570,
+      "train_unique_groups": 867
+    },
+    {
+      "MAE": 0.8814069616241912,
+      "Pearson": 0.5042280029635546,
+      "R2": 0.21240743631437198,
+      "RMSE": 1.1425119156890893,
+      "Spearman": 0.4893740873666689,
+      "group_overlap_count": 0,
+      "model": "Random Forest Morgan",
+      "molecule_overlap_count": 0,
+      "split": "document_group_split",
+      "status": "completed",
+      "test_size": 1947,
+      "test_unique_groups": 182,
+      "train_size": 8646,
+      "train_unique_groups": 724
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "available_backends": {
+    "chemprop": false,
+    "deepchem": false,
+    "torch": true,
+    "torch_geometric": false
+  },
+  "backend": "custom_pytorch_dense_gcn",
+  "cuda_available": true,
+  "device": "NVIDIA GeForce RTX 4090",
+  "gnn_beat_morgan_rf": {
+    "random_RMSE": false,
+    "scaffold_RMSE": false
+  },
+  "gnn_status": "completed",
+  "graph_metadata": {
+    "graph_rows": 10593,
+    "invalid_graph_count": 0,
+    "max_atoms": 64,
+    "node_feature_dim": 15,
+    "random_test_size": 2119,
+    "random_train_size": 8474,
+    "scaffold_overlap": 0,
+    "scaffold_test_count": 2119,
+    "scaffold_test_size": 2119,
+    "scaffold_train_count": 1566,
+    "scaffold_train_size": 8474
+  },
+  "random_split": {
+    "MAE": 0.8856777430368291,
+    "Pearson": 0.5746743664820467,
+    "R2": 0.30995769366415427,
+    "RMSE": 1.1145567070332265,
+    "Spearman": 0.5728883600924365,
+    "backend": "custom_pytorch_dense_gcn",
+    "epochs": 24,
+    "model": "DenseGCN",
+    "runtime_seconds": 12.046,
+    "split": "random_split",
+    "test_size": 2119,
+    "train_size": 8474
+  },
+  "rf_reference": {
+    "random_split": {
+      "MAE": 0.516,
+      "R2": 0.719,
+      "RMSE": 0.712
+    },
+    "scaffold_split": {
+      "MAE": 0.667,
+      "R2": 0.55,
+      "RMSE": 0.871
+    }
+  },
+  "scaffold_split": {
+    "MAE": 0.908794660397215,
+    "Pearson": 0.4788857407584916,
+    "R2": 0.19800341794433707,
+    "RMSE": 1.1493471823993002,
+    "Spearman": 0.46331205533249986,
+    "backend": "custom_pytorch_dense_gcn",
+    "epochs": 24,
+    "model": "DenseGCN",
+    "runtime_seconds": 9.611,
+    "split": "scaffold_split",
+    "test_size": 2119,
+    "train_size": 8474
+  },
+  "torch_python": "/home/dimit/eva/Computational-Chemistry/antibody_project/antibody-prioritization/.venv/bin/python",
+  "torch_version": "2.11.0+cu128",
+  "worker_status": "completed"
+}

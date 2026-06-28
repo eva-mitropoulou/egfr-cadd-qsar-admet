@@ -1,0 +1,28 @@
+{
+  "alert_catalog_status": "available",
+  "brenk_alert_count": 6074,
+  "diverse_top20_lipinski_clean_count": 18,
+  "diverse_top20_low_or_medium_risk_count": 20,
+  "diverse_top20_unique_scaffolds": 20,
+  "lipinski_violation_counts": {
+    "0": 4949,
+    "1": 2903,
+    "2": 2623,
+    "3": 115,
+    "4": 3
+  },
+  "pains_alert_count": 847,
+  "ranked_molecule_count": 10593,
+  "retrospective_limitation": "Existing-molecule ChEMBL triage only; not prospective drug discovery or true ADMET prediction.",
+  "risk_counts": {
+    "high": 149,
+    "low": 6259,
+    "medium": 4185
+  },
+  "triage_counts": {
+    "deprioritize_high_model_risk": 464,
+    "deprioritize_property_risk": 3500,
+    "prioritize": 586,
+    "review": 6043
+  }
+}

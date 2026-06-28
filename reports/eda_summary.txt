@@ -1,0 +1,72 @@
+EGFR Descriptor EDA Summary
+============================
+
+Rows: 10834
+Columns: 14
+
+Missing Values Per Column
+-------------------------
+molecule_chembl_id    0
+canonical_smiles      0
+median_pIC50          0
+median_IC50_nM        0
+n_measurements        0
+MolWt                 0
+MolLogP               0
+TPSA                  0
+NumHDonors            0
+NumHAcceptors         0
+NumRotatableBonds     0
+RingCount             0
+HeavyAtomCount        0
+QED                   0
+
+Summary Statistics
+------------------
+       median_pIC50  median_IC50_nM  n_measurements         MolWt       MolLogP          TPSA    NumHDonors  NumHAcceptors  NumRotatableBonds     RingCount  HeavyAtomCount           QED
+count  10834.000000    1.083400e+04    10834.000000  10834.000000  10834.000000  10834.000000  10834.000000   10834.000000       10834.000000  10834.000000    10834.000000  10834.000000
+mean       6.911404    1.615592e+04        1.811519    480.670172      4.577405     96.082764      2.199003       6.715710           6.901237      4.411852       33.878531      0.397900
+std        1.351701    4.147942e+05        4.551369    121.071204      1.444322     30.434533      1.189936       2.171039           3.212702      1.306606        8.660761      0.188975
+min        1.602060    5.012000e-09        1.000000    110.112000     -5.994500      0.000000      0.000000       0.000000           0.000000      0.000000        3.000000      0.018224
+25%        5.958607    1.300000e+01        1.000000    401.312000      3.665500     76.960000      1.000000       5.000000           5.000000      4.000000       28.000000      0.245257
+50%        7.009306    1.118000e+02        1.000000    480.366000      4.532050     96.370000      2.000000       7.000000           7.000000      4.000000       34.000000      0.371442
+75%        7.929391    1.270375e+03        2.000000    554.673250      5.481900    111.640000      3.000000       8.000000           9.000000      5.000000       39.000000      0.531596
+max       17.299989    2.750003e+07      263.000000   1425.805000     13.028900    530.870000     17.000000      19.000000          36.000000     12.000000      103.000000      0.942913
+
+pIC50 Activity Bins
+-------------------
+median_pIC50
+weak (<5)              890
+low/moderate (5-6)    1893
+moderate (6-7)        2560
+strong (7-8)          2933
+very strong (>8)      2558
+
+Top 10 Strongest Compounds
+--------------------------
+molecule_chembl_id                                                        canonical_smiles  median_pIC50  median_IC50_nM  n_measurements   MolWt  MolLogP      QED
+     CHEMBL5073622                C=CC(=O)N1CC[C@H](Oc2nc(-c3n[nH]c(=O)[nH]3)cc3ccccc23)C1     17.299989    5.012000e-09               1 351.366   1.4789 0.693020
+       CHEMBL63786                                       Brc1cccc(Nc2ncnc3cc4ccccc4cc23)c1     11.522879    3.000000e-03               1 350.219   5.2891 0.499383
+       CHEMBL35820                                     CCOc1cc2ncnc(Nc3cccc(Br)c3)c2cc1OCC     11.221849    6.000000e-03               4 388.265   4.9333 0.648824
+       CHEMBL66031                                     Brc1cccc(Nc2ncnc3cc4[nH]cnc4cc23)c1     11.096910    8.000000e-03               2 340.184   4.0122 0.578561
+      CHEMBL176582                                     Cn1cnc2cc3ncnc(Nc4cccc(Br)c4)c3cc21     11.000000    1.000000e-02               1 354.211   4.0226 0.590737
+     CHEMBL5270693 COc1cc(N2CCC(N(C)C)CC2)ccc1Nc1ncc(C(=O)Oc2ccccc2)c(-c2c[nH]c3ccccc23)n1     10.698970    2.000000e-02               5 562.674   6.1267 0.172385
+      CHEMBL174426                                     Cn1cnc2cc3c(Nc4cccc(Br)c4)ncnc3cc21     10.602060    2.500000e-02               1 354.211   4.0226 0.590737
+     CHEMBL5790648                     COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1N1CC2(CN(C)C2)OC1=O     10.539938    3.400000e-02               2 443.866   3.8153 0.656240
+     CHEMBL6054692                 CCCN1CC2(C1)CN(c1cc3c(Nc4cccc(Cl)c4F)ncnc3cc1OC)C(=O)O2     10.480889    3.650000e-02               2 471.920   4.5955 0.562574
+     CHEMBL3613702                           C=CC(=O)Nc1ccc2ncnc(Nc3cc(F)c(Cl)c(Cl)c3)c2c1     10.431798    3.700000e-02               1 377.206   4.9438 0.499138
+
+Top 10 Weakest Compounds
+------------------------
+molecule_chembl_id                                                                 canonical_smiles  median_pIC50  median_IC50_nM  n_measurements   MolWt  MolLogP      QED
+       CHEMBL45068                                                O=C(CCc1ccc(O)cc1)c1c(O)cc(O)cc1O      1.602060      25000000.0               1 274.272  2.32450 0.641341
+      CHEMBL490510 O=C(/C=C/c1ccc(O)c(O)c1)c1ccc(O[C@@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2O)c(O)c1O      1.721246      19000000.0               1 450.396 -0.41620 0.161617
+       CHEMBL76587                                                            N#CC(C#N)Cc1ccc(O)cc1      2.187087       6500000.0               1 172.187  1.59806 0.736150
+      CHEMBL261238                                CN(c1cccnc1)c1cc2c(Nc3ccc(F)c(Cl)c3)c(C#N)cnc2cn1      2.301030       5000000.0               1 404.836  5.20048 0.503316
+       CHEMBL66879                                                           O=C(O)/C=C/c1ccc(O)cc1      2.522879       3000000.0               1 164.160  1.49000 0.650834
+       CHEMBL75718                                                              N#C/C=C/c1ccc(O)cc1      2.619789       2400000.0               1 145.161  1.92898 0.613382
+      CHEMBL294213                                                      N#CC(C#N)=Cc1ccc2[nH]ccc2c1      2.657577       2200000.0               1 193.209  2.59846 0.707241
+      CHEMBL294681                                                 C[S+]([O-])c1ccc(C=C(C#N)C#N)cc1      2.744727       1800000.0               1 216.265  1.85456 0.559182
+      CHEMBL308133                                                     O=C(O)C(=Cc1ccc(O)cc1)C(=O)O      2.823909       1500000.0               1 208.169  0.94480 0.390139
+      CHEMBL298810                                                            N#CC(C#N)=Cc1cc[nH]n1      2.829738       1480000.0               1 144.137  0.84026 0.593054
+

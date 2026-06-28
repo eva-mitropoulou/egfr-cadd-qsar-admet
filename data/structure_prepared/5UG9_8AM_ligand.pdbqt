@@ -1,0 +1,55 @@
+REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  5 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: N12_5  and  C15_7
+REMARK    2  A    between atoms: C1_11  and  N28_28
+REMARK    3  A    between atoms: N18_20  and  C19_21
+REMARK    4  A    between atoms: C23_24  and  O24_25
+REMARK    5  A    between atoms: C29_29  and  C30_30
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  C5  8AM A9001     -15.044  16.768 -25.718  0.00  0.00    +0.000 C 
+ATOM      2  C6  8AM A9001     -13.289  15.888 -27.250  0.00  0.00    +0.000 C 
+ATOM      3  C8  8AM A9001     -13.359  13.536 -27.750  0.00  0.00    +0.000 C 
+ATOM      4  C10 8AM A9001     -11.677  15.011 -28.597  0.00  0.00    +0.000 A 
+ATOM      5  N12 8AM A9001     -10.572  14.937 -29.401  0.00  0.00    +0.000 N 
+ATOM      6  C13 8AM A9001     -10.456  13.612 -29.774  0.00  0.00    +0.000 A 
+ATOM      7  C1  8AM A9001     -15.255  18.177 -25.137  0.00  0.00    +0.000 C 
+ATOM      8  C2  8AM A9001     -14.594  19.080 -26.156  0.00  0.00    +0.000 C 
+ATOM      9  C3  8AM A9001     -13.365  18.285 -26.590  0.00  0.00    +0.000 C 
+ATOM     10  N4  8AM A9001     -13.867  16.926 -26.565  0.00  0.00    +0.000 N 
+ATOM     11  N7  8AM A9001     -13.863  14.660 -27.134  0.00  0.00    +0.000 NA
+ATOM     12  C9  8AM A9001     -12.185  13.714 -28.527  0.00  0.00    +0.000 A 
+ATOM     13  N11 8AM A9001     -12.175  16.118 -27.994  0.00  0.00    +0.000 NA
+ATOM     14  N14 8AM A9001     -11.411  12.856 -29.266  0.00  0.00    +0.000 NA
+ATOM     15  N18 8AM A9001     -13.998  12.292 -27.613  0.00  0.00    +0.000 NA
+ATOM     16  F27 8AM A9001     -15.445  19.229 -27.215  0.00  0.00    +0.000 F 
+ENDROOT
+BRANCH  15  19
+ATOM     17  C20 8AM A9001     -15.845  12.696 -25.952  0.00  0.00    +0.000 A 
+ATOM     18  C26 8AM A9001     -17.976  12.242 -24.706  0.00  0.00    +0.000 C 
+ATOM     19  C19 8AM A9001     -15.154  12.007 -26.939  0.00  0.00    +0.000 A 
+ATOM     20  N21 8AM A9001     -16.945  11.939 -25.669  0.00  0.00    +0.000 N 
+ATOM     21  N22 8AM A9001     -17.026  10.809 -26.396  0.00  0.00    +0.000 NA
+ATOM     22  C23 8AM A9001     -15.928  10.861 -27.168  0.00  0.00    +0.000 A 
+BRANCH  22  23
+ATOM     23  O24 8AM A9001     -15.601   9.901 -28.086  0.00  0.00    +0.000 OA
+ATOM     24  C25 8AM A9001     -16.500   8.795 -28.206  0.00  0.00    +0.000 C 
+ENDBRANCH  22  23
+ENDBRANCH  15  19
+BRANCH   5  25
+ATOM     25  C15 8AM A9001      -9.721  16.085 -29.761  0.00  0.00    +0.000 C 
+ATOM     26  C17 8AM A9001      -8.279  15.692 -30.111  0.00  0.00    +0.000 C 
+ATOM     27  C16 8AM A9001     -10.325  16.858 -30.941  0.00  0.00    +0.000 C 
+ENDBRANCH   5  25
+BRANCH   7  28
+ATOM     28  N28 8AM A9001     -14.552  18.323 -23.854  0.00  0.00    +0.000 NA
+ATOM     29  C29 8AM A9001     -15.007  17.806 -22.652  0.00  0.00    +0.000 C 
+ATOM     30  O32 8AM A9001     -16.044  17.165 -22.506  0.00  0.00    +0.000 OA
+BRANCH  29  31
+ATOM     31  C30 8AM A9001     -14.037  18.146 -21.524  0.00  0.00    +0.000 C 
+ATOM     32  C31 8AM A9001     -14.359  17.468 -20.200  0.00  0.00    +0.000 C 
+ENDBRANCH  29  31
+ENDBRANCH   7  28
+TORSDOF 5

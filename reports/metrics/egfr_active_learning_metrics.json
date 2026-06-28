@@ -1,0 +1,76 @@
+{
+  "batch_size": 500,
+  "best_final_recovery_fraction": 0.3996229971724788,
+  "best_strategy": "applicability_domain_aware_high_score",
+  "final_strategy_summary": [
+    {
+      "labeled_count": 2900,
+      "mean_selected_pIC50": 7.40757176545751,
+      "round": 5,
+      "selected_scaffold_count": 1304,
+      "strategy": "highest_predicted_pIC50",
+      "top_potent_recovered": 388,
+      "top_potent_recovery_fraction": 0.3656927426955702
+    },
+    {
+      "labeled_count": 2900,
+      "mean_selected_pIC50": 6.88294518429505,
+      "round": 5,
+      "selected_scaffold_count": 1511,
+      "strategy": "random",
+      "top_potent_recovered": 261,
+      "top_potent_recovery_fraction": 0.24599434495758718
+    },
+    {
+      "labeled_count": 2900,
+      "mean_selected_pIC50": 7.47755656017042,
+      "round": 5,
+      "selected_scaffold_count": 1360,
+      "strategy": "applicability_domain_aware_high_score",
+      "top_potent_recovered": 424,
+      "top_potent_recovery_fraction": 0.3996229971724788
+    },
+    {
+      "labeled_count": 2900,
+      "mean_selected_pIC50": 7.285852890912002,
+      "round": 5,
+      "selected_scaffold_count": 1787,
+      "strategy": "scaffold_diverse_high_score",
+      "top_potent_recovered": 348,
+      "top_potent_recovery_fraction": 0.32799245994344955
+    },
+    {
+      "labeled_count": 2900,
+      "mean_selected_pIC50": 6.723370834824076,
+      "round": 5,
+      "selected_scaffold_count": 1438,
+      "strategy": "uncertainty_sampling",
+      "top_potent_recovered": 274,
+      "top_potent_recovery_fraction": 0.2582469368520264
+    },
+    {
+      "labeled_count": 2900,
+      "mean_selected_pIC50": 7.217027614612422,
+      "round": 5,
+      "selected_scaffold_count": 1827,
+      "strategy": "hybrid_activity_uncertainty_diversity",
+      "top_potent_recovered": 328,
+      "top_potent_recovery_fraction": 0.3091423185673893
+    }
+  ],
+  "model": "Ridge regression on RDKit descriptor features",
+  "molecule_count": 10593,
+  "potent_cutoff_pIC50": 8.610201754371086,
+  "potent_pool_count": 1061,
+  "rounds": 5,
+  "seed_size": 400,
+  "simulation_rows": 36,
+  "strategies": [
+    "random",
+    "highest_predicted_pIC50",
+    "uncertainty_sampling",
+    "scaffold_diverse_high_score",
+    "applicability_domain_aware_high_score",
+    "hybrid_activity_uncertainty_diversity"
+  ]
+}

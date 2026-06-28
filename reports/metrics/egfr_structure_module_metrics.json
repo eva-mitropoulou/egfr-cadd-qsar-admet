@@ -1,0 +1,64 @@
+{
+  "available_structures": 4,
+  "binding_site_residue_rows": 68,
+  "docked_heavy_atom_count": 32,
+  "docking_ready": true,
+  "docking_score_kcal_mol": -9.471,
+  "fetch_status_counts": {
+    "fetched": 4
+  },
+  "interaction_analysis_status": "completed",
+  "interaction_category_counts": {
+    "aromatic_contact": 4,
+    "charged_contact": 11,
+    "hydrogen_bond_candidate": 10,
+    "hydrophobic_contact": 36
+  },
+  "interaction_fingerprint_status": "completed_heuristic_contacts",
+  "interaction_residue_count": 68,
+  "ligand_conversion_status": "prepared_with_obabel",
+  "ligand_id": "8AM",
+  "ligand_ids_used": [
+    "AQ4",
+    "IRE",
+    "AQ4",
+    "8AM"
+  ],
+  "ligand_pdbqt": "data/structure_prepared/5UG9_8AM_ligand.pdbqt",
+  "ligand_pdbqt_bytes": 3387,
+  "ligand_pdbqt_method": "prepared_with_obabel",
+  "ligand_preparation_input": "data/structure_prepared/5UG9_8AM_ligand.pdb",
+  "parse_status_counts": {
+    "parsed_with_ligand": 4
+  },
+  "parsed_cocrystal_count": 4,
+  "pdb_id": "5UG9",
+  "pdb_ids_used": [
+    "1M17",
+    "2ITY",
+    "4HJO",
+    "5UG9"
+  ],
+  "pdbqt_preparation_status": "prepared",
+  "pose_recovery_reference_source": "prepared_ligand_pdbqt_original_coordinates",
+  "pose_recovery_rmsd_angstrom": 0.968,
+  "pose_recovery_status": "successful",
+  "protein_conversion_status": "prepared_with_obabel",
+  "reason": "Vina produced a pose and score; pose-recovery RMSD was computed from prepared co-crystal ligand coordinates.",
+  "receptor_pdbqt": "data/structure_prepared/5UG9_receptor.pdbqt",
+  "receptor_pdbqt_bytes": 198589,
+  "receptor_pdbqt_method": "prepared_with_obabel",
+  "redocked_pose": "data/structure_prepared/5UG9_8AM_redocked_out.pdbqt",
+  "redocking_audit_metrics": "reports/metrics/egfr_redocking_audit_metrics.json",
+  "redocking_audit_status": "completed",
+  "redocking_case_ligand_id": "8AM",
+  "redocking_case_pdb_id": "5UG9",
+  "redocking_case_status": "prepared",
+  "redocking_overlay_artifact_status": "overlay_figure_created",
+  "redocking_status": "completed_redocking",
+  "reference_heavy_atom_count": 32,
+  "structure_candidates": 4,
+  "structure_module_status": "completed_redocking",
+  "vina_available": true,
+  "vina_backend": "vina_python_completed"
+}

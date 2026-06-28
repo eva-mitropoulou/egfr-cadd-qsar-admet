@@ -1,0 +1,73 @@
+{
+  "FINAL_STATUS": "DONE_WITH_WARNINGS",
+  "active_learning_best_strategy": "applicability_domain_aware_high_score",
+  "applicability_domain_finding": {
+    "high_similarity_mae": 0.513462959329003,
+    "low_similarity_mae": 0.9570007427171952
+  },
+  "best_random_split_model": {
+    "MAE": 0.5157747695703595,
+    "Pearson": null,
+    "R2": 0.7185380912010486,
+    "RMSE": 0.7118264643207324,
+    "Spearman": null,
+    "feature_set": "morgan_fingerprints",
+    "model": "Random Forest",
+    "split": "random_split",
+    "test_size": 2119,
+    "train_size": 8474
+  },
+  "best_scaffold_split_model": {
+    "MAE": 0.6667289260758611,
+    "Pearson": null,
+    "R2": 0.5503623893513977,
+    "RMSE": 0.8706715071513551,
+    "Spearman": null,
+    "feature_set": "morgan_fingerprints",
+    "model": "Random Forest",
+    "split": "scaffold_split",
+    "test_size": 2122,
+    "train_size": 8471
+  },
+  "cli_demo_status": true,
+  "gnn_backend": "custom_pytorch_dense_gcn",
+  "gnn_beat_morgan_rf": {
+    "random_RMSE": false,
+    "scaffold_RMSE": false
+  },
+  "gnn_random_split": {
+    "MAE": 0.8856777430368291,
+    "Pearson": 0.5746743664820467,
+    "R2": 0.30995769366415427,
+    "RMSE": 1.1145567070332265,
+    "Spearman": 0.5728883600924365,
+    "backend": "custom_pytorch_dense_gcn",
+    "epochs": 24,
+    "model": "DenseGCN",
+    "runtime_seconds": 12.046,
+    "split": "random_split",
+    "test_size": 2119,
+    "train_size": 8474
+  },
+  "gnn_scaffold_split": {
+    "MAE": 0.908794660397215,
+    "Pearson": 0.4788857407584916,
+    "R2": 0.19800341794433707,
+    "RMSE": 1.1493471823993002,
+    "Spearman": 0.46331205533249986,
+    "backend": "custom_pytorch_dense_gcn",
+    "epochs": 24,
+    "model": "DenseGCN",
+    "runtime_seconds": 9.611,
+    "split": "scaffold_split",
+    "test_size": 2119,
+    "train_size": 8474
+  },
+  "gnn_status": "completed",
+  "interaction_analysis_status": "completed",
+  "redocking_status": "failed_missing_pdbqt_preparation",
+  "scaffold_performance_drop_R2": 0.16817570184965092,
+  "structure_module_status": "structure_analysis_completed_redocking_failed",
+  "triage_table_size": 10593,
+  "uncertainty_status": "degraded_proxy_interval_from_out_of_fold_residual_quantile"
+}

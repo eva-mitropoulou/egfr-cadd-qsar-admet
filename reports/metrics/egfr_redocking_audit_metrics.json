@@ -1,0 +1,42 @@
+{
+  "atom_mapping": "direct prepared-ligand PDBQT atom order",
+  "co_crystal_ligand_reference_path": "data/structure_prepared/5UG9_8AM_ligand.pdb",
+  "docking_box_center": {
+    "x": -13.8704375,
+    "y": 14.9338125,
+    "z": -26.729937500000002
+  },
+  "docking_box_size": {
+    "x": 21.697,
+    "y": 22.433999999999997,
+    "z": 22.741
+  },
+  "docking_score_kcal_mol": -9.471,
+  "exhaustiveness": 8,
+  "hydrogens_ignored_for_rmsd": true,
+  "ligand_id": "8AM",
+  "ligand_pdbqt": "data/structure_prepared/5UG9_8AM_ligand.pdbqt",
+  "ligand_pdbqt_bytes": 3387,
+  "meeko_version": "0.7.1",
+  "number_of_poses_requested": 9,
+  "openbabel_cli_version": "Open Babel 3.1.0 -- Feb 17 2026 -- 06:47:47",
+  "openbabel_wheel_version": "3.1.1.23",
+  "overlay_artifact_status": "overlay_figure_created",
+  "overlay_figure": "reports/figures/5UG9_8AM_redocking_pose_overlay.png",
+  "overlay_script": "reports/structure_visualization/5UG9_8AM_overlay.pml",
+  "pdb_id": "5UG9",
+  "pose_recovery_rmsd_angstrom": 0.968,
+  "pose_recovery_status": "successful",
+  "rdkit_version": "2026.03.3",
+  "receptor_pdbqt": "data/structure_prepared/5UG9_receptor.pdbqt",
+  "receptor_pdbqt_bytes": 198589,
+  "redocked_pose": "data/structure_prepared/5UG9_8AM_redocked_out.pdbqt",
+  "redocked_pose_bytes": 28848,
+  "redocking_status": "completed_redocking",
+  "rmsd_atom_scope": "heavy atom",
+  "rmsd_method": "direct fixed-frame coordinate RMSD from prepared ligand PDBQT original coordinates to first Vina pose",
+  "status": "completed",
+  "vina_backend": "vina_python_completed",
+  "vina_cli_version": "unavailable",
+  "vina_python_version": "1.2.7"
+}

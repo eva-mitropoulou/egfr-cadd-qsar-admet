@@ -1,0 +1,25 @@
+{
+  "available_structure_count": 4,
+  "binding_site_table": "data/processed/egfr_binding_site_residues.csv",
+  "candidate_structure_count": 4,
+  "fetch_status_counts": {
+    "fetched": 4
+  },
+  "ligand_ids_used": [
+    "AQ4",
+    "IRE",
+    "AQ4",
+    "8AM"
+  ],
+  "parse_status_counts": {
+    "parsed_with_ligand": 4
+  },
+  "parsed_cocrystal_count": 4,
+  "pdb_ids_used": [
+    "1M17",
+    "2ITY",
+    "4HJO",
+    "5UG9"
+  ],
+  "structure_table": "data/processed/egfr_structure_candidates.csv"
+}

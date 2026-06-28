@@ -1,0 +1,91 @@
+{
+  "method": "split_conformal_absolute_residual_intervals",
+  "splits": [
+    {
+      "MAE": 0.5377695975928093,
+      "Pearson": 0.8408567629705399,
+      "R2": 0.7050940208227634,
+      "RMSE": 0.7286284167015162,
+      "Spearman": 0.843233745016879,
+      "calibration_size": 2119,
+      "conformal_q_hat": 1.220656017254358,
+      "coverage_by_similarity_bin": [
+        {
+          "MAE": 0.4899767704170942,
+          "count": 1731,
+          "empirical_coverage": 0.925476603119584,
+          "mean_interval_width": 2.441312034508716,
+          "similarity_bin": "high"
+        },
+        {
+          "MAE": 0.8863140308269416,
+          "count": 26,
+          "empirical_coverage": 0.6923076923076923,
+          "mean_interval_width": 2.441312034508716,
+          "similarity_bin": "low"
+        },
+        {
+          "MAE": 0.7412702290211944,
+          "count": 362,
+          "empirical_coverage": 0.8066298342541437,
+          "mean_interval_width": 2.441312034508716,
+          "similarity_bin": "medium"
+        }
+      ],
+      "empirical_coverage": 0.9023124115148655,
+      "error_interval_width_spearman": 0.034300887976780624,
+      "mean_interval_width": 2.441312034508716,
+      "median_interval_width": 2.441312034508716,
+      "model": "Random Forest Morgan",
+      "split": "random_split_conformal",
+      "status": "completed",
+      "target_coverage": 0.9,
+      "test_size": 2119,
+      "train_size": 6355
+    },
+    {
+      "MAE": 0.6421668256567725,
+      "Pearson": 0.7623006220713726,
+      "R2": 0.5791806760548077,
+      "RMSE": 0.8462254762376606,
+      "Spearman": 0.7573782477557174,
+      "calibration_size": 2124,
+      "conformal_q_hat": 1.547189741043547,
+      "coverage_by_similarity_bin": [
+        {
+          "MAE": 0.5346219508496194,
+          "count": 1079,
+          "empirical_coverage": 0.9582947173308619,
+          "mean_interval_width": 3.094379482087094,
+          "similarity_bin": "high"
+        },
+        {
+          "MAE": 1.0808683656876823,
+          "count": 50,
+          "empirical_coverage": 0.8,
+          "mean_interval_width": 3.094379482087094,
+          "similarity_bin": "low"
+        },
+        {
+          "MAE": 0.7378028448797124,
+          "count": 984,
+          "empirical_coverage": 0.9085365853658537,
+          "mean_interval_width": 3.094379482087094,
+          "similarity_bin": "medium"
+        }
+      ],
+      "empirical_coverage": 0.9313771888310459,
+      "error_interval_width_spearman": 0.04921958807456464,
+      "mean_interval_width": 3.0943794820870933,
+      "median_interval_width": 3.094379482087094,
+      "model": "Random Forest Morgan",
+      "split": "scaffold_group_conformal",
+      "status": "completed",
+      "target_coverage": 0.9,
+      "test_size": 2113,
+      "train_size": 6356
+    }
+  ],
+  "status": "completed",
+  "target_coverage": 0.9
+}

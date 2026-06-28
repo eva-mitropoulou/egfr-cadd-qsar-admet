@@ -1,0 +1,22 @@
+{
+  "box_center": {
+    "x": -13.8704375,
+    "y": 14.9338125,
+    "z": -26.729937500000002
+  },
+  "box_size": {
+    "x": 21.697,
+    "y": 22.433999999999997,
+    "z": 22.741
+  },
+  "case_status": "prepared",
+  "ligand_conversion_status": "prepared_with_obabel",
+  "ligand_id": "8AM",
+  "ligand_pdb": "data/structure_prepared/5UG9_8AM_ligand.pdb",
+  "ligand_pdbqt": "data/structure_prepared/5UG9_8AM_ligand.pdbqt",
+  "pdb_id": "5UG9",
+  "protein_conversion_status": "prepared_with_obabel",
+  "protein_pdb": "data/structure_prepared/5UG9_protein.pdb",
+  "protein_pdbqt": "data/structure_prepared/5UG9_receptor.pdbqt",
+  "resolution_angstrom": 1.33
+}

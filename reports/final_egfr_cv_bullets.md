@@ -1,0 +1,3 @@
+# EGFR Project CV Bullets
+
+- Built a retrospective EGFR CADD/QSAR decision workflow from ChEMBL, curating 26,600 IC50 records into 10,593 model-ready molecules; benchmarked RDKit descriptor, Morgan fingerprint, and GPU PyTorch GCN models under random and scaffold splits, with Morgan RF achieving scaffold-split RMSE 0.871/R2 0.550; quantified applicability-domain degradation from high-similarity MAE 0.513 to low-similarity MAE 0.957; added assay-aware validation, split-conformal uncertainty, ADMET-style/model-risk triage, SAR/error analysis, active-learning simulation, CLI prediction, ligand-contact analysis across four EGFR PDB structures, and 5UG9 redocking validation recovering the co-crystal ligand pose at 0.968 A RMSD.

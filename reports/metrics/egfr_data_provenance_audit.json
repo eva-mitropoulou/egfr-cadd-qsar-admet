@@ -1,0 +1,40 @@
+{
+  "assay_count": 2425,
+  "clean_pIC50_molecule_count": 10834,
+  "document_count": 1298,
+  "duplicate_aggregation_policy": "Duplicate activity measurements are aggregated to one molecule-level target using median pIC50 and median IC50_nM.",
+  "duplicate_molecule_row_count": 11824,
+  "exact_relation_rows": 19719,
+  "ic50_rows": 26600,
+  "model_ready_molecule_count": 10593,
+  "nm_rows": 25244,
+  "pIC50_conversion_policy": "pIC50 = 9 - log10(IC50_nM), using exact nM IC50 values only for the clean regression target.",
+  "primary_target_id": "CHEMBL203",
+  "raw_activity_row_count": 26600,
+  "raw_unique_molecule_count": 14776,
+  "source": "ChEMBL public activity records",
+  "standard_relation_distribution": {
+    "<": 2067,
+    "<=": 87,
+    "=": 19719,
+    ">": 3309,
+    ">=": 8,
+    ">>": 11,
+    "missing": 1398,
+    "~": 1
+  },
+  "standard_type_distribution": {
+    "IC50": 26600
+  },
+  "standard_units_distribution": {
+    "/uM": 6,
+    "10^-5 mol/L": 1,
+    "10^3 uM": 1,
+    "missing": 1259,
+    "nM": 25244,
+    "ug.mL-1": 89
+  },
+  "target_ids": [
+    "CHEMBL203"
+  ]
+}

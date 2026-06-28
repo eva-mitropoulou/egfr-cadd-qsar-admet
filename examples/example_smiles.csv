@@ -1,0 +1,6 @@
+molecule_id,smiles
+CHEMBL10,C[S+]([O-])c1ccc(-c2nc(-c3ccc(F)cc3)c(-c3ccncc3)[nH]2)cc1
+CHEMBL100714,COc1ccc(Nc2ncnc3cc(OC)c(OC)cc23)cc1OC
+CHEMBL1009,N[C@@H](Cc1ccc(O)c(O)c1)C(=O)O
+CHEMBL101253,Clc1ccc(Nc2nnc(Cc3ccncc3)c3ccccc23)cc1
+CHEMBL101581,COc1cc2nccc(Oc3cccc(Br)c3)c2cc1OC

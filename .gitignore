@@ -1,0 +1,34 @@
+.venv/
+.micromamba/
+.tools/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local ChEMBL/project tables and generated feature matrices. The public repo
+# keeps reports/metrics/figures and source code; full local rebuilds recreate
+# these data files from ChEMBL and project scripts.
+data/raw/
+data/processed/*.csv
+data/processed/*.npz
+!data/README.md
+!data/processed/egfr_redocking_case.json
+
+# Local model binaries and training matrices.
+models/
+
+# Runtime logs and transient outputs.
+reports/run_logs/
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Record-level exports that may include raw molecule-level structures. Public
+# reports summarize these files without raw SMILES.
+results/ranked_candidates*.csv
+results/applicability_domain_predictions.csv
+results/top_20_candidates.csv
+results/top_20_diverse_candidates.csv

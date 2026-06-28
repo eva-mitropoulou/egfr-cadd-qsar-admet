@@ -1,0 +1,11 @@
+{
+  "FINAL_HARDENING_STATUS": "DONE",
+  "SAR_analysis_status": "completed",
+  "assay_aware_validation_status": "completed",
+  "conformal_uncertainty_status": "completed",
+  "degraded_items": [],
+  "document_aware_validation_status": "completed",
+  "overlay_artifact_status": "overlay_figure_created",
+  "redocking_audit_status": "completed",
+  "smoke_test_status": "passed"
+}

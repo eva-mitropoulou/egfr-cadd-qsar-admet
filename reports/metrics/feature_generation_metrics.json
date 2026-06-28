@@ -1,0 +1,53 @@
+{
+  "combined_features": {
+    "combined_columns": 2057,
+    "combined_index_path": "data/processed/features_combined_index.csv",
+    "combined_path": "data/processed/features_combined_descriptors_morgan.npz",
+    "combined_rows": 10593,
+    "descriptor_columns": 9,
+    "feature_label_alignment": true,
+    "fingerprint_columns": 2048
+  },
+  "morgan_fingerprints": {
+    "constant_zero_bit_count": 0,
+    "feature_label_alignment": true,
+    "fingerprint_bits": 2048,
+    "fingerprint_path": "data/processed/features_morgan_fingerprints.npz",
+    "fingerprint_rows": 10593,
+    "index_path": "data/processed/features_morgan_index.csv",
+    "input_rows": 10593,
+    "invalid_molecule_count": 0,
+    "nonzero_bit_count": 2048,
+    "radius": 2
+  },
+  "rdkit_descriptors": {
+    "constant_descriptor_columns": [],
+    "descriptor_column_count": 9,
+    "descriptor_columns": [
+      "MolWt",
+      "MolLogP",
+      "TPSA",
+      "NumHDonors",
+      "NumHAcceptors",
+      "NumRotatableBonds",
+      "RingCount",
+      "HeavyAtomCount",
+      "QED"
+    ],
+    "descriptor_rows": 10593,
+    "feature_label_alignment": true,
+    "input_rows": 10593,
+    "invalid_molecule_count": 0,
+    "missing_descriptor_counts": {
+      "HeavyAtomCount": 0,
+      "MolLogP": 0,
+      "MolWt": 0,
+      "NumHAcceptors": 0,
+      "NumHDonors": 0,
+      "NumRotatableBonds": 0,
+      "QED": 0,
+      "RingCount": 0,
+      "TPSA": 0
+    }
+  }
+}

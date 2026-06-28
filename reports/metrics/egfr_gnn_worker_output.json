@@ -1,0 +1,277 @@
+{
+  "backend": "custom_pytorch_dense_gcn",
+  "cuda_available": true,
+  "device": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 1,
+      "split": "random_split",
+      "train_loss": 0.990225299861696
+    },
+    {
+      "epoch": 2,
+      "split": "random_split",
+      "train_loss": 0.9380713979403178
+    },
+    {
+      "epoch": 3,
+      "split": "random_split",
+      "train_loss": 0.8722623997264438
+    },
+    {
+      "epoch": 4,
+      "split": "random_split",
+      "train_loss": 0.8488905217912462
+    },
+    {
+      "epoch": 5,
+      "split": "random_split",
+      "train_loss": 0.8264047198825413
+    },
+    {
+      "epoch": 6,
+      "split": "random_split",
+      "train_loss": 0.8187849548127916
+    },
+    {
+      "epoch": 7,
+      "split": "random_split",
+      "train_loss": 0.7846600625250074
+    },
+    {
+      "epoch": 8,
+      "split": "random_split",
+      "train_loss": 0.7903564042515225
+    },
+    {
+      "epoch": 9,
+      "split": "random_split",
+      "train_loss": 0.7586695128017001
+    },
+    {
+      "epoch": 10,
+      "split": "random_split",
+      "train_loss": 0.7504806836446126
+    },
+    {
+      "epoch": 11,
+      "split": "random_split",
+      "train_loss": 0.7500510176022848
+    },
+    {
+      "epoch": 12,
+      "split": "random_split",
+      "train_loss": 0.7457411269346873
+    },
+    {
+      "epoch": 13,
+      "split": "random_split",
+      "train_loss": 0.7361064473787944
+    },
+    {
+      "epoch": 14,
+      "split": "random_split",
+      "train_loss": 0.7124382820394304
+    },
+    {
+      "epoch": 15,
+      "split": "random_split",
+      "train_loss": 0.7236249923706055
+    },
+    {
+      "epoch": 16,
+      "split": "random_split",
+      "train_loss": 0.735978733168708
+    },
+    {
+      "epoch": 17,
+      "split": "random_split",
+      "train_loss": 0.7069821728600396
+    },
+    {
+      "epoch": 18,
+      "split": "random_split",
+      "train_loss": 0.6993259006076389
+    },
+    {
+      "epoch": 19,
+      "split": "random_split",
+      "train_loss": 0.6931896845499674
+    },
+    {
+      "epoch": 20,
+      "split": "random_split",
+      "train_loss": 0.6994610256618924
+    },
+    {
+      "epoch": 21,
+      "split": "random_split",
+      "train_loss": 0.6957630727026197
+    },
+    {
+      "epoch": 22,
+      "split": "random_split",
+      "train_loss": 0.6826480706532796
+    },
+    {
+      "epoch": 23,
+      "split": "random_split",
+      "train_loss": 0.6700731635093689
+    },
+    {
+      "epoch": 24,
+      "split": "random_split",
+      "train_loss": 0.6787351939413283
+    },
+    {
+      "epoch": 1,
+      "split": "scaffold_split",
+      "train_loss": 0.9980724387698703
+    },
+    {
+      "epoch": 2,
+      "split": "scaffold_split",
+      "train_loss": 0.9164443532625834
+    },
+    {
+      "epoch": 3,
+      "split": "scaffold_split",
+      "train_loss": 0.8597018116050297
+    },
+    {
+      "epoch": 4,
+      "split": "scaffold_split",
+      "train_loss": 0.831347918510437
+    },
+    {
+      "epoch": 5,
+      "split": "scaffold_split",
+      "train_loss": 0.8035726891623602
+    },
+    {
+      "epoch": 6,
+      "split": "scaffold_split",
+      "train_loss": 0.7948650028970506
+    },
+    {
+      "epoch": 7,
+      "split": "scaffold_split",
+      "train_loss": 0.7829668429162767
+    },
+    {
+      "epoch": 8,
+      "split": "scaffold_split",
+      "train_loss": 0.7619953089290195
+    },
+    {
+      "epoch": 9,
+      "split": "scaffold_split",
+      "train_loss": 0.7493135319815741
+    },
+    {
+      "epoch": 10,
+      "split": "scaffold_split",
+      "train_loss": 0.7401736352178786
+    },
+    {
+      "epoch": 11,
+      "split": "scaffold_split",
+      "train_loss": 0.7197892043325637
+    },
+    {
+      "epoch": 12,
+      "split": "scaffold_split",
+      "train_loss": 0.7023447348011864
+    },
+    {
+      "epoch": 13,
+      "split": "scaffold_split",
+      "train_loss": 0.6711344606346554
+    },
+    {
+      "epoch": 14,
+      "split": "scaffold_split",
+      "train_loss": 0.6553810053401523
+    },
+    {
+      "epoch": 15,
+      "split": "scaffold_split",
+      "train_loss": 0.6404488914542728
+    },
+    {
+      "epoch": 16,
+      "split": "scaffold_split",
+      "train_loss": 0.6417065885331895
+    },
+    {
+      "epoch": 17,
+      "split": "scaffold_split",
+      "train_loss": 0.6325555827882555
+    },
+    {
+      "epoch": 18,
+      "split": "scaffold_split",
+      "train_loss": 0.6208574758635627
+    },
+    {
+      "epoch": 19,
+      "split": "scaffold_split",
+      "train_loss": 0.6242713358667161
+    },
+    {
+      "epoch": 20,
+      "split": "scaffold_split",
+      "train_loss": 0.6044033692942725
+    },
+    {
+      "epoch": 21,
+      "split": "scaffold_split",
+      "train_loss": 0.6092559509807163
+    },
+    {
+      "epoch": 22,
+      "split": "scaffold_split",
+      "train_loss": 0.593017288711336
+    },
+    {
+      "epoch": 23,
+      "split": "scaffold_split",
+      "train_loss": 0.5964701248539819
+    },
+    {
+      "epoch": 24,
+      "split": "scaffold_split",
+      "train_loss": 0.6059535622596741
+    }
+  ],
+  "random_split": {
+    "MAE": 0.8856777430368291,
+    "Pearson": 0.5746743664820467,
+    "R2": 0.30995769366415427,
+    "RMSE": 1.1145567070332265,
+    "Spearman": 0.5728883600924365,
+    "backend": "custom_pytorch_dense_gcn",
+    "epochs": 24,
+    "model": "DenseGCN",
+    "runtime_seconds": 12.046,
+    "split": "random_split",
+    "test_size": 2119,
+    "train_size": 8474
+  },
+  "scaffold_split": {
+    "MAE": 0.908794660397215,
+    "Pearson": 0.4788857407584916,
+    "R2": 0.19800341794433707,
+    "RMSE": 1.1493471823993002,
+    "Spearman": 0.46331205533249986,
+    "backend": "custom_pytorch_dense_gcn",
+    "epochs": 24,
+    "model": "DenseGCN",
+    "runtime_seconds": 9.611,
+    "split": "scaffold_split",
+    "test_size": 2119,
+    "train_size": 8474
+  },
+  "torch_version": "2.11.0+cu128",
+  "worker_status": "completed"
+}

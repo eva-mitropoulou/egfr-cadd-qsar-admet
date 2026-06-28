@@ -1,0 +1,29 @@
+{
+  "charge_policy": "RDKit Uncharger applied when available; otherwise original sanitized charge state retained",
+  "duplicate_molecule_hash_count": 42,
+  "duplicate_scaffold_hash_count": 6908,
+  "duplicate_standardized_molecule_count": 42,
+  "formal_charge_distribution": {
+    "0": 10580,
+    "1": 13
+  },
+  "fragment_policy": "largest fragment chosen when RDKit MolStandardize is available; otherwise sanitized canonical molecule retained",
+  "fragment_standardized_count": 10593,
+  "input_rows": 10593,
+  "invalid_molecule_count": 0,
+  "missing_standardized_smiles": 0,
+  "molstandardize_available": true,
+  "nonzero_formal_charge_count": 13,
+  "normalized_count": 10593,
+  "parsed_count": 10593,
+  "public_reporting_policy": "reports use molecule IDs, hashes, and aggregate counts rather than raw SMILES",
+  "representation_audit_rows": 10593,
+  "salt_policy": "salts/fragments handled by largest-fragment choice when available",
+  "standardized_rows": 10593,
+  "stereochemistry_policy": "isomeric canonical SMILES retained; stereochemistry is not collapsed",
+  "tautomer_canonicalized_count": 0,
+  "tautomer_policy": "Full tautomer canonicalization is documented but skipped in the automated finish run to avoid fragile long runtimes; sanitized canonical isomeric SMILES are retained",
+  "uncharged_count": 10593,
+  "unique_scaffold_count": 3685,
+  "unique_standardized_molecule_count": 10551
+}

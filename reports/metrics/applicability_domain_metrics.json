@@ -1,0 +1,36 @@
+{
+  "confidence_rules": {
+    "high": "max Tanimoto > 0.7; interpolation-like prediction",
+    "low": "max Tanimoto < 0.3; out-of-domain warning",
+    "medium": "0.3 <= max Tanimoto <= 0.7; moderate reliability"
+  },
+  "evidence_source": "existing scaffold-CV applicability-domain predictions",
+  "high_similarity_mae": 0.513462959329003,
+  "low_similarity_mae": 0.9570007427171952,
+  "low_vs_high_mae_difference": 0.44353778338819216,
+  "out_of_domain_count": 149,
+  "prediction_rows": 10593,
+  "summary_by_similarity_bin": [
+    {
+      "MAE": 0.9570007427171952,
+      "RMSE": 1.199194276859186,
+      "count": 149,
+      "mean_similarity": 0.2558076626465403,
+      "similarity_bin": "low"
+    },
+    {
+      "MAE": 0.7624301115352154,
+      "RMSE": 0.9705705734962521,
+      "count": 4185,
+      "mean_similarity": 0.5820934069297979,
+      "similarity_bin": "medium"
+    },
+    {
+      "MAE": 0.513462959329003,
+      "RMSE": 0.6969051300035792,
+      "count": 6259,
+      "mean_similarity": 0.8036366199001422,
+      "similarity_bin": "high"
+    }
+  ]
+}

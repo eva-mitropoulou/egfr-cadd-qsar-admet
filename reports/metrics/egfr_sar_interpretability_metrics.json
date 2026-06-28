@@ -1,0 +1,296 @@
+{
+  "activity_cliff_count": 607,
+  "activity_cliff_thresholds": {
+    "delta_pIC50_min": 1.0,
+    "tanimoto_similarity_min": 0.85
+  },
+  "descriptor_importance_status": "completed",
+  "interpretation_scope": "SAR-support analysis; no causal mechanism or prospective discovery claim.",
+  "morgan_importance_status": "completed_bit_level_only",
+  "nearest_neighbor_summary": [
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "840813e0946f",
+      "molecule_id": "CHEMBL5997498",
+      "nearest_neighbor_hash": "cd72c109fe9e",
+      "nearest_neighbor_id": "CHEMBL5790648",
+      "nearest_neighbor_similarity": 0.8714
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "cd72c109fe9e",
+      "molecule_id": "CHEMBL5790648",
+      "nearest_neighbor_hash": "840813e0946f",
+      "nearest_neighbor_id": "CHEMBL5997498",
+      "nearest_neighbor_similarity": 0.8714
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "19c26cd628f2",
+      "molecule_id": "CHEMBL5968640",
+      "nearest_neighbor_hash": "3da9a8f6bf24",
+      "nearest_neighbor_id": "CHEMBL6054692",
+      "nearest_neighbor_similarity": 0.9014
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "3da9a8f6bf24",
+      "molecule_id": "CHEMBL6054692",
+      "nearest_neighbor_hash": "19c26cd628f2",
+      "nearest_neighbor_id": "CHEMBL5968640",
+      "nearest_neighbor_similarity": 0.9014
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "05da67cddcdd",
+      "molecule_id": "CHEMBL174426",
+      "nearest_neighbor_hash": "405341967c17",
+      "nearest_neighbor_id": "CHEMBL176582",
+      "nearest_neighbor_similarity": 0.9111
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "5af4fb3c43b2",
+      "molecule_id": "CHEMBL5786982",
+      "nearest_neighbor_hash": "5ba595360329",
+      "nearest_neighbor_id": "CHEMBL5746224",
+      "nearest_neighbor_similarity": 0.7714
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "5ba595360329",
+      "molecule_id": "CHEMBL5746224",
+      "nearest_neighbor_hash": "5af4fb3c43b2",
+      "nearest_neighbor_id": "CHEMBL5786982",
+      "nearest_neighbor_similarity": 0.7714
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "641e09fb0cbb",
+      "molecule_id": "CHEMBL4749862",
+      "nearest_neighbor_hash": "a806936bbad9",
+      "nearest_neighbor_id": "CHEMBL4783569",
+      "nearest_neighbor_similarity": 0.8214
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "6fc7c2ed67ff",
+      "molecule_id": "CHEMBL2031299",
+      "nearest_neighbor_hash": "bd488b4f6dd7",
+      "nearest_neighbor_id": "CHEMBL2031298",
+      "nearest_neighbor_similarity": 0.8361
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "2b14ce8fd052",
+      "molecule_id": "CHEMBL4780965",
+      "nearest_neighbor_hash": "960f2e2da9c4",
+      "nearest_neighbor_id": "CHEMBL4780286",
+      "nearest_neighbor_similarity": 0.8696
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "89b813bc39ee",
+      "molecule_id": "CHEMBL4789312",
+      "nearest_neighbor_hash": "960f2e2da9c4",
+      "nearest_neighbor_id": "CHEMBL4780286",
+      "nearest_neighbor_similarity": 0.8163
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "bd488b4f6dd7",
+      "molecule_id": "CHEMBL2031298",
+      "nearest_neighbor_hash": "b7d5d4f88d33",
+      "nearest_neighbor_id": "CHEMBL2425735",
+      "nearest_neighbor_similarity": 0.8983
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "083c2f8db76f",
+      "molecule_id": "CHEMBL5269375",
+      "nearest_neighbor_hash": "4e44ae246a2d",
+      "nearest_neighbor_id": "CHEMBL5275642",
+      "nearest_neighbor_similarity": 0.8732
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "11ddb592c8ea",
+      "molecule_id": "CHEMBL53753",
+      "nearest_neighbor_hash": "78367b0cb3c9",
+      "nearest_neighbor_id": "CHEMBL54400",
+      "nearest_neighbor_similarity": 0.8182
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "40d8c241957c",
+      "molecule_id": "CHEMBL5956184",
+      "nearest_neighbor_hash": "34fc890614b2",
+      "nearest_neighbor_id": "CHEMBL5883280",
+      "nearest_neighbor_similarity": 0.7606
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "75345a59c949",
+      "molecule_id": "CHEMBL165864",
+      "nearest_neighbor_hash": "4f843c4f94a8",
+      "nearest_neighbor_id": "CHEMBL127041",
+      "nearest_neighbor_similarity": 0.8367
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "1047588158f9",
+      "molecule_id": "CHEMBL2031300",
+      "nearest_neighbor_hash": "bd488b4f6dd7",
+      "nearest_neighbor_id": "CHEMBL2031298",
+      "nearest_neighbor_similarity": 0.85
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "63ae01263346",
+      "molecule_id": "CHEMBL6026192",
+      "nearest_neighbor_hash": "d50b13b922ab",
+      "nearest_neighbor_id": "CHEMBL5998662",
+      "nearest_neighbor_similarity": 1.0
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "d50b13b922ab",
+      "molecule_id": "CHEMBL5998662",
+      "nearest_neighbor_hash": "63ae01263346",
+      "nearest_neighbor_id": "CHEMBL6026192",
+      "nearest_neighbor_similarity": 1.0
+    },
+    {
+      "model_risk_category": "low",
+      "molecule_hash": "2164dc0ae934",
+      "molecule_id": "CHEMBL4164805",
+      "nearest_neighbor_hash": "9c5d737b84ef",
+      "nearest_neighbor_id": "CHEMBL4792577",
+      "nearest_neighbor_similarity": 0.8644
+    }
+  ],
+  "nearest_neighbor_summary_count": 20,
+  "scaffold_error_min_count": 5,
+  "scaffold_error_rows": 387,
+  "status": "completed",
+  "top_descriptors": [
+    {
+      "descriptor": "MolWt",
+      "importance": 0.1784490067070525
+    },
+    {
+      "descriptor": "TPSA",
+      "importance": 0.16230270050603604
+    },
+    {
+      "descriptor": "QED",
+      "importance": 0.13883121019852201
+    },
+    {
+      "descriptor": "MolLogP",
+      "importance": 0.13750665392172842
+    },
+    {
+      "descriptor": "RingCount",
+      "importance": 0.08658925323373694
+    },
+    {
+      "descriptor": "NumRotatableBonds",
+      "importance": 0.08041893031726881
+    },
+    {
+      "descriptor": "HeavyAtomCount",
+      "importance": 0.07857046490685114
+    },
+    {
+      "descriptor": "NumHAcceptors",
+      "importance": 0.07419607424913459
+    },
+    {
+      "descriptor": "NumHDonors",
+      "importance": 0.06313570595966951
+    }
+  ],
+  "top_morgan_bits": [
+    {
+      "bit_id": 1452,
+      "importance": 0.15895616071182522
+    },
+    {
+      "bit_id": 228,
+      "importance": 0.05182201867795019
+    },
+    {
+      "bit_id": 489,
+      "importance": 0.01782738018932275
+    },
+    {
+      "bit_id": 1152,
+      "importance": 0.011716024942363946
+    },
+    {
+      "bit_id": 1645,
+      "importance": 0.010393305209711797
+    },
+    {
+      "bit_id": 1291,
+      "importance": 0.010304274515824824
+    },
+    {
+      "bit_id": 1435,
+      "importance": 0.01006060346227652
+    },
+    {
+      "bit_id": 687,
+      "importance": 0.009997628109587571
+    },
+    {
+      "bit_id": 935,
+      "importance": 0.009617375979528737
+    },
+    {
+      "bit_id": 378,
+      "importance": 0.007923606143432304
+    },
+    {
+      "bit_id": 1524,
+      "importance": 0.006678802538417259
+    },
+    {
+      "bit_id": 959,
+      "importance": 0.0065707243368028105
+    },
+    {
+      "bit_id": 1367,
+      "importance": 0.0060915192955543285
+    },
+    {
+      "bit_id": 541,
+      "importance": 0.005981134724899659
+    },
+    {
+      "bit_id": 1480,
+      "importance": 0.005938730978294678
+    },
+    {
+      "bit_id": 694,
+      "importance": 0.005907314273682285
+    },
+    {
+      "bit_id": 209,
+      "importance": 0.005750153007130126
+    },
+    {
+      "bit_id": 1131,
+      "importance": 0.0055772263983348905
+    },
+    {
+      "bit_id": 1126,
+      "importance": 0.0053809775106071
+    },
+    {
+      "bit_id": 1366,
+      "importance": 0.005363064923400876
+    }
+  ]
+}
