@@ -1,7 +1,7 @@
 # EGFR CADD and QSAR Decision Workflow
 
-This is my EGFR cheminformatics/CADD workflow built around public ChEMBL IC50
-records. I used it to keep the whole path in one place: data curation,
+EGFR cheminformatics and CADD workflow built around public ChEMBL IC50
+records. The project keeps the full path in one place: data curation,
 descriptor and fingerprint features, QSAR baselines, scaffold-aware validation,
 uncertainty checks, simple drug-likeness triage, and a small structure-based
 redocking check.
@@ -9,7 +9,7 @@ redocking check.
 The project is retrospective. It works with existing records and known
 structures for QSAR benchmarking, model-risk triage, and pose-recovery review.
 
-## What Is In Here
+## Project Contents
 
 - ChEMBL EGFR IC50 curation from 26,600 raw activity rows.
 - Molecule-level pIC50 aggregation and a 10,593-row model-ready set.
@@ -21,7 +21,7 @@ structures for QSAR benchmarking, model-risk triage, and pose-recovery review.
 - SAR-support/error analysis, including descriptor importance, fingerprint-bit
   importance, activity-cliff candidates, and scaffold-level error summaries.
 - ADMET-style and model-risk-aware ranking over existing molecules.
-- An exploratory custom PyTorch GCN baseline retained as negative benchmark evidence against the
+- An exploratory custom PyTorch GCN baseline retained as comparative benchmark evidence against the
   Morgan Random Forest baseline.
 - EGFR co-crystal contact analysis for 1M17, 2ITY, 4HJO, and 5UG9.
 - Retrospective Vina redocking pose-recovery audit on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A
@@ -45,8 +45,7 @@ structures for QSAR benchmarking, model-risk triage, and pose-recovery review.
 The final reports and metrics are committed. Raw and processed ChEMBL tables are
 local regenerable artifacts, following the same pattern as my antibody workflow.
 
-To rerun only the lightweight report/evidence hardening stages from existing
-artifacts:
+To run the lightweight public report checks from existing artifacts:
 
 ```bash
 make reproduce-small
@@ -64,15 +63,13 @@ ChEMBL-derived tables under `data/raw/` and `data/processed/`.
 - `reports/egfr_conformal_uncertainty_report.md`
 - `reports/egfr_sar_interpretability_report.md`
 - `reports/egfr_redocking_audit_report.md`
-- `reports/egfr_final_hardening_status.md`
 - `portfolio_assets/egfr_project_card.md`
 
 Machine-readable summaries are under `reports/metrics/`.
 
-## Project Frame
+## Interpretation Context
 
 - ChEMBL IC50 values come from heterogeneous assays and papers.
 - Scaffold and assay/document splits are more conservative than random splits.
 - ADMET-style triage uses simple drug-likeness and model-risk proxy rules.
 - Redocking is a retrospective co-crystal pose-recovery check.
-- Prospective experimental validation remains future work.

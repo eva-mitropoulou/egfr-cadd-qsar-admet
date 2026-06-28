@@ -4,9 +4,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_required_hardening_artifacts_exist():
+def test_required_public_artifacts_exist():
     required = [
-        "reports/egfr_hardening_inventory.md",
         "reports/egfr_assay_aware_validation_report.md",
         "reports/egfr_conformal_uncertainty_report.md",
         "reports/egfr_sar_interpretability_report.md",

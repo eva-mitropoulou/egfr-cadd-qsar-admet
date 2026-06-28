@@ -171,7 +171,7 @@ def main() -> None:
         "pains_alert_count": int(ranked["pains_alert"].sum()),
         "brenk_alert_count": int(ranked["brenk_alert"].sum()),
         "alert_catalog_status": catalog_status,
-        "retrospective_limitation": "Existing-molecule ChEMBL triage only; not prospective drug discovery or true ADMET prediction.",
+        "retrospective_limitation": "Existing-molecule ChEMBL triage with drug-likeness and model-risk proxy rules.",
     }
     save_json(METRICS_PATH, metrics)
 

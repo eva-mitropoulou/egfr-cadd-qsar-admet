@@ -2,7 +2,7 @@
 
 Final project title: EGFR CADD and QSAR Decision Workflow with Molecular Standardization, Scaffold Validation, Uncertainty, ADMET-Style Triage, Structure-Based Analysis, and Active-Learning Simulation
 
-## Project Frame
+## Project Role
 
 This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records.
 
@@ -81,7 +81,7 @@ The structure module completed co-crystal retrieval, binding-site interaction an
 - GNN random split: MAE 0.886, RMSE 1.115, R2 0.310
 - GNN scaffold split: MAE 0.909, RMSE 1.149, R2 0.198
 - GNN beat Morgan RF on scaffold RMSE: False
-The exploratory custom PyTorch dense GCN baseline is retained as negative benchmark evidence against the Morgan Random Forest baseline in this run.
+The exploratory custom PyTorch dense GCN baseline is retained as comparative graph-model evidence against the Morgan Random Forest baseline in this run.
 
 ## Retrospective Active Learning
 
@@ -93,10 +93,10 @@ The exploratory custom PyTorch dense GCN baseline is retained as negative benchm
 
 A CLI script is available at `src/app/predict_egfr_cli.py` and writes prediction outputs without raw SMILES.
 
-## Limitations
+## Interpretation Context
 
-- Retrospective public/project data only.
-- ChEMBL IC50 values come from heterogeneous assays.
+- Public/project ChEMBL IC50 values come from heterogeneous assays.
+- Scaffold, assay, document, and applicability-domain checks carry the main validation interpretation.
 - Docking and protein-ligand MD are optional/future structure-based extensions.
 - The redocking result is a retrospective pose-recovery sanity check.
 

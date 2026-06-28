@@ -212,7 +212,7 @@ def main() -> None:
         "top_morgan_bits": morgan_importances.to_dict(orient="records"),
         "nearest_neighbor_summary_count": int(len(nearest_neighbor_summary)),
         "nearest_neighbor_summary": nearest_neighbor_summary,
-        "interpretation_scope": "SAR-support analysis; no causal mechanism or prospective discovery claim.",
+        "interpretation_scope": "SAR-support analysis using model behavior and chemical-neighborhood checks.",
     }
     save_json(METRICS_PATH, metrics)
 

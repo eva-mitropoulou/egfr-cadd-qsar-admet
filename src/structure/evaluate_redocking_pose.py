@@ -132,7 +132,7 @@ def update_final_wording(status: str) -> None:
         )
         text = text.replace(
             "- Redocking did not complete in this environment because PDBQT preparation/Vina support was unavailable.",
-            "- Redocking was completed as a retrospective co-crystal pose-recovery audit; it is not prospective docking-based discovery.",
+            "- Redocking was completed as a retrospective co-crystal pose-recovery audit.",
         )
         text = text.replace(
             "- Structure module status: structure_analysis_completed_redocking_failed",

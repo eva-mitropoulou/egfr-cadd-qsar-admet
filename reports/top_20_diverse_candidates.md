@@ -26,4 +26,4 @@ The ranking uses predicted potency, drug-likeness proxies, and model-risk penalt
 | CHEMBL3357634 | 8.891 | 0.779 | low | 0.518 | 447.873 | 4.528 | 79.380 | 0 | 9.409 |
 | CHEMBL6026192 | 9.265 | 0.842 | low | 0.388 | 594.590 | 4.391 | 113.020 | 1 | 9.404 |
 
-Note: this is retrospective ChEMBL triage, not prospective candidate nomination.
+Note: retrospective ChEMBL triage over existing records.

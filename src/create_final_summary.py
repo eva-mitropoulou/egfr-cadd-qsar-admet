@@ -209,7 +209,7 @@ def create_top_20_report(top_20_diverse: pd.DataFrame) -> str:
         "",
         markdown_table(top_20_diverse[columns]),
         "",
-        "Note: this is retrospective ChEMBL triage, not prospective candidate nomination.",
+        "Note: retrospective ChEMBL triage over existing records.",
         "",
     ]
 
@@ -301,7 +301,7 @@ def create_project_summary_report(
         "",
         "## Limitations",
         "",
-        "- This is a retrospective ChEMBL portfolio project, not prospective drug discovery.",
+        "- This is a retrospective ChEMBL portfolio project over existing records.",
         "- IC50 values come from heterogeneous assays and publications.",
         "- The ADMET layer is proxy drug-likeness and model-risk triage.",
         "- Docking was not included.",

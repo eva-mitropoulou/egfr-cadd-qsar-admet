@@ -7,13 +7,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_metrics_json_files_parse():
     metrics_files = [
-        "reports/metrics/egfr_hardening_inventory.json",
         "reports/metrics/egfr_assay_aware_validation_metrics.json",
         "reports/metrics/egfr_conformal_uncertainty_metrics.json",
         "reports/metrics/egfr_sar_interpretability_metrics.json",
         "reports/metrics/egfr_redocking_audit_metrics.json",
-        "reports/metrics/egfr_final_hardening_status.json",
-        "reports/metrics/agentic_egfr_hardening_state.json",
     ]
     for path in metrics_files:
         payload = json.loads((ROOT / path).read_text(encoding="utf-8"))

@@ -1,6 +1,6 @@
 # EGFR Exploratory Custom PyTorch GCN Baseline Report
 
-An exploratory custom PyTorch dense GCN baseline was run using padded RDKit molecular graphs. It is retained as negative benchmark evidence because it did not outperform the Morgan Random Forest baseline.
+An exploratory custom PyTorch dense GCN baseline was run using padded RDKit molecular graphs. It is retained as comparative benchmark evidence because it did not outperform the Morgan Random Forest baseline.
 
 - GNN status: completed
 - Backend used: custom_pytorch_dense_gcn

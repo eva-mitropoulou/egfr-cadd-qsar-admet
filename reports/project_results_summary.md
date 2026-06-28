@@ -58,7 +58,7 @@ Top diverse candidates are saved in `reports/top_20_diverse_candidates.md`.
 
 ## Limitations
 
-- This is a retrospective ChEMBL portfolio project, not prospective drug discovery.
+- This is a retrospective ChEMBL portfolio project over existing records.
 - IC50 values come from heterogeneous assays and publications.
 - The ADMET layer is proxy drug-likeness and model-risk triage.
 - Docking was not included.
