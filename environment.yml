@@ -1,0 +1,9 @@
+name: egfr-cadd-qsar
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - pip
+  - rdkit
+  - pip:
+      - -r requirements.txt
