@@ -1,4 +1,4 @@
-"""Create final portfolio summary assets for the EGFR QSAR/CADD project."""
+"""Create final portfolio summary assets for the EGFR QSAR and CADD project."""
 
 from pathlib import Path
 
@@ -249,7 +249,7 @@ def create_project_summary_report(
     medium_risk = risk_counts.get("medium", 0)
 
     report_lines = [
-        "# EGFR QSAR/CADD Project Results Summary",
+        "# EGFR QSAR and CADD Project Results Summary",
         "",
         "## Dataset",
         "",

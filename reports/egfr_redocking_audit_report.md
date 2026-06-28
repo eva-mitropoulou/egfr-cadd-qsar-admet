@@ -1,6 +1,6 @@
 # EGFR Redocking Audit Report
 
-This audit hardens the completed retrospective Vina redocking evidence for the 5UG9 / 8AM co-crystal case.
+This audit hardens the completed retrospective Vina redocking evidence for the 5UG9 with ligand 8AM co-crystal case.
 
 ## Result
 

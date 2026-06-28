@@ -1,8 +1,8 @@
-# EGFR CADD/QSAR Decision Workflow
+# EGFR CADD and QSAR Decision Workflow
 
 This is my EGFR cheminformatics/CADD workflow built around public ChEMBL IC50
 records. I used it to keep the whole path in one place: data curation,
-descriptor/fingerprint features, QSAR baselines, scaffold-aware validation,
+descriptor and fingerprint features, QSAR baselines, scaffold-aware validation,
 uncertainty checks, simple drug-likeness triage, and a small structure-based
 redocking check.
 
@@ -25,7 +25,7 @@ candidate.
 - A PyTorch GCN benchmark, kept because it is useful that it did not beat the
   Morgan Random Forest baseline.
 - EGFR co-crystal contact analysis for 1M17, 2ITY, 4HJO, and 5UG9.
-- Vina redocking on 5UG9 / 8AM with a -9.471 kcal/mol score and 0.968 A
+- Vina redocking on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A
   pose-recovery RMSD.
 
 ## Current Snapshot
@@ -39,7 +39,7 @@ candidate.
 | Best scaffold-split Morgan RF | MAE 0.667, RMSE 0.871, R2 0.550 |
 | High-similarity applicability-domain MAE | 0.513 |
 | Low-similarity applicability-domain MAE | 0.957 |
-| Redocking case | 5UG9 / 8AM, RMSD 0.968 A |
+| Redocking case | 5UG9 with ligand 8AM, RMSD 0.968 A |
 
 ## Reproducing The Reports
 

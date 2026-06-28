@@ -1,4 +1,4 @@
-"""Shared utilities for the EGFR CADD/QSAR decision workflow."""
+"""Shared utilities for the EGFR CADD and QSAR decision workflow."""
 
 from __future__ import annotations
 

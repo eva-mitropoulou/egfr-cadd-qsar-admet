@@ -4,7 +4,7 @@ A real molecular graph neural-network benchmark was run using padded RDKit molec
 
 - GNN status: completed
 - Backend used: custom_pytorch_dense_gcn
-- Torch Python: `/home/dimit/eva/Computational-Chemistry/antibody_project/antibody-prioritization/.venv/bin/python`
+- Torch Python: `python`
 - Torch version: 2.11.0+cu128
 - CUDA available to Torch: True
 - Device used: NVIDIA GeForce RTX 4090

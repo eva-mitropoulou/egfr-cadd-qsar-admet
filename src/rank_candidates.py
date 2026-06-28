@@ -188,7 +188,7 @@ def main() -> None:
 
     print_summary(portfolio_ranked, top_20)
     print("")
-    print("Saved ADMET-style/model-risk triage tables:")
+    print("Saved ADMET-style and model-risk triage tables:")
     print(f"- {VALIDATION_RANKED_PATH}")
     print(f"- {PORTFOLIO_RANKED_PATH}")
     print(f"- {TOP_20_PATH}")

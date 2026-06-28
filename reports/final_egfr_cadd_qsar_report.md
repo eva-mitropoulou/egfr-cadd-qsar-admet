@@ -1,6 +1,6 @@
-# EGFR CADD/QSAR Decision Workflow Final Report
+# EGFR CADD and QSAR Decision Workflow Final Report
 
-Final project title: EGFR CADD/QSAR Decision Workflow with Molecular Standardization, Scaffold Validation, Uncertainty, ADMET-Style Triage, Structure-Based Analysis, and Active-Learning Simulation
+Final project title: EGFR CADD and QSAR Decision Workflow with Molecular Standardization, Scaffold Validation, Uncertainty, ADMET-Style Triage, Structure-Based Analysis, and Active-Learning Simulation
 
 ## Scope
 
@@ -26,10 +26,10 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 ## Assay/Document-Aware Validation
 
 - Assay-aware validation status: completed
-- Assay-group split RMSE/R2: 1.0135992949202917 / 0.4480171002230632
+- Assay-group split RMSE and R2: 1.0135992949202917 and 0.4480171002230632
 - Assay group overlap count: 0
 - Document-aware validation status: completed
-- Document-group split RMSE/R2: 1.1425119156890893 / 0.21240743631437198
+- Document-group split RMSE and R2: 1.1425119156890893 and 0.21240743631437198
 - Document group overlap count: 0
 
 ## Applicability Domain
@@ -45,7 +45,7 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 - Scaffold mean interval width: 3.0943794820870933
 - Intervals are retrospective uncertainty summaries, not clinical confidence statements.
 
-## ADMET-Style / Drug-Likeness / Model-Risk Triage
+## ADMET-Style, Drug-Likeness, And Model-Risk Triage
 
 - Ranked existing molecules: 10593
 - Diverse top-20 unique scaffolds: 20
@@ -65,7 +65,7 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 - PDB IDs used: 1M17, 2ITY, 4HJO, 5UG9
 - Ligand-contact residue rows: 68
 - Redocking status: completed_redocking
-- 5UG9 / 8AM docking score: -9.471 kcal/mol
+- 5UG9 with ligand 8AM docking score: -9.471 kcal/mol
 - Pose recovery RMSD: 0.968 angstrom
 - Added EGFR co-crystal structure analysis and Vina redocking validation on a known ligand.
 

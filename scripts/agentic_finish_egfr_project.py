@@ -1,10 +1,9 @@
-"""Autonomous controller to finish the EGFR CADD/QSAR decision workflow."""
+"""Autonomous controller to finish the EGFR CADD and QSAR decision workflow."""
 
 from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import subprocess
 import sys
@@ -54,15 +53,8 @@ class StageState:
 
 
 def discover_python() -> Path:
-    """Find the best project Python interpreter."""
-    candidates = [
-        PROJECT_ROOT / ".venv" / "bin" / "python",
-        PROJECT_ROOT / ".micromamba" / "envs" / "egfr-cadd" / "bin" / "python",
-    ]
-    for candidate in candidates:
-        if candidate.exists() and os.access(candidate, os.X_OK):
-            return candidate
-    return Path(sys.executable)
+    """Use the active Python interpreter for portable public reproduction."""
+    return Path(sys.executable).resolve()
 
 
 PYTHON = discover_python()

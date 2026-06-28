@@ -106,7 +106,7 @@ def create_overlay(reference_path: Path, docked_path: Path) -> str:
     axis = fig.add_subplot(111, projection="3d")
     axis.scatter(reference[:, 0], reference[:, 1], reference[:, 2], s=20, label="co-crystal ligand", alpha=0.85)
     axis.scatter(docked[:, 0], docked[:, 1], docked[:, 2], s=20, label="redocked pose", alpha=0.85)
-    axis.set_title("5UG9 / 8AM Redocking Pose Overlay")
+    axis.set_title("5UG9 with ligand 8AM Redocking Pose Overlay")
     axis.set_xlabel("x")
     axis.set_ylabel("y")
     axis.set_zlabel("z")
@@ -194,7 +194,7 @@ def main() -> None:
     lines = [
         "# EGFR Redocking Audit Report",
         "",
-        "This audit hardens the completed retrospective Vina redocking evidence for the 5UG9 / 8AM co-crystal case.",
+        "This audit hardens the completed retrospective Vina redocking evidence for the 5UG9 with ligand 8AM co-crystal case.",
         "",
         "## Result",
         "",

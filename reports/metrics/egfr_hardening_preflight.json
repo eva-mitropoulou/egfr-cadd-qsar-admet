@@ -66,8 +66,8 @@
       "version": "1.5.2"
     }
   },
-  "project_root": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet",
-  "python_executable": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+  "project_root": ".",
+  "python_executable": "python",
   "python_version": "3.11.15",
   "status": "completed"
 }

@@ -1,7 +1,7 @@
 # EGFR Project Preflight
 
 - Project root exists: True
-- Python executable: `/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python`
+- Python executable: `python`
 - Python version: 3.11.15
 - Missing essential packages after install attempts: []
 - CUDA available: False

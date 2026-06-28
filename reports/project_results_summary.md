@@ -1,4 +1,4 @@
-# EGFR QSAR/CADD Project Results Summary
+# EGFR QSAR and CADD Project Results Summary
 
 ## Dataset
 

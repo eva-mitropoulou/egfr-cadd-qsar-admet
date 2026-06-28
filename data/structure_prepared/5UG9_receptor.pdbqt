@@ -1,4 +1,4 @@
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   ALA A 702       5.187  11.254 -39.148  0.00  0.00    +0.000 NA
@@ -374,7 +374,7 @@ ATOM    370  CZ  ARG A 748     -15.628  33.277 -33.280  0.00  0.00    +0.000 C
 ATOM    371  NH1 ARG A 748     -14.358  33.391 -32.915  0.00  0.00    +0.000 NA
 ATOM    372  NH2 ARG A 748     -16.243  34.302 -33.854  0.00  0.00    +0.000 NA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   PRO A 753     -10.447  35.829 -42.380  0.00  0.00    +0.000 NA
@@ -488,51 +488,51 @@ ATOM    108  CG  MET A 766      -1.652  20.713 -34.889  0.00  0.00    +0.000 C
 ATOM    109  SD  MET A 766      -3.178  21.684 -34.958  0.00  0.00    +0.000 S 
 ATOM    110  CE  MET A 766      -2.562  23.320 -34.548  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   MET A 766       0.791  19.127 -35.944  0.00  0.00    +0.000 C 
 ATOM      2  O   MET A 766       0.694  18.336 -35.005  0.00  0.00    +0.000 OA
 ATOM      3  N   ALA A 767       0.914  18.737 -37.209  0.00  0.00    +0.000 NA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   ALA A 767       0.912  18.736 -37.209  0.00  0.00    +0.000 NA
 ATOM      2  CA  ALA A 767       0.876  17.329 -37.587  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CA  ALA A 767       0.876  17.328 -37.585  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   ALA A 767       2.191  16.625 -37.261  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   ALA A 767       2.189  16.625 -37.253  0.00  0.00    +0.000 C 
 ATOM      2  O   ALA A 767       2.251  15.396 -37.217  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  O   ALA A 767       2.247  15.396 -37.198  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CB  ALA A 767       0.568  17.200 -39.076  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CB  ALA A 767       0.574  17.197 -39.075  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   SER A 768       3.240  17.408 -37.033  0.00  0.00    +0.000 NA
@@ -698,7 +698,7 @@ ATOM    160  CG1 ILE A 789     -10.535  15.264 -40.519  0.00  0.00    +0.000 C
 ATOM    161  CG2 ILE A 789      -9.306  13.392 -39.423  0.00  0.00    +0.000 C 
 ATOM    162  CD1 ILE A 789     -10.568  16.702 -40.985  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   ILE A 789      -8.126  15.114 -37.505  0.00  0.00    +0.000 C 
@@ -706,7 +706,7 @@ ATOM      2  O   ILE A 789      -6.946  15.102 -37.858  0.00  0.00    +0.000 OA
 ATOM      3  N   MET A 790      -8.533  14.646 -36.333  0.00  0.00    +0.000 NA
 ATOM      4  CA  MET A 790      -7.577  14.245 -35.316  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   MET A 790      -8.548  14.661 -36.326  0.00  0.00    +0.000 NA
@@ -719,24 +719,24 @@ ATOM      7  SD  MET A 790      -6.354  17.511 -34.444  0.00  0.00    +0.000 S
 ATOM      8  CE  MET A 790      -5.781  17.292 -32.415  0.00  0.00    +0.000 C 
 ATOM      9  CE  MET A 790      -5.645  17.109 -32.847  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   MET A 790      -7.887  12.867 -34.768  0.00  0.00    +0.000 C 
 ATOM      2  O   MET A 790      -8.976  12.331 -34.975  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   MET A 790      -7.862  12.844 -34.824  0.00  0.00    +0.000 C 
 ATOM      2  O   MET A 790      -8.873  12.238 -35.175  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CB  MET A 790      -7.871  15.200 -34.029  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   GLN A 791      -6.917  12.297 -34.063  0.00  0.00    +0.000 NA
@@ -845,7 +845,7 @@ ATOM    103  CZ  ARG A 803     -16.227  18.282 -12.852  0.00  0.00    +0.000 C
 ATOM    104  NH1 ARG A 803     -17.153  18.420 -13.791  0.00  0.00    +0.000 NA
 ATOM    105  NH2 ARG A 803     -15.647  19.356 -12.334  0.00  0.00    +0.000 NA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   ARG A 803     -16.868  10.900 -12.140  0.00  0.00    +0.000 C 
@@ -853,17 +853,17 @@ ATOM      2  O   ARG A 803     -17.542  10.528 -11.179  0.00  0.00    +0.000 OA
 ATOM      3  N   GLU A 804     -16.934  10.313 -13.328  0.00  0.00    +0.000 NA
 ATOM      4  CA  GLU A 804     -17.842   9.219 -13.622  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   GLU A 804     -16.905  10.300 -13.327  0.00  0.00    +0.000 NA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CA  GLU A 804     -17.854   9.210 -13.562  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   GLU A 804     -17.414   7.961 -12.805  0.00  0.00    +0.000 C 
@@ -871,7 +871,7 @@ ATOM      2  C   GLU A 804     -17.421   7.871 -13.038  0.00  0.00    +0.000 C
 ATOM      3  O   GLU A 804     -18.230   7.278 -12.184  0.00  0.00    +0.000 OA
 ATOM      4  O   GLU A 804     -18.267   7.021 -12.764  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CB  GLU A 804     -17.939   8.905 -15.058  0.00  0.00    +0.000 C 
@@ -885,7 +885,7 @@ ATOM      8  OE1 GLU A 804     -19.096   8.907 -17.655  0.00  0.00    +0.000 OA
 ATOM      9  OE2 GLU A 804     -19.576   6.483 -17.279  0.00  0.00    +0.000 OA
 ATOM     10  OE2 GLU A 804     -19.484  11.057 -17.885  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   HIS A 805     -16.118   7.673 -12.849  0.00  0.00    +0.000 NA
@@ -1505,7 +1505,7 @@ ATOM    614  CZ2 TRP A 880      -9.706  23.655 -13.724  0.00  0.00    +0.000 C
 ATOM    615  CZ3 TRP A 880     -10.092  26.017 -14.063  0.00  0.00    +0.000 C 
 ATOM    616  CH2 TRP A 880     -10.554  24.729 -13.759  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   TRP A 880      -3.690  27.584 -13.846  0.00  0.00    +0.000 C 
@@ -1513,33 +1513,33 @@ ATOM      2  O   TRP A 880      -2.690  26.908 -14.090  0.00  0.00    +0.000 OA
 ATOM      3  N   MET A 881      -3.653  28.910 -13.812  0.00  0.00    +0.000 NA
 ATOM      4  CA  MET A 881      -2.512  29.704 -14.177  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   MET A 881      -3.669  28.913 -13.763  0.00  0.00    +0.000 NA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CA  MET A 881      -2.464  29.614 -14.274  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   MET A 881      -1.502  29.974 -13.071  0.00  0.00    +0.000 C 
 ATOM      2  O   MET A 881      -1.953  30.340 -12.030  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   MET A 881      -1.525  30.038 -13.145  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  O   MET A 881      -1.860  30.132 -11.902  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CB  MET A 881      -2.973  31.045 -14.750  0.00  0.00    +0.000 C 
@@ -1551,7 +1551,7 @@ ATOM      6  SD  MET A 881      -2.904  29.723 -17.713  0.00  0.00    +0.000 S
 ATOM      7  CE  MET A 881      -3.258  33.637 -16.581  0.00  0.00    +0.000 C 
 ATOM      8  CE  MET A 881      -3.530  28.032 -17.629  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   ALA A 882      -0.233  30.045 -13.456  0.00  0.00    +0.000 NA
@@ -1898,53 +1898,53 @@ ATOM    341  CA  SER A 924      -3.998  36.349  -7.361  0.00  0.00    +0.000 C
 ATOM    342  CB  SER A 924      -3.744  37.516  -8.322  0.00  0.00    +0.000 C 
 ATOM    343  OG  SER A 924      -4.461  38.674  -7.939  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   SER A 924      -3.699  36.775  -5.925  0.00  0.00    +0.000 C 
 ATOM      2  O   SER A 924      -2.609  36.527  -5.409  0.00  0.00    +0.000 OA
 ATOM      3  N   SER A 925      -4.675  37.402  -5.277  0.00  0.00    +0.000 NA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   SER A 925      -4.673  37.394  -5.266  0.00  0.00    +0.000 NA
 ATOM      2  CA  SER A 925      -4.502  37.846  -3.900  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CA  SER A 925      -4.469  37.848  -3.894  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   SER A 925      -4.311  36.674  -2.929  0.00  0.00    +0.000 C 
 ATOM      2  O   SER A 925      -3.413  36.693  -2.098  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   SER A 925      -4.285  36.660  -2.965  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  O   SER A 925      -3.503  36.727  -2.003  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CB  SER A 925      -5.635  38.734  -3.445  0.00  0.00    +0.000 C 
 ATOM      2  OG  SER A 925      -5.575  39.080  -2.104  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CB  SER A 925      -5.725  38.645  -3.444  0.00  0.00    +0.000 C 
 ATOM      2  OG  SER A 925      -6.835  37.990  -3.336  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   ILE A 926      -5.077  35.610  -3.150  0.00  0.00    +0.000 NA
@@ -2170,37 +2170,37 @@ ATOM    220  CG  MET A 952       7.438  26.016  -4.599  0.00  0.00    +0.000 C
 ATOM    221  SD  MET A 952       8.989  25.202  -4.235  0.00  0.00    +0.000 S 
 ATOM    222  CE  MET A 952       9.835  26.473  -3.296  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   MET A 952       6.222  29.092  -6.602  0.00  0.00    +0.000 C 
 ATOM      2  O   MET A 952       6.115  29.071  -7.831  0.00  0.00    +0.000 OA
 ATOM      3  N   ILE A 953       6.379  30.217  -5.914  0.00  0.00    +0.000 NA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   ILE A 953       6.405  30.218  -5.922  0.00  0.00    +0.000 NA
 ATOM      2  CA  ILE A 953       6.327  31.510  -6.579  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CA  ILE A 953       6.304  31.511  -6.587  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   ILE A 953       7.434  31.746  -7.589  0.00  0.00    +0.000 C 
 ATOM      2  O   ILE A 953       7.225  32.387  -8.619  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  C   ILE A 953       7.404  31.622  -7.645  0.00  0.00    +0.000 C 
 ATOM      2  O   ILE A 953       7.136  32.051  -8.767  0.00  0.00    +0.000 OA
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CB  ILE A 953       6.268  32.671  -5.558  0.00  0.00    +0.000 C 
@@ -2208,19 +2208,19 @@ ATOM      2  CG1 ILE A 953       6.109  34.008  -6.285  0.00  0.00    +0.000 C
 ATOM      3  CG2 ILE A 953       5.279  32.729  -4.665  0.00  0.00    +0.000 C 
 ATOM      4  CD1 ILE A 953       5.875  35.186  -5.361  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CB  ILE A 953       6.489  32.668  -5.571  0.00  0.00    +0.000 C 
 ATOM      2  CG2 ILE A 953       7.529  32.669  -4.718  0.00  0.00    +0.000 C 
 ATOM      3  CD1 ILE A 953       8.031  33.601  -3.770  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  CG1 ILE A 953       7.765  32.480  -4.751  0.00  0.00    +0.000 C 
 TER 
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_protein.pdb
+REMARK  Name = data/structure_prepared/5UG9_protein.pdb
 REMARK                            x       y       z     vdW  Elec       q    Type
 REMARK                         _______ _______ _______ _____ _____    ______ ____
 ATOM      1  N   ASP A 954       8.624  31.225  -7.305  0.00  0.00    +0.000 NA

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import subprocess
 import sys
 import time
@@ -13,9 +12,7 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-ENV_PYTHON = PROJECT_ROOT / ".micromamba" / "envs" / "egfr-cadd" / "bin" / "python"
-if ENV_PYTHON.exists() and Path(sys.executable).resolve() != ENV_PYTHON.resolve():
-    os.execv(str(ENV_PYTHON), [str(ENV_PYTHON), *sys.argv])
+PYTHON = str(Path(sys.executable).resolve())
 
 REPORTS_DIR = PROJECT_ROOT / "reports"
 RUN_LOGS_DIR = REPORTS_DIR / "run_logs"
@@ -56,7 +53,7 @@ def ensure_dirs() -> None:
 
 def stages() -> list[Stage]:
     """Return hardening stages."""
-    py = str(ENV_PYTHON if ENV_PYTHON.exists() else sys.executable)
+    py = PYTHON
     return [
         Stage(
             stage_id="stage_0",
@@ -197,7 +194,7 @@ def run_command(command: list[str], log_path: Path) -> tuple[int, float]:
 
 def compile_scripts() -> None:
     """Compile hardening scripts as a repair check."""
-    py = str(ENV_PYTHON if ENV_PYTHON.exists() else sys.executable)
+    py = PYTHON
     scripts = [
         "scripts/preflight_egfr_hardening.py",
         "src/analysis/egfr_hardening_inventory.py",
@@ -327,7 +324,7 @@ def main() -> None:
 
     # Refresh final status now that runner state exists.
     if (PROJECT_ROOT / "src/analysis/build_final_hardening_status.py").exists():
-        py = str(ENV_PYTHON if ENV_PYTHON.exists() else sys.executable)
+        py = PYTHON
         run_command([py, "src/analysis/build_final_hardening_status.py"], RUN_LOGS_DIR / "hardening_final_status_refresh.log")
     state["finished_at"] = time.strftime("%Y-%m-%dT%H:%M:%S")
     state["next_recommended_action"] = "Inspect reports/egfr_final_hardening_status.md"

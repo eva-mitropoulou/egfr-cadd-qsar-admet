@@ -56,9 +56,9 @@ def main() -> None:
     assay_split = next((row for row in assay_rows if row.get("split") == "assay_group_split"), {})
     document_split = next((row for row in assay_rows if row.get("split") == "document_group_split"), {})
 
-    final_report = f"""# EGFR CADD/QSAR Decision Workflow Final Report
+    final_report = f"""# EGFR CADD and QSAR Decision Workflow Final Report
 
-Final project title: EGFR CADD/QSAR Decision Workflow with Molecular Standardization, Scaffold Validation, Uncertainty, ADMET-Style Triage, Structure-Based Analysis, and Active-Learning Simulation
+Final project title: EGFR CADD and QSAR Decision Workflow with Molecular Standardization, Scaffold Validation, Uncertainty, ADMET-Style Triage, Structure-Based Analysis, and Active-Learning Simulation
 
 ## Scope
 
@@ -84,10 +84,10 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 ## Assay/Document-Aware Validation
 
 - Assay-aware validation status: {assay_split.get('status')}
-- Assay-group split RMSE/R2: {assay_split.get('RMSE')} / {assay_split.get('R2')}
+- Assay-group split RMSE and R2: {assay_split.get('RMSE')} and {assay_split.get('R2')}
 - Assay group overlap count: {assay_split.get('group_overlap_count')}
 - Document-aware validation status: {document_split.get('status')}
-- Document-group split RMSE/R2: {document_split.get('RMSE')} / {document_split.get('R2')}
+- Document-group split RMSE and R2: {document_split.get('RMSE')} and {document_split.get('R2')}
 - Document group overlap count: {document_split.get('group_overlap_count')}
 
 ## Applicability Domain
@@ -103,7 +103,7 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 - Scaffold mean interval width: {scaffold_conformal.get('mean_interval_width')}
 - Intervals are retrospective uncertainty summaries, not clinical confidence statements.
 
-## ADMET-Style / Drug-Likeness / Model-Risk Triage
+## ADMET-Style, Drug-Likeness, And Model-Risk Triage
 
 - Ranked existing molecules: {triage.get('ranked_molecule_count')}
 - Diverse top-20 unique scaffolds: {triage.get('diverse_top20_unique_scaffolds')}
@@ -123,7 +123,7 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 - PDB IDs used: {', '.join(structure.get('pdb_ids_used', []))}
 - Ligand-contact residue rows: {structure.get('interaction_residue_count')}
 - Redocking status: {redocking.get('redocking_status')}
-- 5UG9 / 8AM docking score: {redocking.get('docking_score_kcal_mol')} kcal/mol
+- 5UG9 with ligand 8AM docking score: {redocking.get('docking_score_kcal_mol')} kcal/mol
 - Pose recovery RMSD: {redocking.get('pose_recovery_rmsd_angstrom')} angstrom
 - Added EGFR co-crystal structure analysis and Vina redocking validation on a known ligand.
 
@@ -162,18 +162,18 @@ FINAL_STATUS = DONE_WITH_WARNINGS
     write_text(REPORTS_DIR / "final_egfr_cadd_qsar_report.md", final_report)
 
     cv_bullet = (
-        "Built a retrospective EGFR CADD/QSAR decision workflow from ChEMBL, curating 26,600 IC50 records into "
+        "Built a retrospective EGFR CADD and QSAR decision workflow from ChEMBL, curating 26,600 IC50 records into "
         "10,593 model-ready molecules; benchmarked RDKit descriptor, Morgan fingerprint, and GPU PyTorch GCN models "
-        "under random and scaffold splits, with Morgan RF achieving scaffold-split RMSE 0.871/R2 0.550; quantified "
+        "under random and scaffold splits, with Morgan RF achieving scaffold-split RMSE 0.871 and R2 0.550; quantified "
         "applicability-domain degradation from high-similarity MAE 0.513 to low-similarity MAE 0.957; added "
-        "assay-aware validation, split-conformal uncertainty, ADMET-style/model-risk triage, SAR/error analysis, "
+        "assay-aware validation, split-conformal uncertainty, ADMET-style and model-risk triage, SAR and error analysis, "
         "active-learning simulation, CLI prediction, ligand-contact analysis across four EGFR PDB structures, and "
         "5UG9 redocking validation recovering the co-crystal ligand pose at 0.968 A RMSD."
     )
     cv_text = "# EGFR Project CV Bullets\n\n- " + cv_bullet + "\n"
     write_text(REPORTS_DIR / "final_egfr_cv_bullets.md", cv_text)
 
-    card = f"""# EGFR CADD/QSAR Decision Workflow
+    card = f"""# EGFR CADD and QSAR Decision Workflow
 
 Retrospective EGFR workflow using ChEMBL activity records, RDKit features,
 Morgan fingerprints, scaffold validation, uncertainty checks, structure-contact
@@ -186,8 +186,8 @@ analysis, and Vina redocking.
 - Best scaffold-split Morgan RF: RMSE 0.871, R2 0.550
 - Applicability-domain MAE: 0.513 for high-similarity chemistry vs 0.957 for low-similarity chemistry
 - Assay/document-aware validation and split-conformal intervals added
-- SAR/error analysis: {sar.get('activity_cliff_count')} activity-cliff candidates and {sar.get('scaffold_error_rows')} scaffold-error rows
-- Structure work: 4 EGFR co-crystals parsed, 68 ligand-contact residue rows, 5UG9 / 8AM redocking RMSD 0.968 A
+- SAR and error analysis: {sar.get('activity_cliff_count')} activity-cliff candidates and {sar.get('scaffold_error_rows')} scaffold-error rows
+- Structure work: 4 EGFR co-crystals parsed, 68 ligand-contact residue rows, 5UG9 with ligand 8AM redocking RMSD 0.968 A
 
 ## Notes
 
@@ -197,11 +197,11 @@ readiness.
 """
     write_text(PORTFOLIO_DIR / "egfr_project_card.md", card)
 
-    readme = f"""# EGFR CADD/QSAR Decision Workflow
+    readme = f"""# EGFR CADD and QSAR Decision Workflow
 
 This is my EGFR cheminformatics/CADD workflow built around public ChEMBL IC50
 records. I used it to keep the whole path in one place: data curation,
-descriptor/fingerprint features, QSAR baselines, scaffold-aware validation,
+descriptor and fingerprint features, QSAR baselines, scaffold-aware validation,
 uncertainty checks, simple drug-likeness triage, and a small structure-based
 redocking check.
 
@@ -224,7 +224,7 @@ candidate.
 - A PyTorch GCN benchmark, kept because it is useful that it did not beat the
   Morgan Random Forest baseline.
 - EGFR co-crystal contact analysis for 1M17, 2ITY, 4HJO, and 5UG9.
-- Vina redocking on 5UG9 / 8AM with a -9.471 kcal/mol score and 0.968 A
+- Vina redocking on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A
   pose-recovery RMSD.
 
 ## Current Snapshot
@@ -238,7 +238,7 @@ candidate.
 | Best scaffold-split Morgan RF | MAE 0.667, RMSE 0.871, R2 0.550 |
 | High-similarity applicability-domain MAE | 0.513 |
 | Low-similarity applicability-domain MAE | 0.957 |
-| Redocking case | 5UG9 / 8AM, RMSD 0.968 A |
+| Redocking case | 5UG9 with ligand 8AM, RMSD 0.968 A |
 
 ## Reproducing The Reports
 

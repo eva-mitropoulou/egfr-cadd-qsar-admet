@@ -1,6 +1,6 @@
 # EGFR Protein-Ligand MD Next Steps
 
-Full protein-ligand MD was not run automatically in this retrospective QSAR/CADD workflow.
+Full protein-ligand MD was not run automatically in this retrospective QSAR and CADD workflow.
 
 A credible EGFR-ligand MD extension would require:
 

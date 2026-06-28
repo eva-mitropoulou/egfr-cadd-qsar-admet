@@ -1,4 +1,4 @@
-"""Preflight checks for the EGFR CADD/QSAR decision workflow."""
+"""Preflight checks for the EGFR CADD and QSAR decision workflow."""
 
 from __future__ import annotations
 

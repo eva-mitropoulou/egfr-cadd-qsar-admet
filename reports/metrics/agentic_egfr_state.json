@@ -80,14 +80,14 @@
     "4HJO",
     "5UG9"
   ],
-  "project_root": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet",
-  "python_executable": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+  "project_root": ".",
+  "python_executable": "python",
   "redocking_status": "failed_missing_pdbqt_preparation",
   "scaffold_performance_drop": 0.16817570184965092,
   "stages": {
     "phase_0": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python scripts/preflight_egfr_project.py",
+      "command": "python scripts/preflight_egfr_project.py",
       "expected_outputs_found": [
         "reports/metrics/preflight_metrics.json",
         "reports/preflight_report.md"
@@ -106,7 +106,7 @@
     },
     "phase_1": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/data/project_completion_audit.py",
+      "command": "python src/data/project_completion_audit.py",
       "expected_outputs_found": [
         "reports/project_completion_audit.md",
         "reports/metrics/project_completion_audit.json"
@@ -126,7 +126,7 @@
     },
     "phase_10": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/models/train_gnn_benchmark.py",
+      "command": "python src/models/train_gnn_benchmark.py",
       "expected_outputs_found": [
         "reports/egfr_gnn_benchmark_report.md",
         "reports/metrics/egfr_gnn_benchmark_metrics.json",
@@ -149,7 +149,7 @@
     },
     "phase_11": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/triage/active_learning_simulation.py",
+      "command": "python src/triage/active_learning_simulation.py",
       "expected_outputs_found": [
         "reports/egfr_active_learning_report.md",
         "reports/metrics/egfr_active_learning_metrics.json",
@@ -172,7 +172,7 @@
     },
     "phase_12": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/structure/protein_ligand_md_next_steps.py",
+      "command": "python src/structure/protein_ligand_md_next_steps.py",
       "expected_outputs_found": [
         "reports/egfr_protein_ligand_md_next_steps.md"
       ],
@@ -190,7 +190,7 @@
     },
     "phase_13": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/app/predict_egfr_cli.py --create-example examples/example_smiles.csv --output reports/example_predictions.csv",
+      "command": "python src/app/predict_egfr_cli.py --create-example examples/example_smiles.csv --output reports/example_predictions.csv",
       "expected_outputs_found": [
         "src/app/predict_egfr_cli.py",
         "reports/example_predictions.csv",
@@ -211,7 +211,7 @@
     },
     "phase_14": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/analysis/build_final_egfr_report.py",
+      "command": "python src/analysis/build_final_egfr_report.py",
       "expected_outputs_found": [
         "reports/final_egfr_cadd_qsar_report.md",
         "reports/final_egfr_cv_bullets.md",
@@ -236,7 +236,7 @@
     },
     "phase_2": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/data/audit_egfr_chembl_data.py",
+      "command": "python src/data/audit_egfr_chembl_data.py",
       "expected_outputs_found": [
         "reports/egfr_data_provenance_audit.md",
         "reports/metrics/egfr_data_provenance_audit.json"
@@ -257,7 +257,7 @@
     },
     "phase_3": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/chem/standardize_molecules.py && /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/chem/audit_molecular_representations.py",
+      "command": "python src/chem/standardize_molecules.py && python src/chem/audit_molecular_representations.py",
       "expected_outputs_found": [
         "data/processed/egfr_standardized_molecules.csv",
         "reports/molecular_standardization_report.md",
@@ -279,7 +279,7 @@
     },
     "phase_4": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/features/build_rdkit_descriptors.py && /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/features/build_morgan_fingerprints.py && /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/features/build_combined_features.py",
+      "command": "python src/features/build_rdkit_descriptors.py && python src/features/build_morgan_fingerprints.py && python src/features/build_combined_features.py",
       "expected_outputs_found": [
         "data/processed/features_rdkit_descriptors.csv",
         "data/processed/features_morgan_fingerprints.npz",
@@ -303,7 +303,7 @@
     },
     "phase_5": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/models/train_qsar_matched_benchmarks.py",
+      "command": "python src/models/train_qsar_matched_benchmarks.py",
       "expected_outputs_found": [
         "reports/qsar_matched_benchmark_report.md",
         "reports/metrics/qsar_matched_benchmark_metrics.json",
@@ -329,7 +329,7 @@
     },
     "phase_6": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/validation/applicability_domain.py",
+      "command": "python src/validation/applicability_domain.py",
       "expected_outputs_found": [
         "reports/applicability_domain_report.md",
         "reports/metrics/applicability_domain_metrics.json",
@@ -352,7 +352,7 @@
     },
     "phase_7": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/models/uncertainty_calibration.py",
+      "command": "python src/models/uncertainty_calibration.py",
       "expected_outputs_found": [
         "reports/egfr_uncertainty_calibration_report.md",
         "reports/metrics/egfr_uncertainty_calibration_metrics.json",
@@ -376,7 +376,7 @@
     },
     "phase_8": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/triage/rank_egfr_existing_molecules.py",
+      "command": "python src/triage/rank_egfr_existing_molecules.py",
       "expected_outputs_found": [
         "reports/egfr_candidate_triage_report.md",
         "reports/egfr_ranked_existing_molecules.csv",
@@ -401,7 +401,7 @@
     },
     "phase_9": {
       "attempts": 1,
-      "command": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/structure/retrieve_egfr_structures.py && /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/structure/prepare_structure_metadata.py && /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/structure/redocking_validation.py && /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python src/structure/interaction_fingerprints.py",
+      "command": "python src/structure/retrieve_egfr_structures.py && python src/structure/prepare_structure_metadata.py && python src/structure/redocking_validation.py && python src/structure/interaction_fingerprints.py",
       "expected_outputs_found": [
         "reports/egfr_structure_metadata_report.md",
         "reports/egfr_interaction_fingerprint_report.md",

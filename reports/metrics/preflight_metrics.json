@@ -46,6 +46,6 @@
   },
   "platform": "Linux-6.18.33.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
   "preflight_pass": true,
-  "python_executable": "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+  "python_executable": "python",
   "python_version": "3.11.15"
 }

@@ -4,7 +4,7 @@ REMARK INTER + INTRA:         -12.665
 REMARK INTER:                 -12.239
 REMARK INTRA:                  -0.426
 REMARK UNBOUND:                -0.426
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  Name = data/structure_prepared/5UG9_8AM_ligand.pdb
 REMARK  5 active torsions:
 REMARK  status: ('A' for Active; 'I' for Inactive)
 REMARK    1  A    between atoms: N12_5  and  C15_7
@@ -66,7 +66,7 @@ REMARK INTER + INTRA:         -10.169
 REMARK INTER:                  -9.777
 REMARK INTRA:                  -0.392
 REMARK UNBOUND:                -0.426
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  Name = data/structure_prepared/5UG9_8AM_ligand.pdb
 REMARK  5 active torsions:
 REMARK  status: ('A' for Active; 'I' for Inactive)
 REMARK    1  A    between atoms: N12_5  and  C15_7
@@ -128,7 +128,7 @@ REMARK INTER + INTRA:          -9.960
 REMARK INTER:                  -9.473
 REMARK INTRA:                  -0.487
 REMARK UNBOUND:                -0.426
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  Name = data/structure_prepared/5UG9_8AM_ligand.pdb
 REMARK  5 active torsions:
 REMARK  status: ('A' for Active; 'I' for Inactive)
 REMARK    1  A    between atoms: N12_5  and  C15_7
@@ -190,7 +190,7 @@ REMARK INTER + INTRA:          -9.863
 REMARK INTER:                  -9.496
 REMARK INTRA:                  -0.366
 REMARK UNBOUND:                -0.426
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  Name = data/structure_prepared/5UG9_8AM_ligand.pdb
 REMARK  5 active torsions:
 REMARK  status: ('A' for Active; 'I' for Inactive)
 REMARK    1  A    between atoms: N12_5  and  C15_7
@@ -252,7 +252,7 @@ REMARK INTER + INTRA:          -9.722
 REMARK INTER:                  -8.739
 REMARK INTRA:                  -0.983
 REMARK UNBOUND:                -0.426
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  Name = data/structure_prepared/5UG9_8AM_ligand.pdb
 REMARK  5 active torsions:
 REMARK  status: ('A' for Active; 'I' for Inactive)
 REMARK    1  A    between atoms: N12_5  and  C15_7
@@ -314,7 +314,7 @@ REMARK INTER + INTRA:          -9.696
 REMARK INTER:                  -8.866
 REMARK INTRA:                  -0.830
 REMARK UNBOUND:                -0.426
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  Name = data/structure_prepared/5UG9_8AM_ligand.pdb
 REMARK  5 active torsions:
 REMARK  status: ('A' for Active; 'I' for Inactive)
 REMARK    1  A    between atoms: N12_5  and  C15_7
@@ -376,7 +376,7 @@ REMARK INTER + INTRA:          -9.423
 REMARK INTER:                  -8.664
 REMARK INTRA:                  -0.759
 REMARK UNBOUND:                -0.426
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  Name = data/structure_prepared/5UG9_8AM_ligand.pdb
 REMARK  5 active torsions:
 REMARK  status: ('A' for Active; 'I' for Inactive)
 REMARK    1  A    between atoms: N12_5  and  C15_7
@@ -438,7 +438,7 @@ REMARK INTER + INTRA:          -9.111
 REMARK INTER:                  -8.117
 REMARK INTRA:                  -0.994
 REMARK UNBOUND:                -0.426
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  Name = data/structure_prepared/5UG9_8AM_ligand.pdb
 REMARK  5 active torsions:
 REMARK  status: ('A' for Active; 'I' for Inactive)
 REMARK    1  A    between atoms: N12_5  and  C15_7

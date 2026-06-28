@@ -1,4 +1,4 @@
-"""Build final EGFR CADD/QSAR decision-workflow reports."""
+"""Build final EGFR CADD and QSAR decision-workflow reports."""
 
 from __future__ import annotations
 
@@ -93,9 +93,9 @@ def main() -> None:
         final_status = "DONE_WITH_WARNINGS"
 
     report = [
-        "# EGFR CADD/QSAR Decision Workflow Final Report",
+        "# EGFR CADD and QSAR Decision Workflow Final Report",
         "",
-        "Final project title: EGFR CADD/QSAR Decision Workflow with Molecular Standardization, Scaffold Validation, Uncertainty, ADMET-Style Triage, Structure-Based Analysis, and Active-Learning Simulation",
+        "Final project title: EGFR CADD and QSAR Decision Workflow with Molecular Standardization, Scaffold Validation, Uncertainty, ADMET-Style Triage, Structure-Based Analysis, and Active-Learning Simulation",
         "",
         "## Scope",
         "",
@@ -117,7 +117,7 @@ def main() -> None:
         "",
         "## Feature Generation",
         "",
-        "RDKit descriptors, Morgan fingerprints, and combined descriptor/fingerprint matrices were generated and checked for label alignment.",
+        "RDKit descriptors, Morgan fingerprints, and combined descriptor and fingerprint matrices were generated and checked for label alignment.",
         "",
         "## QSAR Benchmarks",
         "",
@@ -137,7 +137,7 @@ def main() -> None:
         f"- Uncertainty-error Spearman correlation: {uncertainty.get('uncertainty_error_spearman'):.3f}",
         f"- 90 percent interval coverage: {uncertainty.get('coverage_90'):.3f}",
         "",
-        "## ADMET-Style / Drug-Likeness / Model-Risk Triage",
+        "## ADMET-Style, Drug-Likeness, And Model-Risk Triage",
         "",
         f"- Ranked existing molecules: {triage.get('ranked_molecule_count')}",
         f"- Diverse top-20 unique scaffolds: {triage.get('diverse_top20_unique_scaffolds')}",
@@ -210,7 +210,7 @@ def main() -> None:
     cv_bullets = [
         "# EGFR Project CV Bullets",
         "",
-        "- Built a retrospective EGFR CADD/QSAR decision workflow over 26,600 ChEMBL IC50 records and 10,593 model-ready molecules, including RDKit standardization, Morgan fingerprints, scaffold validation, applicability-domain analysis, uncertainty scoring, and ADMET-style/model-risk triage.",
+        "- Built a retrospective EGFR CADD and QSAR decision workflow over 26,600 ChEMBL IC50 records and 10,593 model-ready molecules, including RDKit standardization, Morgan fingerprints, scaffold validation, applicability-domain analysis, uncertainty scoring, and ADMET-style and model-risk triage.",
         f"- Benchmarked QSAR models with random and scaffold splits; best scaffold-split model achieved MAE {scaffold_best.get('MAE'):.3f}, RMSE {scaffold_best.get('RMSE'):.3f}, R2 {scaffold_best.get('R2'):.3f} while surfacing a random-to-scaffold performance drop.",
         f"- Demonstrated applicability-domain behavior: low-similarity compounds had MAE {applicability.get('low_similarity_mae'):.3f} versus {applicability.get('high_similarity_mae'):.3f} for high-similarity compounds, then used this signal in candidate triage.",
         f"- Produced a diverse top-20 existing-molecule prioritization table with {triage.get('diverse_top20_unique_scaffolds')} unique scaffolds, {triage.get('diverse_top20_low_or_medium_risk_count')}/20 low-or-medium model risk, and {triage.get('diverse_top20_lipinski_clean_count')}/20 Lipinski-clean molecules.",
@@ -233,9 +233,9 @@ def main() -> None:
     write_text(REPORTS_DIR / "final_egfr_interview_talking_points.md", "\n".join(talking_points))
 
     project_card = [
-        "# EGFR CADD/QSAR Decision Workflow",
+        "# EGFR CADD and QSAR Decision Workflow",
         "",
-        "Retrospective EGFR inhibitor-like molecule prioritization using ChEMBL, RDKit, Morgan fingerprints, scaffold validation, uncertainty, applicability-domain analysis, and ADMET-style/model-risk triage.",
+        "Retrospective EGFR inhibitor-like molecule prioritization using ChEMBL, RDKit, Morgan fingerprints, scaffold validation, uncertainty, applicability-domain analysis, and ADMET-style and model-risk triage.",
         "",
         "## Recruiter Signal",
         "",
@@ -249,7 +249,7 @@ def main() -> None:
         "",
         "## Positioning",
         "",
-        "A complete, model-risk-aware CADD/QSAR workflow for existing public EGFR records. No molecule generation or efficacy claim.",
+        "A complete, model-risk-aware CADD and QSAR workflow for existing public EGFR records. No molecule generation or efficacy claim.",
         "",
     ]
     PORTFOLIO_DIR.mkdir(parents=True, exist_ok=True)

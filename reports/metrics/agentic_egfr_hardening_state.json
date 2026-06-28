@@ -5,7 +5,7 @@
     "stage_0": {
       "attempts": 1,
       "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "scripts/preflight_egfr_hardening.py"
       ],
       "criticality": "critical",
@@ -43,7 +43,7 @@
     "stage_1": {
       "attempts": 1,
       "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "src/analysis/egfr_hardening_inventory.py"
       ],
       "criticality": "critical",
@@ -83,7 +83,7 @@
     "stage_2": {
       "attempts": 1,
       "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "src/validation/assay_aware_validation.py"
       ],
       "criticality": "noncritical",
@@ -125,7 +125,7 @@
     "stage_3": {
       "attempts": 1,
       "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "src/validation/conformal_uncertainty.py"
       ],
       "criticality": "noncritical",
@@ -171,7 +171,7 @@
     "stage_4": {
       "attempts": 1,
       "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "src/analysis/egfr_sar_error_analysis.py"
       ],
       "criticality": "noncritical",
@@ -221,7 +221,7 @@
     "stage_5": {
       "attempts": 1,
       "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "src/structure/harden_redocking_evidence.py"
       ],
       "criticality": "noncritical",
@@ -262,7 +262,7 @@
     "stage_6": {
       "attempts": 1,
       "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "src/analysis/patch_final_egfr_reports.py"
       ],
       "criticality": "noncritical",
@@ -306,7 +306,7 @@
     "stage_7": {
       "attempts": 2,
       "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "scripts/run_smoke_tests.py"
       ],
       "criticality": "noncritical",
@@ -321,12 +321,12 @@
       "expected_outputs_missing": [],
       "fallback_strategies": [
         [
-          "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+          "python",
           "scripts/run_smoke_tests.py"
         ]
       ],
       "fallback_used": [
-        "./.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "scripts/run_smoke_tests.py"
       ],
       "max_attempts": 2,
@@ -356,7 +356,7 @@
     "stage_8": {
       "attempts": 1,
       "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "python",
         "src/analysis/build_final_hardening_status.py"
       ],
       "criticality": "noncritical",

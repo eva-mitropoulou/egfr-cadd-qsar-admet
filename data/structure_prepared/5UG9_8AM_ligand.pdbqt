@@ -1,4 +1,4 @@
-REMARK  Name = /home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/data/structure_prepared/5UG9_8AM_ligand.pdb
+REMARK  Name = data/structure_prepared/5UG9_8AM_ligand.pdb
 REMARK  5 active torsions:
 REMARK  status: ('A' for Active; 'I' for Inactive)
 REMARK    1  A    between atoms: N12_5  and  C15_7

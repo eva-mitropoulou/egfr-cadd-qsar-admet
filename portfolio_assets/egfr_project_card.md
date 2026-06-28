@@ -1,4 +1,4 @@
-# EGFR CADD/QSAR Decision Workflow
+# EGFR CADD and QSAR Decision Workflow
 
 Retrospective EGFR workflow using ChEMBL activity records, RDKit features,
 Morgan fingerprints, scaffold validation, uncertainty checks, structure-contact
@@ -11,8 +11,8 @@ analysis, and Vina redocking.
 - Best scaffold-split Morgan RF: RMSE 0.871, R2 0.550
 - Applicability-domain MAE: 0.513 for high-similarity chemistry vs 0.957 for low-similarity chemistry
 - Assay/document-aware validation and split-conformal intervals added
-- SAR/error analysis: 607 activity-cliff candidates and 387 scaffold-error rows
-- Structure work: 4 EGFR co-crystals parsed, 68 ligand-contact residue rows, 5UG9 / 8AM redocking RMSD 0.968 A
+- SAR and error analysis: 607 activity-cliff candidates and 387 scaffold-error rows
+- Structure work: 4 EGFR co-crystals parsed, 68 ligand-contact residue rows, 5UG9 with ligand 8AM redocking RMSD 0.968 A
 
 ## Notes
 

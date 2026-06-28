@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-PYTHON_BIN="${PYTHON_BIN:-./.micromamba/envs/egfr-cadd/bin/python}"
+PYTHON_BIN="${PYTHON_BIN:-python}"
 if [ ! -x "$PYTHON_BIN" ]; then
   PYTHON_BIN="${PYTHON:-python}"
 fi

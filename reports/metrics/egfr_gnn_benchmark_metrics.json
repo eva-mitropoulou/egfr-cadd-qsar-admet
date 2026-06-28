@@ -66,7 +66,7 @@
     "test_size": 2119,
     "train_size": 8474
   },
-  "torch_python": "/home/dimit/eva/Computational-Chemistry/antibody_project/antibody-prioritization/.venv/bin/python",
+  "torch_python": "python",
   "torch_version": "2.11.0+cu128",
   "worker_status": "completed"
 }
