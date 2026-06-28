@@ -1,4 +1,4 @@
-"""Formal split-conformal uncertainty intervals for EGFR Morgan RF QSAR."""
+"""Conformal-style uncertainty checks for EGFR Morgan RF QSAR."""
 
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ TARGET_COVERAGE = 0.90
 
 
 def conformal_quantile(abs_residuals: np.ndarray, target_coverage: float = TARGET_COVERAGE) -> float:
-    """Return split-conformal residual quantile with finite-sample correction."""
+    """Return residual quantile with finite-sample correction."""
     n_cal = len(abs_residuals)
     if n_cal == 0:
         raise ValueError("Calibration residuals are empty.")
@@ -161,7 +161,7 @@ def save_figures(metrics_rows: list[dict], predictions: pd.DataFrame) -> None:
     plt.bar(metrics_df["split"], metrics_df["empirical_coverage"], color="#4C78A8")
     plt.axhline(TARGET_COVERAGE, color="black", linestyle="--", linewidth=1)
     plt.ylabel("Empirical coverage")
-    plt.title("90% Split-Conformal Coverage")
+    plt.title("90% Conformal-Style Coverage")
     plt.xticks(rotation=20, ha="right")
     plt.tight_layout()
     plt.savefig(FIGURES_DIR / "conformal_coverage_by_split.png", dpi=200)
@@ -189,7 +189,7 @@ def save_figures(metrics_rows: list[dict], predictions: pd.DataFrame) -> None:
 
 
 def main() -> None:
-    """Run random and scaffold split-conformal uncertainty analysis."""
+    """Run random and scaffold conformal-style uncertainty analysis."""
     x_matrix = sparse.load_npz(PROCESSED_DIR / "features_morgan_fingerprints.npz").astype(np.float32)
     index = pd.read_csv(PROCESSED_DIR / "features_morgan_index.csv")
     y = index["median_pIC50"].astype(float).to_numpy()
@@ -221,9 +221,9 @@ def main() -> None:
     save_json(METRICS_PATH, payload)
 
     lines = [
-        "# EGFR Split-Conformal Uncertainty Report",
+        "# EGFR Conformal-Style Uncertainty Report",
         "",
-        "This stage adds formal split-conformal pIC50 prediction intervals using absolute calibration residuals.",
+        "This stage adds conformal-style pIC50 uncertainty checks using absolute calibration residuals. These intervals are retrospective uncertainty summaries, not production conformal-prediction guarantees.",
         "",
     ]
     for row in metrics_rows:

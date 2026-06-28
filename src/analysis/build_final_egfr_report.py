@@ -34,6 +34,11 @@ def write_text(path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8")
 
 
+def fmt_int(value: object) -> str:
+    """Format integer-like values for public reports."""
+    return f"{int(value):,}" if value is not None else "unavailable"
+
+
 REQUIRED_OUTPUTS = [
     "reports/project_completion_audit.md",
     "reports/molecular_standardization_report.md",
@@ -71,10 +76,12 @@ def main() -> None:
     provenance = read_json(METRICS_DIR / "egfr_data_provenance_audit.json")
     standardization = read_json(METRICS_DIR / "molecular_standardization_metrics.json")
     benchmark = read_json(METRICS_DIR / "qsar_matched_benchmark_metrics.json")
+    assay_validation = read_json(METRICS_DIR / "egfr_assay_aware_validation_metrics.json")
     applicability = read_json(METRICS_DIR / "applicability_domain_metrics.json")
     uncertainty = read_json(METRICS_DIR / "egfr_uncertainty_calibration_metrics.json")
     triage = read_json(METRICS_DIR / "egfr_candidate_triage_metrics.json")
     structure = read_json(METRICS_DIR / "egfr_structure_module_metrics.json")
+    redocking = read_json(METRICS_DIR / "egfr_redocking_audit_metrics.json")
     gnn = read_json(METRICS_DIR / "egfr_gnn_benchmark_metrics.json")
     active = read_json(METRICS_DIR / "egfr_active_learning_metrics.json")
 
@@ -83,12 +90,15 @@ def main() -> None:
     scaffold_drop = None
     if random_best and scaffold_best and random_best.get("R2") is not None and scaffold_best.get("R2") is not None:
         scaffold_drop = float(random_best["R2"] - scaffold_best["R2"])
+    assay_rows = assay_validation.get("validation_rows", [])
+    assay_split = next((row for row in assay_rows if row.get("split") == "assay_group_split"), {})
+    document_split = next((row for row in assay_rows if row.get("split") == "document_group_split"), {})
 
     final_status = status_from_outputs()
     if (
         gnn.get("gnn_status", "").startswith("degraded")
         or structure.get("structure_module_status", "").endswith("degraded")
-        or structure.get("redocking_status", "").startswith("failed")
+        or redocking.get("status", "completed") != "completed"
     ):
         final_status = "DONE_WITH_WARNINGS"
 
@@ -99,20 +109,20 @@ def main() -> None:
         "",
         "## Scope",
         "",
-        "This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records. It does not create new molecules, claim therapeutic efficacy, or claim production-grade deployment.",
+        "This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records. It does not create new molecules and is not a clinical-use or deployment system.",
         "",
         "## Dataset",
         "",
-        f"- Raw ChEMBL activity rows: {provenance.get('raw_activity_row_count')}",
-        f"- Clean molecule-level pIC50 rows: {provenance.get('clean_pIC50_molecule_count')}",
-        f"- Model-ready molecule rows: {provenance.get('model_ready_molecule_count')}",
+        f"- Raw ChEMBL activity rows: {fmt_int(provenance.get('raw_activity_row_count'))}",
+        f"- Clean molecule-level pIC50 rows: {fmt_int(provenance.get('clean_pIC50_molecule_count'))}",
+        f"- Model-ready molecule rows: {fmt_int(provenance.get('model_ready_molecule_count'))}",
         f"- Target: {provenance.get('primary_target_id')}",
         "",
         "## Molecular Standardization",
         "",
-        f"- Standardized molecules: {standardization.get('standardized_rows')}",
-        f"- Invalid molecules: {standardization.get('invalid_molecule_count')}",
-        f"- Duplicate standardized molecules: {standardization.get('duplicate_standardized_molecule_count')}",
+        f"- Standardized molecules: {fmt_int(standardization.get('standardized_rows'))}",
+        f"- Invalid molecules: {fmt_int(standardization.get('invalid_molecule_count'))}",
+        f"- Duplicate standardized molecules: {fmt_int(standardization.get('duplicate_standardized_molecule_count'))}",
         f"- MolStandardize available: {standardization.get('molstandardize_available')}",
         "",
         "## Feature Generation",
@@ -125,21 +135,38 @@ def main() -> None:
         f"- Best scaffold-split model: {scaffold_best.get('model')} with MAE {scaffold_best.get('MAE'):.3f}, RMSE {scaffold_best.get('RMSE'):.3f}, R2 {scaffold_best.get('R2'):.3f}" if scaffold_best else "- Best scaffold-split model: unavailable",
         f"- Scaffold R2 drop relative to random split: {scaffold_drop:.3f}" if scaffold_drop is not None else "- Scaffold R2 drop: unavailable",
         "",
+        "## Assay/Document-Aware Validation",
+        "",
+        (
+            f"- Assay-group split: RMSE {assay_split.get('RMSE'):.3f}, "
+            f"R2 {assay_split.get('R2'):.3f}, group overlap {assay_split.get('group_overlap_count')}"
+            if assay_split
+            else "- Assay-group split: unavailable"
+        ),
+        (
+            f"- Document-group split: RMSE {document_split.get('RMSE'):.3f}, "
+            f"R2 {document_split.get('R2'):.3f}, group overlap {document_split.get('group_overlap_count')}"
+            if document_split
+            else "- Document-group split: unavailable"
+        ),
+        "",
         "## Applicability Domain",
         "",
         f"- Low-similarity MAE: {applicability.get('low_similarity_mae'):.3f}",
         f"- High-similarity MAE: {applicability.get('high_similarity_mae'):.3f}",
         f"- Out-of-domain count: {applicability.get('out_of_domain_count')}",
         "",
-        "## Uncertainty and Calibration",
+        "## Conformal-Style Uncertainty Check",
         "",
         f"- Uncertainty score: {uncertainty.get('uncertainty_score')}",
         f"- Uncertainty-error Spearman correlation: {uncertainty.get('uncertainty_error_spearman'):.3f}",
         f"- 90 percent interval coverage: {uncertainty.get('coverage_90'):.3f}",
         "",
+        "This is a retrospective uncertainty proxy using residual quantiles and applicability-domain context, not a production conformal prediction pipeline.",
+        "",
         "## ADMET-Style, Drug-Likeness, And Model-Risk Triage",
         "",
-        f"- Ranked existing molecules: {triage.get('ranked_molecule_count')}",
+        f"- Ranked existing molecules: {fmt_int(triage.get('ranked_molecule_count'))}",
         f"- Diverse top-20 unique scaffolds: {triage.get('diverse_top20_unique_scaffolds')}",
         f"- Diverse top-20 low/medium risk count: {triage.get('diverse_top20_low_or_medium_risk_count')}/20",
         f"- Diverse top-20 Lipinski-clean count: {triage.get('diverse_top20_lipinski_clean_count')}/20",
@@ -152,14 +179,15 @@ def main() -> None:
         f"- Available structures: {structure.get('available_structures')}",
         f"- Parsed co-crystals with ligand: {structure.get('parsed_cocrystal_count')}",
         f"- PDB IDs used: {', '.join(structure.get('pdb_ids_used', [])) if structure.get('pdb_ids_used') else 'none'}",
-        f"- Redocking status: {structure.get('redocking_status')}",
-        f"- Redocking reason: {structure.get('redocking_reason') or structure.get('reason')}",
+        f"- Redocking audit status: {redocking.get('status')}",
+        f"- Pose recovery RMSD: {redocking.get('pose_recovery_rmsd_angstrom')} angstrom",
+        f"- Overlay artifact status: {redocking.get('overlay_artifact_status')}",
         f"- Interaction fingerprint status: {structure.get('interaction_fingerprint_status')}",
         f"- Binding-site contact residue rows: {structure.get('interaction_residue_count')}",
         "",
-        "The structure module completed real co-crystal retrieval/parsing and heuristic binding-site interaction analysis. Redocking was attempted but did not complete because receptor/ligand PDBQT preparation and/or Vina support was unavailable.",
+        "The structure module completed co-crystal retrieval, binding-site interaction analysis, and a retrospective Vina redocking pose-recovery audit for one prepared EGFR co-crystal.",
         "",
-        "## GNN Benchmark",
+        "## Exploratory Custom PyTorch GCN Baseline",
         "",
         f"- GNN status: {gnn.get('gnn_status')}",
         f"- Backend: {gnn.get('backend')}",
@@ -180,7 +208,7 @@ def main() -> None:
             else "- GNN scaffold split: unavailable"
         ),
         f"- GNN beat Morgan RF on scaffold RMSE: {gnn.get('gnn_beat_morgan_rf', {}).get('scaffold_RMSE')}",
-        "The real GNN benchmark was run and is reported honestly; it did not outperform the Morgan Random Forest baseline in this run.",
+        "The exploratory custom PyTorch dense GCN baseline is retained as negative benchmark evidence; it did not outperform the Morgan Random Forest baseline in this run.",
         "",
         "## Retrospective Active Learning",
         "",
@@ -197,10 +225,9 @@ def main() -> None:
         "- Retrospective public/project data only.",
         "- ChEMBL IC50 values come from heterogeneous assays.",
         "- No new molecules were generated.",
-        "- No therapeutic efficacy is claimed.",
-        "- No production-grade deployment is claimed.",
+        "- No clinical-use or deployment claim is made.",
         "- Docking and protein-ligand MD are optional/future structure-based extensions.",
-        "- Redocking did not complete in this environment because PDBQT preparation/Vina support was unavailable.",
+        "- The redocking result is a retrospective pose-recovery sanity check, not a binding free-energy calculation or prospective docking validation.",
         "",
         f"FINAL_STATUS = {final_status}",
         "",
@@ -214,8 +241,8 @@ def main() -> None:
         f"- Benchmarked QSAR models with random and scaffold splits; best scaffold-split model achieved MAE {scaffold_best.get('MAE'):.3f}, RMSE {scaffold_best.get('RMSE'):.3f}, R2 {scaffold_best.get('R2'):.3f} while surfacing a random-to-scaffold performance drop.",
         f"- Demonstrated applicability-domain behavior: low-similarity compounds had MAE {applicability.get('low_similarity_mae'):.3f} versus {applicability.get('high_similarity_mae'):.3f} for high-similarity compounds, then used this signal in candidate triage.",
         f"- Produced a diverse top-20 existing-molecule prioritization table with {triage.get('diverse_top20_unique_scaffolds')} unique scaffolds, {triage.get('diverse_top20_low_or_medium_risk_count')}/20 low-or-medium model risk, and {triage.get('diverse_top20_lipinski_clean_count')}/20 Lipinski-clean molecules.",
-        f"- Added structure-based EGFR co-crystal analysis across {structure.get('parsed_cocrystal_count')} parsed PDB structures with {structure.get('interaction_residue_count')} ligand-contact residue rows; redocking was attempted but blocked by PDBQT/Vina preparation.",
-        f"- Ran a real PyTorch dense-GCN molecular graph benchmark on the EGFR pIC50 task using {gnn.get('device')}; scaffold-split R2 was {gnn.get('scaffold_split', {}).get('R2'):.3f}, underperforming the Morgan RF baseline.",
+        f"- Added structure-based EGFR co-crystal analysis across {structure.get('parsed_cocrystal_count')} parsed PDB structures with {structure.get('interaction_residue_count')} ligand-contact residue rows plus a retrospective Vina redocking pose-recovery audit.",
+        f"- Ran an exploratory custom PyTorch GCN baseline on the EGFR pIC50 task using {gnn.get('device')}; scaffold-split R2 was {gnn.get('scaffold_split', {}).get('R2'):.3f}, underperforming the Morgan RF baseline.",
         "",
     ]
     write_text(REPORTS_DIR / "final_egfr_cv_bullets.md", "\n".join(cv_bullets))
@@ -244,8 +271,8 @@ def main() -> None:
         f"- Best scaffold-split QSAR model: {scaffold_best.get('model')}, R2 {scaffold_best.get('R2'):.3f}",
         f"- Applicability-domain MAE improved from {applicability.get('low_similarity_mae'):.3f} to {applicability.get('high_similarity_mae'):.3f} from low to high similarity",
         f"- Diverse top-20 triage: {triage.get('diverse_top20_unique_scaffolds')} unique scaffolds, {triage.get('diverse_top20_lipinski_clean_count')}/20 Lipinski-clean",
-        f"- Structure module: {structure.get('parsed_cocrystal_count')} EGFR co-crystals parsed; {structure.get('interaction_residue_count')} ligand-contact residue rows; redocking status `{structure.get('redocking_status')}`",
-        f"- GNN benchmark: real PyTorch dense GCN on {gnn.get('device')}; scaffold R2 {gnn.get('scaffold_split', {}).get('R2'):.3f}; did not beat Morgan RF",
+        f"- Structure module: {structure.get('parsed_cocrystal_count')} EGFR co-crystals parsed; {structure.get('interaction_residue_count')} ligand-contact residue rows; retrospective Vina redocking pose-recovery audit `{redocking.get('status')}`",
+        f"- Exploratory custom PyTorch dense GCN baseline on {gnn.get('device')}; scaffold R2 {gnn.get('scaffold_split', {}).get('R2'):.3f}; did not beat Morgan RF",
         "",
         "## Positioning",
         "",
@@ -267,7 +294,9 @@ def main() -> None:
         "uncertainty_status": uncertainty.get("conformal_status"),
         "triage_table_size": triage.get("ranked_molecule_count"),
         "structure_module_status": structure.get("structure_module_status"),
-        "redocking_status": structure.get("redocking_status"),
+        "redocking_status": redocking.get("status"),
+        "redocking_pose_recovery_rmsd_angstrom": redocking.get("pose_recovery_rmsd_angstrom"),
+        "redocking_overlay_artifact_status": redocking.get("overlay_artifact_status"),
         "interaction_analysis_status": structure.get("interaction_analysis_status"),
         "gnn_status": gnn.get("gnn_status"),
         "gnn_backend": gnn.get("backend"),

@@ -28,7 +28,7 @@ def test_key_metrics_present_in_final_report():
         "RMSE 0.871",
         "R2 0.550",
         "Assay/Document-Aware Validation",
-        "Split-Conformal Uncertainty",
+        "Conformal-Style Uncertainty Check",
         "Pose recovery RMSD",
     ]
     for snippet in required_snippets:

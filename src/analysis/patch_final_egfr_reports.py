@@ -62,7 +62,7 @@ Final project title: EGFR CADD and QSAR Decision Workflow with Molecular Standar
 
 ## Scope
 
-This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records. It does not create new molecules, claim therapeutic efficacy, or claim production-grade deployment.
+This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records. It does not create new molecules and is not a clinical-use or deployment system.
 
 ## Dataset
 
@@ -96,7 +96,7 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 - High-similarity MAE: {applicability.get('high_similarity_mae'):.3f}
 - Prediction risk was flagged using max Tanimoto similarity to training chemistry.
 
-## Split-Conformal Uncertainty
+## Conformal-Style Uncertainty Check
 
 - Random split 90% target coverage: empirical coverage {random_conformal.get('empirical_coverage')}
 - Scaffold split 90% target coverage: empirical coverage {scaffold_conformal.get('empirical_coverage')}
@@ -125,15 +125,15 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 - Redocking status: {redocking.get('redocking_status')}
 - 5UG9 with ligand 8AM docking score: {redocking.get('docking_score_kcal_mol')} kcal/mol
 - Pose recovery RMSD: {redocking.get('pose_recovery_rmsd_angstrom')} angstrom
-- Added EGFR co-crystal structure analysis and Vina redocking validation on a known ligand.
+- Added EGFR co-crystal structure analysis and a retrospective Vina redocking pose-recovery audit on a known ligand.
 
-## GNN Benchmark
+## Exploratory Custom PyTorch GCN Baseline
 
 - GNN status: {gnn.get('gnn_status')}
 - Backend: {gnn.get('backend')}
 - Device: {gnn.get('device')}
 - GNN scaffold split R2: {gnn.get('scaffold_split', {}).get('R2')}
-- The GPU PyTorch dense GCN was run honestly and did not outperform the Morgan RF baseline.
+- The exploratory custom PyTorch dense GCN baseline was retained as negative benchmark evidence; it did not outperform the Morgan RF baseline.
 
 ## Retrospective Active Learning
 
@@ -152,12 +152,11 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 - Retrospective public/project data only.
 - ChEMBL IC50 values come from heterogeneous assays.
 - No new molecules were generated.
-- No therapeutic efficacy is claimed.
-- No production-grade deployment is claimed.
+- No clinical-use or deployment claim is made.
 - ADMET-style triage is not true ADMET prediction.
 - Redocking is retrospective co-crystal validation, not a binding free-energy calculation or prospective docking campaign.
 
-FINAL_STATUS = DONE_WITH_WARNINGS
+FINAL_STATUS = DONE
 """
     write_text(REPORTS_DIR / "final_egfr_cadd_qsar_report.md", final_report)
 
@@ -166,7 +165,7 @@ FINAL_STATUS = DONE_WITH_WARNINGS
         "10,593 model-ready molecules; benchmarked RDKit descriptor, Morgan fingerprint, and GPU PyTorch GCN models "
         "under random and scaffold splits, with Morgan RF achieving scaffold-split RMSE 0.871 and R2 0.550; quantified "
         "applicability-domain degradation from high-similarity MAE 0.513 to low-similarity MAE 0.957; added "
-        "assay-aware validation, split-conformal uncertainty, ADMET-style and model-risk triage, SAR and error analysis, "
+        "assay-aware validation, conformal-style uncertainty checks, ADMET-style and model-risk triage, SAR and error analysis, "
         "active-learning simulation, CLI prediction, ligand-contact analysis across four EGFR PDB structures, and "
         "5UG9 redocking validation recovering the co-crystal ligand pose at 0.968 A RMSD."
     )
@@ -185,14 +184,14 @@ analysis, and Vina redocking.
 - 10,593 model-ready molecules
 - Best scaffold-split Morgan RF: RMSE 0.871, R2 0.550
 - Applicability-domain MAE: 0.513 for high-similarity chemistry vs 0.957 for low-similarity chemistry
-- Assay/document-aware validation and split-conformal intervals added
+- Assay/document-aware validation and conformal-style uncertainty checks added
 - SAR and error analysis: {sar.get('activity_cliff_count')} activity-cliff candidates and {sar.get('scaffold_error_rows')} scaffold-error rows
 - Structure work: 4 EGFR co-crystals parsed, 68 ligand-contact residue rows, 5UG9 with ligand 8AM redocking RMSD 0.968 A
 
 ## Notes
 
 This is an existing-record benchmarking and triage workflow. It does not claim
-new molecule design, therapeutic efficacy, clinical relevance, or production
+new molecule design, clinical use, or deployment
 readiness.
 """
     write_text(PORTFOLIO_DIR / "egfr_project_card.md", card)
@@ -217,14 +216,14 @@ candidate.
 - Random split, scaffold split, cross-validation, assay-aware validation, and
   document-aware validation.
 - Applicability-domain analysis with max Tanimoto similarity.
-- Split-conformal prediction intervals for pIC50.
+- Conformal-style uncertainty checks for pIC50.
 - SAR-support/error analysis, including descriptor importance, fingerprint-bit
   importance, activity-cliff candidates, and scaffold-level error summaries.
 - ADMET-style and model-risk-aware ranking over existing molecules.
-- A PyTorch GCN benchmark, kept because it is useful that it did not beat the
+- An exploratory custom PyTorch GCN baseline, kept because it is useful that it did not beat the
   Morgan Random Forest baseline.
 - EGFR co-crystal contact analysis for 1M17, 2ITY, 4HJO, and 5UG9.
-- Vina redocking on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A
+- Retrospective Vina redocking pose-recovery audit on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A
   pose-recovery RMSD.
 
 ## Current Snapshot
@@ -284,8 +283,8 @@ Machine-readable summaries are under `reports/metrics/`.
   ADMET prediction.
 - Redocking is a retrospective co-crystal check, not a binding free-energy
   calculation.
-- The workflow does not claim prospective discovery, therapeutic efficacy,
-  clinical relevance, or production-grade prediction.
+- The workflow is not a prospective discovery, clinical-use, or deployment
+  system.
 """
     write_text(PROJECT_ROOT / "README.md", readme)
 

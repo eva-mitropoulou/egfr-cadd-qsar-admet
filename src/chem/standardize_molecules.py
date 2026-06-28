@@ -121,7 +121,7 @@ def main() -> None:
         "fragment_policy": "largest fragment chosen when RDKit MolStandardize is available; otherwise sanitized canonical molecule retained",
         "salt_policy": "salts/fragments handled by largest-fragment choice when available",
         "charge_policy": "RDKit Uncharger applied when available; otherwise original sanitized charge state retained",
-        "tautomer_policy": "Full tautomer canonicalization is documented but skipped in the automated finish run to avoid fragile long runtimes; sanitized canonical isomeric SMILES are retained",
+        "tautomer_policy": "RDKit sanitization, largest-fragment handling, charge normalization where available, and documented tautomer/protonation policy; full tautomer canonicalization is skipped in the automated finish run",
         "stereochemistry_policy": "isomeric canonical SMILES retained; stereochemistry is not collapsed",
         "public_reporting_policy": "reports use molecule IDs, hashes, and aggregate counts rather than raw SMILES",
     }

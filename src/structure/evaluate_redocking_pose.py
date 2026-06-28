@@ -116,7 +116,7 @@ def direct_coordinate_rmsd(reference: np.ndarray, docked: np.ndarray) -> float:
 def update_final_wording(status: str) -> None:
     """Patch final report/card wording for the redocking outcome."""
     success = status in {"completed_redocking", "completed_redocking_no_rmsd"}
-    success_sentence = "Added EGFR co-crystal structure analysis and Vina redocking validation on a known ligand."
+    success_sentence = "Added EGFR co-crystal structure analysis and a retrospective Vina redocking pose-recovery audit on a known ligand."
     failure_sentence = "Added EGFR co-crystal structure metadata and ligand-contact analysis; redocking remained blocked by PDBQT preparation."
     replacement_sentence = success_sentence if success else failure_sentence
 
@@ -132,7 +132,7 @@ def update_final_wording(status: str) -> None:
         )
         text = text.replace(
             "- Redocking did not complete in this environment because PDBQT preparation/Vina support was unavailable.",
-            "- Redocking was completed as retrospective co-crystal validation; it is not prospective docking-based discovery.",
+            "- Redocking was completed as a retrospective co-crystal pose-recovery audit; it is not prospective docking-based discovery.",
         )
         text = text.replace(
             "- Structure module status: structure_analysis_completed_redocking_failed",
@@ -149,11 +149,11 @@ def update_final_wording(status: str) -> None:
         if success:
             text = text.replace(
                 "- Structure module: 4 EGFR co-crystals parsed; 68 ligand-contact residue rows; redocking status `failed_missing_pdbqt_preparation`",
-                f"- Structure module: 4 EGFR co-crystals parsed; 68 ligand-contact residue rows; Vina redocking status `{status}`",
+                f"- Structure module: 4 EGFR co-crystals parsed; 68 ligand-contact residue rows; retrospective Vina redocking pose-recovery audit `{status}`",
             )
             text = text.replace(
                 "- Structure module: 4 EGFR co-crystals parsed; 68 ligand-contact residue rows; Vina redocking status `completed_redocking_no_rmsd`",
-                f"- Structure module: 4 EGFR co-crystals parsed; 68 ligand-contact residue rows; Vina redocking status `{status}`",
+                f"- Structure module: 4 EGFR co-crystals parsed; 68 ligand-contact residue rows; retrospective Vina redocking pose-recovery audit `{status}`",
             )
         else:
             text = text.replace(

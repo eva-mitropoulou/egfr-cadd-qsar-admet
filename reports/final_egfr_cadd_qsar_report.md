@@ -4,7 +4,7 @@ Final project title: EGFR CADD and QSAR Decision Workflow with Molecular Standar
 
 ## Scope
 
-This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records. It does not create new molecules, claim therapeutic efficacy, or claim production-grade deployment.
+This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records. It does not create new molecules and is not a clinical-use or deployment system.
 
 ## Dataset
 
@@ -13,90 +13,93 @@ This is a retrospective modeling, benchmarking, and triage workflow over existin
 - Model-ready molecule rows: 10,593
 - Target: CHEMBL203
 
-## Molecular Standardization and Features
+## Molecular Standardization
 
-Molecules were curated into pIC50 labels, standardized/audited with RDKit where feasible, and represented with RDKit descriptors, Morgan fingerprints, and combined feature matrices.
+- Standardized molecules: 10,593
+- Invalid molecules: 0
+- Duplicate standardized molecules: 42
+- MolStandardize available: True
+
+## Feature Generation
+
+RDKit descriptors, Morgan fingerprints, and combined descriptor and fingerprint matrices were generated and checked for label alignment.
 
 ## QSAR Benchmarks
 
-- Best random-split Morgan RF: MAE 0.516, RMSE 0.712, R2 0.719
-- Best scaffold-split Morgan RF: MAE 0.667, RMSE 0.871, R2 0.550
-- Scaffold split was used as the primary model-risk estimate because it better tests generalization to new chemotypes.
+- Best random-split model: Random Forest with MAE 0.516, RMSE 0.712, R2 0.719
+- Best scaffold-split model: Random Forest with MAE 0.667, RMSE 0.871, R2 0.550
+- Scaffold R2 drop relative to random split: 0.168
 
 ## Assay/Document-Aware Validation
 
-- Assay-aware validation status: completed
-- Assay-group split RMSE and R2: 1.0135992949202917 and 0.4480171002230632
-- Assay group overlap count: 0
-- Document-aware validation status: completed
-- Document-group split RMSE and R2: 1.1425119156890893 and 0.21240743631437198
-- Document group overlap count: 0
+- Assay-group split: RMSE 1.014, R2 0.448, group overlap 0
+- Document-group split: RMSE 1.143, R2 0.212, group overlap 0
 
 ## Applicability Domain
 
 - Low-similarity MAE: 0.957
 - High-similarity MAE: 0.513
-- Prediction risk was flagged using max Tanimoto similarity to training chemistry.
+- Out-of-domain count: 149
 
-## Split-Conformal Uncertainty
+## Conformal-Style Uncertainty Check
 
-- Random split 90% target coverage: empirical coverage 0.9023124115148655
-- Scaffold split 90% target coverage: empirical coverage 0.9313771888310459
-- Scaffold mean interval width: 3.0943794820870933
-- Intervals are retrospective uncertainty summaries, not clinical confidence statements.
+- Uncertainty score: Applicability-domain reliability proxy: 1 - max Tanimoto similarity
+- Uncertainty-error Spearman correlation: 0.273
+- 90 percent interval coverage: 0.900
+
+This is a retrospective uncertainty proxy using residual quantiles and applicability-domain context, not a production conformal prediction pipeline.
 
 ## ADMET-Style, Drug-Likeness, And Model-Risk Triage
 
-- Ranked existing molecules: 10593
+- Ranked existing molecules: 10,593
 - Diverse top-20 unique scaffolds: 20
+- Diverse top-20 low/medium risk count: 20/20
 - Diverse top-20 Lipinski-clean count: 18/20
-- This is proxy drug-likeness/model-risk triage, not true ADMET prediction.
 
-## SAR-Support and Error Analysis
-
-- SAR analysis status: completed
-- Activity cliff candidate pairs: 607
-- Count-filtered scaffold error rows: 387
-- Descriptor and Morgan bit importances are interpreted as model-support evidence only, not causal mechanisms.
+This is not true ADMET prediction. It is transparent drug-likeness and model-risk triage over existing molecules.
 
 ## Structure-Based Module
 
-- EGFR co-crystals parsed: 4
+- Structure module status: completed_redocking
+- Available structures: 4
+- Parsed co-crystals with ligand: 4
 - PDB IDs used: 1M17, 2ITY, 4HJO, 5UG9
-- Ligand-contact residue rows: 68
-- Redocking status: completed_redocking
-- 5UG9 with ligand 8AM docking score: -9.471 kcal/mol
+- Redocking audit status: completed
 - Pose recovery RMSD: 0.968 angstrom
-- Added EGFR co-crystal structure analysis and Vina redocking validation on a known ligand.
+- Overlay artifact status: overlay_figure_created
+- Interaction fingerprint status: completed_heuristic_contacts
+- Binding-site contact residue rows: 68
 
-## GNN Benchmark
+The structure module completed co-crystal retrieval, binding-site interaction analysis, and a retrospective Vina redocking pose-recovery audit for one prepared EGFR co-crystal.
+
+## Exploratory Custom PyTorch GCN Baseline
 
 - GNN status: completed
 - Backend: custom_pytorch_dense_gcn
+- CUDA available: True
 - Device: NVIDIA GeForce RTX 4090
-- GNN scaffold split R2: 0.19800341794433707
-- The GPU PyTorch dense GCN was run honestly and did not outperform the Morgan RF baseline.
+- GNN random split: MAE 0.886, RMSE 1.115, R2 0.310
+- GNN scaffold split: MAE 0.909, RMSE 1.149, R2 0.198
+- GNN beat Morgan RF on scaffold RMSE: False
+The exploratory custom PyTorch dense GCN baseline is retained as negative benchmark evidence; it did not outperform the Morgan Random Forest baseline in this run.
 
 ## Retrospective Active Learning
 
 - Strategies tested: 6
 - Best strategy: applicability_domain_aware_high_score
-- Active learning was simulated over existing labels only.
+- Best final recovery fraction: 0.3996229971724788
 
-## CLI/Demo and Reproducibility
+## CLI/Demo
 
-- CLI: `src/app/predict_egfr_cli.py`
-- Hardening runner: `python scripts/agentic_harden_egfr_evidence.py --harden`
-- Reproduce final evidence layers: `bash scripts/reproduce_egfr_final_reports.sh`
+A CLI script is available at `src/app/predict_egfr_cli.py` and writes prediction outputs without raw SMILES.
 
 ## Limitations
 
 - Retrospective public/project data only.
 - ChEMBL IC50 values come from heterogeneous assays.
 - No new molecules were generated.
-- No therapeutic efficacy is claimed.
-- No production-grade deployment is claimed.
-- ADMET-style triage is not true ADMET prediction.
-- Redocking is retrospective co-crystal validation, not a binding free-energy calculation or prospective docking campaign.
+- No clinical-use or deployment claim is made.
+- Docking and protein-ligand MD are optional/future structure-based extensions.
+- The redocking result is a retrospective pose-recovery sanity check, not a binding free-energy calculation or prospective docking validation.
 
-FINAL_STATUS = DONE_WITH_WARNINGS
+FINAL_STATUS = DONE

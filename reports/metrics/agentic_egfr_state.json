@@ -1,5 +1,5 @@
 {
-  "FINAL_STATUS": "DONE_WITH_WARNINGS",
+  "FINAL_STATUS": "DONE",
   "active_learning_best_strategy": "applicability_domain_aware_high_score",
   "applicability_domain_finding": {
     "high_similarity_mae": 0.513462959329003,
@@ -82,7 +82,9 @@
   ],
   "project_root": ".",
   "python_executable": "python",
-  "redocking_status": "failed_missing_pdbqt_preparation",
+  "redocking_overlay_artifact_status": "overlay_figure_created",
+  "redocking_pose_recovery_rmsd_angstrom": 0.968,
+  "redocking_status": "completed",
   "scaffold_performance_drop": 0.16817570184965092,
   "stages": {
     "phase_0": {
@@ -420,7 +422,7 @@
       "stage_id": "phase_9",
       "status": "PASS",
       "warnings": [
-        "patched_real_structure_analysis_completed_redocking_failed"
+        "redocking audit completed in final hardening pass"
       ]
     }
   },
@@ -501,7 +503,7 @@
       "status": "PASS"
     }
   ],
-  "structure_module_status": "structure_analysis_completed_redocking_failed",
+  "structure_module_status": "completed_redocking",
   "triage_table_size": 10593,
   "uncertainty_calibration_status": {
     "conformal_status": "degraded_proxy_interval_from_out_of_fold_residual_quantile",

@@ -18,14 +18,14 @@ candidate.
 - Random split, scaffold split, cross-validation, assay-aware validation, and
   document-aware validation.
 - Applicability-domain analysis with max Tanimoto similarity.
-- Split-conformal prediction intervals for pIC50.
+- Conformal-style uncertainty checks using residual quantiles and applicability-domain proxies.
 - SAR-support/error analysis, including descriptor importance, fingerprint-bit
   importance, activity-cliff candidates, and scaffold-level error summaries.
 - ADMET-style and model-risk-aware ranking over existing molecules.
-- A PyTorch GCN benchmark, kept because it is useful that it did not beat the
+- An exploratory custom PyTorch GCN baseline, kept because it is useful that it did not beat the
   Morgan Random Forest baseline.
 - EGFR co-crystal contact analysis for 1M17, 2ITY, 4HJO, and 5UG9.
-- Vina redocking on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A
+- Retrospective Vina redocking pose-recovery audit on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A
   pose-recovery RMSD.
 
 ## Current Snapshot
@@ -51,14 +51,8 @@ To rerun only the lightweight report/evidence hardening stages from existing
 artifacts:
 
 ```bash
-source .venv/bin/activate 2>/dev/null || true
-python scripts/agentic_harden_egfr_evidence.py --harden
-```
-
-Or:
-
-```bash
-bash scripts/reproduce_egfr_final_reports.sh
+make reproduce-small
+make test
 ```
 
 Full rebuilds require the local Python/RDKit environment and regenerated
@@ -85,5 +79,5 @@ Machine-readable summaries are under `reports/metrics/`.
   ADMET prediction.
 - Redocking is a retrospective co-crystal check, not a binding free-energy
   calculation.
-- The workflow does not claim prospective discovery, therapeutic efficacy,
-  clinical relevance, or production-grade prediction.
+- The workflow is not a prospective discovery, clinical-use, or deployment
+  system.

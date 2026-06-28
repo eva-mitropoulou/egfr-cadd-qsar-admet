@@ -1,6 +1,6 @@
-# EGFR GNN Benchmark Report
+# EGFR Exploratory Custom PyTorch GCN Baseline Report
 
-A real molecular graph neural-network benchmark was run using padded RDKit molecular graphs and a custom PyTorch dense GCN/message-passing model.
+An exploratory custom PyTorch dense GCN baseline was run using padded RDKit molecular graphs. It is retained as negative benchmark evidence because it did not outperform the Morgan Random Forest baseline.
 
 - GNN status: completed
 - Backend used: custom_pytorch_dense_gcn
@@ -12,7 +12,7 @@ A real molecular graph neural-network benchmark was run using padded RDKit molec
 - Max atoms: 64
 - Node feature dimension: 15
 
-## GNN Metrics
+## Baseline Metrics
 
 | split | MAE | RMSE | R2 | Pearson | Spearman |
 | --- | --- | --- | --- | --- | --- |
@@ -27,4 +27,4 @@ A real molecular graph neural-network benchmark was run using padded RDKit molec
 - GNN beat Morgan RF on random RMSE: False
 - GNN beat Morgan RF on scaffold RMSE: False
 
-If the GNN underperforms Morgan RF, that is reported directly rather than hidden.
+This is not presented as a mature graph-model result.

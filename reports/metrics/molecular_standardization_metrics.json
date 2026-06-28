@@ -22,7 +22,7 @@
   "standardized_rows": 10593,
   "stereochemistry_policy": "isomeric canonical SMILES retained; stereochemistry is not collapsed",
   "tautomer_canonicalized_count": 0,
-  "tautomer_policy": "Full tautomer canonicalization is documented but skipped in the automated finish run to avoid fragile long runtimes; sanitized canonical isomeric SMILES are retained",
+  "tautomer_policy": "RDKit sanitization, largest-fragment handling, charge normalization where available, and documented tautomer/protonation policy; full tautomer canonicalization was skipped in this run",
   "uncharged_count": 10593,
   "unique_scaffold_count": 3685,
   "unique_standardized_molecule_count": 10551

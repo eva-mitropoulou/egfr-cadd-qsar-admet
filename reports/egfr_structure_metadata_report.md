@@ -6,7 +6,8 @@ This module uses real EGFR co-crystal structures with selected bound small-molec
 - Available structures: 4
 - Parsed co-crystals with ligand: 4
 - Binding-site residue rows: 68
-- Structure module status: structure_analysis_completed_redocking_failed
+- Structure module status: completed_redocking
+- Current redocking audit: retrospective Vina pose-recovery audit completed for the prepared 5UG9 co-crystal system.
 
 ## Parsed Structure Metadata
 

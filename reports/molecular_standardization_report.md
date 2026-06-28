@@ -11,7 +11,7 @@
 
 - Fragment/salt handling: largest fragment chosen when RDKit MolStandardize is available; otherwise sanitized canonical molecule retained
 - Charge handling: RDKit Uncharger applied when available; otherwise original sanitized charge state retained
-- Tautomer handling: Full tautomer canonicalization is documented but skipped in the automated finish run to avoid fragile long runtimes; sanitized canonical isomeric SMILES are retained
+- Tautomer/protonation handling: RDKit sanitization, largest-fragment handling, charge normalization where available, and documented tautomer/protonation policy. Full tautomer canonicalization was skipped in this automated finish run.
 - Stereochemistry handling: isomeric canonical SMILES retained; stereochemistry is not collapsed
 - Public reporting: reports use molecule IDs, hashes, and aggregate counts rather than raw SMILES
 
