@@ -19,4 +19,4 @@ Suggested analyses:
 - hydrogen-bond occupancy
 - interaction-fingerprint persistence
 
-This is future work and is not used as current project evidence.
+This is future work for extending the current project evidence.

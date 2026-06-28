@@ -1,6 +1,6 @@
 # EGFR Conformal-Style Uncertainty Report
 
-This stage adds conformal-style pIC50 uncertainty checks using absolute calibration residuals. These intervals are retrospective uncertainty summaries, not production conformal-prediction guarantees.
+This stage adds conformal-style pIC50 uncertainty checks using absolute calibration residuals. These intervals are retrospective uncertainty summaries.
 
 ## random_split_conformal
 

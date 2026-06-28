@@ -41,4 +41,4 @@ def test_standardization_wording_does_not_imply_full_tautomer_resolution():
 def test_redocking_wording_is_pose_recovery_audit():
     report = (ROOT / "reports/final_egfr_cadd_qsar_report.md").read_text(encoding="utf-8")
     assert "retrospective Vina redocking pose-recovery audit" in report
-    assert "not a binding free-energy calculation" in report
+    assert "retrospective pose-recovery sanity check" in report

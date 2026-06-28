@@ -223,7 +223,7 @@ def main() -> None:
     lines = [
         "# EGFR Conformal-Style Uncertainty Report",
         "",
-        "This stage adds conformal-style pIC50 uncertainty checks using absolute calibration residuals. These intervals are retrospective uncertainty summaries, not production conformal-prediction guarantees.",
+        "This stage adds conformal-style pIC50 uncertainty checks using absolute calibration residuals. These intervals are retrospective uncertainty summaries.",
         "",
     ]
     for row in metrics_rows:

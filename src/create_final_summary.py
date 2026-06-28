@@ -303,7 +303,7 @@ def create_project_summary_report(
         "",
         "- This is a retrospective ChEMBL portfolio project, not prospective drug discovery.",
         "- IC50 values come from heterogeneous assays and publications.",
-        "- The ADMET layer is proxy/drug-likeness triage, not true ADMET prediction.",
+        "- The ADMET layer is proxy drug-likeness and model-risk triage.",
         "- Docking was not included.",
         "- Predictions are less reliable outside the model applicability domain.",
         "",

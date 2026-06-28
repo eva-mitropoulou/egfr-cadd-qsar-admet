@@ -181,7 +181,7 @@ def write_report(result: dict) -> None:
         f"- Pose recovery RMSD angstrom: {result.get('pose_recovery_rmsd_angstrom')}",
         f"- Pose recovery status: {result.get('pose_recovery_status')}",
         "",
-        "This is retrospective redocking of a known co-crystallized ligand, not a prospective therapeutic claim.",
+        "This is retrospective redocking of a known co-crystallized ligand for pose-recovery review.",
         "",
     ]
     REPORT_PATH.write_text("\n".join(lines), encoding="utf-8")

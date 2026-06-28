@@ -7,8 +7,7 @@ uncertainty checks, simple drug-likeness triage, and a small structure-based
 redocking check.
 
 The project is retrospective. It works with existing records and known
-structures; it does not generate molecules or claim that any compound is a drug
-candidate.
+structures for QSAR benchmarking, model-risk triage, and pose-recovery review.
 
 ## What Is In Here
 
@@ -22,7 +21,7 @@ candidate.
 - SAR-support/error analysis, including descriptor importance, fingerprint-bit
   importance, activity-cliff candidates, and scaffold-level error summaries.
 - ADMET-style and model-risk-aware ranking over existing molecules.
-- An exploratory custom PyTorch GCN baseline, kept because it is useful that it did not beat the
+- An exploratory custom PyTorch GCN baseline retained as negative benchmark evidence against the
   Morgan Random Forest baseline.
 - EGFR co-crystal contact analysis for 1M17, 2ITY, 4HJO, and 5UG9.
 - Retrospective Vina redocking pose-recovery audit on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A
@@ -44,8 +43,7 @@ candidate.
 ## Reproducing The Reports
 
 The final reports and metrics are committed. Raw and processed ChEMBL tables are
-local artifacts and are not committed, following the same pattern as my antibody
-workflow.
+local regenerable artifacts, following the same pattern as my antibody workflow.
 
 To rerun only the lightweight report/evidence hardening stages from existing
 artifacts:
@@ -71,13 +69,10 @@ ChEMBL-derived tables under `data/raw/` and `data/processed/`.
 
 Machine-readable summaries are under `reports/metrics/`.
 
-## Caveats
+## Project Frame
 
 - ChEMBL IC50 values come from heterogeneous assays and papers.
 - Scaffold and assay/document splits are more conservative than random splits.
-- ADMET-style triage here means simple drug-likeness/model-risk rules, not true
-  ADMET prediction.
-- Redocking is a retrospective co-crystal check, not a binding free-energy
-  calculation.
-- The workflow is not a prospective discovery, clinical-use, or deployment
-  system.
+- ADMET-style triage uses simple drug-likeness and model-risk proxy rules.
+- Redocking is a retrospective co-crystal pose-recovery check.
+- Prospective experimental validation remains future work.

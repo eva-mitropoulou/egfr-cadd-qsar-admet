@@ -33,4 +33,4 @@ This audit hardens the completed retrospective Vina redocking evidence for the 5
 - Hydrogens ignored: True
 - Atom mapping: direct prepared-ligand PDBQT atom order
 
-This is retrospective redocking validation of a known co-crystallized ligand, not a binding free-energy calculation or prospective discovery claim.
+This is retrospective redocking validation of a known co-crystallized ligand and pose-recovery audit.

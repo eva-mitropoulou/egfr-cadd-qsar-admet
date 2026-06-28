@@ -227,7 +227,7 @@ def main() -> None:
         f"- Hydrogens ignored: {audit['hydrogens_ignored_for_rmsd']}",
         f"- Atom mapping: {audit['atom_mapping']}",
         "",
-        "This is retrospective redocking validation of a known co-crystallized ligand, not a binding free-energy calculation or prospective discovery claim.",
+        "This is retrospective redocking validation of a known co-crystallized ligand and pose-recovery audit.",
         "",
     ]
     write_text(AUDIT_REPORT_PATH, "\n".join(lines))
@@ -249,7 +249,7 @@ def main() -> None:
         f"- Pose recovery status: {audit['pose_recovery_status']}",
         f"- Audit report: `{AUDIT_REPORT_PATH.relative_to(PROJECT_ROOT)}`",
         "",
-        "This is retrospective redocking of a known co-crystallized ligand, not a prospective therapeutic claim.",
+        "This is retrospective redocking of a known co-crystallized ligand for pose-recovery review.",
         "",
     ]
     write_text(REDOCKING_REPORT_PATH, "\n".join(redocking_report))

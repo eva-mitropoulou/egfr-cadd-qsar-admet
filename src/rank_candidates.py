@@ -194,7 +194,7 @@ def main() -> None:
     print(f"- {TOP_20_PATH}")
     print(f"- {TOP_20_DIVERSE_PATH}")
     print("")
-    print("Note: this is drug-likeness triage, not true ADMET prediction or candidate nomination.")
+    print("Note: this is drug-likeness and model-risk triage over existing molecules.")
 
 
 if __name__ == "__main__":

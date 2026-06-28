@@ -220,7 +220,7 @@ def main() -> None:
         "# EGFR SAR-Support and Interpretable Error Analysis",
         "",
         "This report adds model interpretation and error-analysis evidence for the retrospective EGFR QSAR workflow.",
-        "The analysis is SAR-supportive and descriptive; it does not claim causal binding mechanisms or prospective discovery.",
+        "The analysis is SAR-supportive and descriptive for retrospective error analysis.",
         "",
         "## Descriptor Importance",
         "",

@@ -2,9 +2,9 @@
 
 Final project title: EGFR CADD and QSAR Decision Workflow with Molecular Standardization, Scaffold Validation, Uncertainty, ADMET-Style Triage, Structure-Based Analysis, and Active-Learning Simulation
 
-## Scope
+## Project Frame
 
-This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records. It does not create new molecules and is not a clinical-use or deployment system.
+This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records.
 
 ## Dataset
 
@@ -47,7 +47,7 @@ RDKit descriptors, Morgan fingerprints, and combined descriptor and fingerprint 
 - Uncertainty-error Spearman correlation: 0.273
 - 90 percent interval coverage: 0.900
 
-This is a retrospective uncertainty proxy using residual quantiles and applicability-domain context, not a production conformal prediction pipeline.
+This is a retrospective uncertainty proxy using residual quantiles and applicability-domain context.
 
 ## ADMET-Style, Drug-Likeness, And Model-Risk Triage
 
@@ -56,7 +56,7 @@ This is a retrospective uncertainty proxy using residual quantiles and applicabi
 - Diverse top-20 low/medium risk count: 20/20
 - Diverse top-20 Lipinski-clean count: 18/20
 
-This is not true ADMET prediction. It is transparent drug-likeness and model-risk triage over existing molecules.
+This is transparent drug-likeness and model-risk triage over existing molecules.
 
 ## Structure-Based Module
 
@@ -81,7 +81,7 @@ The structure module completed co-crystal retrieval, binding-site interaction an
 - GNN random split: MAE 0.886, RMSE 1.115, R2 0.310
 - GNN scaffold split: MAE 0.909, RMSE 1.149, R2 0.198
 - GNN beat Morgan RF on scaffold RMSE: False
-The exploratory custom PyTorch dense GCN baseline is retained as negative benchmark evidence; it did not outperform the Morgan Random Forest baseline in this run.
+The exploratory custom PyTorch dense GCN baseline is retained as negative benchmark evidence against the Morgan Random Forest baseline in this run.
 
 ## Retrospective Active Learning
 
@@ -97,9 +97,7 @@ A CLI script is available at `src/app/predict_egfr_cli.py` and writes prediction
 
 - Retrospective public/project data only.
 - ChEMBL IC50 values come from heterogeneous assays.
-- No new molecules were generated.
-- No clinical-use or deployment claim is made.
 - Docking and protein-ligand MD are optional/future structure-based extensions.
-- The redocking result is a retrospective pose-recovery sanity check, not a binding free-energy calculation or prospective docking validation.
+- The redocking result is a retrospective pose-recovery sanity check.
 
 FINAL_STATUS = DONE

@@ -1,7 +1,7 @@
 # EGFR Candidate Triage Report
 
 This is ADMET-style, drug-likeness, uncertainty, and model-risk triage over existing ChEMBL/project molecules.
-It is not true ADMET prediction and does not nominate validated drug candidates.
+It is drug-likeness and model-risk triage over existing molecules.
 
 - Ranked molecules: 10,593
 - Diverse top-20 unique scaffolds: 20

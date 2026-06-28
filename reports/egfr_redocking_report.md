@@ -14,4 +14,4 @@
 - Pose recovery status: successful
 - Audit report: `reports/egfr_redocking_audit_report.md`
 
-This is retrospective redocking of a known co-crystallized ligand, not a prospective therapeutic claim.
+This is retrospective redocking of a known co-crystallized ligand for pose-recovery review.

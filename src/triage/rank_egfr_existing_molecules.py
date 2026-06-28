@@ -222,7 +222,7 @@ def main() -> None:
         "# EGFR Candidate Triage Report",
         "",
         "This is ADMET-style, drug-likeness, uncertainty, and model-risk triage over existing ChEMBL/project molecules.",
-        "It is not true ADMET prediction and does not nominate validated drug candidates.",
+        "It is drug-likeness and model-risk triage over existing molecules.",
         "",
         f"- Ranked molecules: {len(ranked):,}",
         f"- Diverse top-20 unique scaffolds: {metrics['diverse_top20_unique_scaffolds']}",

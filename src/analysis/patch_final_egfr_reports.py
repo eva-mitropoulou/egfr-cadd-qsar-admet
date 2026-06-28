@@ -60,9 +60,9 @@ def main() -> None:
 
 Final project title: EGFR CADD and QSAR Decision Workflow with Molecular Standardization, Scaffold Validation, Uncertainty, ADMET-Style Triage, Structure-Based Analysis, and Active-Learning Simulation
 
-## Scope
+## Project Frame
 
-This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records. It does not create new molecules and is not a clinical-use or deployment system.
+This is a retrospective modeling, benchmarking, and triage workflow over existing public/project EGFR inhibitor-like records.
 
 ## Dataset
 
@@ -108,7 +108,7 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 - Ranked existing molecules: {triage.get('ranked_molecule_count')}
 - Diverse top-20 unique scaffolds: {triage.get('diverse_top20_unique_scaffolds')}
 - Diverse top-20 Lipinski-clean count: {triage.get('diverse_top20_lipinski_clean_count')}/20
-- This is proxy drug-likeness/model-risk triage, not true ADMET prediction.
+- This is proxy drug-likeness and model-risk triage.
 
 ## SAR-Support and Error Analysis
 
@@ -152,9 +152,8 @@ Molecules were curated into pIC50 labels, standardized/audited with RDKit where 
 - Retrospective public/project data only.
 - ChEMBL IC50 values come from heterogeneous assays.
 - No new molecules were generated.
-- No clinical-use or deployment claim is made.
-- ADMET-style triage is not true ADMET prediction.
-- Redocking is retrospective co-crystal validation, not a binding free-energy calculation or prospective docking campaign.
+- ADMET-style triage uses simple drug-likeness and model-risk proxy rules.
+- Redocking is retrospective co-crystal pose-recovery validation.
 
 FINAL_STATUS = DONE
 """
@@ -190,8 +189,8 @@ analysis, and Vina redocking.
 
 ## Notes
 
-This is an existing-record benchmarking and triage workflow. It does not claim
-new molecule design, clinical use, or deployment
+This is an existing-record benchmarking and triage workflow for QSAR validation,
+model-risk analysis, and existing-molecule prioritization.
 readiness.
 """
     write_text(PORTFOLIO_DIR / "egfr_project_card.md", card)
@@ -205,8 +204,7 @@ uncertainty checks, simple drug-likeness triage, and a small structure-based
 redocking check.
 
 The project is retrospective. It works with existing records and known
-structures; it does not generate molecules or claim that any compound is a drug
-candidate.
+structures for QSAR benchmarking, model-risk triage, and pose-recovery review.
 
 ## What Is In Here
 
@@ -279,12 +277,9 @@ Machine-readable summaries are under `reports/metrics/`.
 
 - ChEMBL IC50 values come from heterogeneous assays and papers.
 - Scaffold and assay/document splits are more conservative than random splits.
-- ADMET-style triage here means simple drug-likeness/model-risk rules, not true
-  ADMET prediction.
-- Redocking is a retrospective co-crystal check, not a binding free-energy
-  calculation.
-- The workflow is not a prospective discovery, clinical-use, or deployment
-  system.
+- ADMET-style triage uses simple drug-likeness and model-risk proxy rules.
+- Redocking is a retrospective co-crystal pose-recovery check.
+- Prospective experimental validation remains future work.
 """
     write_text(PROJECT_ROOT / "README.md", readme)
 
