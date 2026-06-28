@@ -9,7 +9,7 @@ Branch: `portfolio-hardening-final`
 - Clarified molecular standardization policy when tautomer canonicalization is skipped.
 - Framed the custom PyTorch GCN as exploratory negative benchmark evidence.
 - Framed redocking as a retrospective Vina pose-recovery audit.
-- Added reproducibility and CI entry points.
+- Added reproducibility entry points and documented the CI workflow blocker caused by token scope.
 - Added tests for status consistency and conservative public wording.
 
 ## Checks Run
@@ -23,3 +23,4 @@ Branch: `portfolio-hardening-final`
 ## Remaining Manual Review
 
 - Full docking and structure workflows depend on local structure-preparation tooling; the lightweight check verifies committed reports and metrics only.
+- Add the GitHub Actions workflow manually or with a token that has `workflow` scope.
