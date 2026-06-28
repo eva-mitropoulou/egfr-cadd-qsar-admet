@@ -1,0 +1,21 @@
+{
+  "repo": "egfr-cadd-qsar-admet",
+  "branch": "portfolio-hardening-final",
+  "status": "pass",
+  "fixes": [
+    "final status reconciled to DONE",
+    "uncertainty wording changed to conformal-style retrospective check",
+    "standardization wording made conservative for tautomer policy",
+    "custom PyTorch GCN framed as exploratory negative benchmark",
+    "redocking framed as retrospective Vina pose-recovery audit",
+    "Makefile, pyproject, environment, CI workflow, verification script, and consistency tests added"
+  ],
+  "checks": {
+    "make_reproduce_small": "pass",
+    "make_test": "pass_11_tests",
+    "report_csv_smiles_header_hits": 0,
+    "public_claim_scan": "pass",
+    "git_diff_check": "pass"
+  },
+  "blockers": []
+}
