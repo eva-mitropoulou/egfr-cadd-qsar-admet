@@ -2,8 +2,8 @@
 
 EGFR cheminformatics and CADD workflow built around public ChEMBL IC50
 records. The project keeps the full path in one place: data curation,
-descriptor and fingerprint features, QSAR baselines, scaffold-aware validation,
-uncertainty checks, simple drug-likeness triage, and a small structure-based
+descriptor and fingerprint features, QSAR baselines, scaffold aware validation,
+uncertainty checks, simple drug likeness triage, and a small structure based
 redocking check.
 
 The project is retrospective. It works with existing records and known
