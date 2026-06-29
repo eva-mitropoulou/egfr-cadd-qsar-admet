@@ -27,7 +27,7 @@ structures for QSAR benchmarking, model-risk triage, and pose-recovery review.
 - Retrospective Vina redocking pose-recovery audit on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A
   pose-recovery RMSD.
 
-## Current Snapshot
+## Project Snapshot
 
 | Check | Result |
 |---|---:|
