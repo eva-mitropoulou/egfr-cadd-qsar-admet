@@ -2,7 +2,7 @@
 
 This project builds an EGFR CADD and QSAR workflow using public ChEMBL IC50 records. I curated molecule-level activity data, standardized molecules, generated descriptor and fingerprint features, trained QSAR models, and then used the scoring workflow to rank existing EGFR inhibitor-like records for closer expert review.
 
-The goal is not to claim new EGFR drugs. The goal is to build a transparent retrospective workflow that shows how far public activity records can support activity prediction, uncertainty checks, scaffold-aware validation, drug-likeness review, and a small structure-based sanity check.
+The goal is to build a workflow that shows how far public activity records can support activity prediction, uncertainty checks, scaffold-aware validation, drug-likeness review, and a small structure-based sanity check.
 
 The workflow is supported by several validation and benchmarking layers: molecule-level pIC50 aggregation, RDKit descriptor and Morgan fingerprint features, random and scaffold splits, assay-aware and document-aware validation, applicability-domain analysis, conformal-style uncertainty checks, SAR/error analysis, Lipinski/QED/PAINS/Brenk review flags, an exploratory graph neural network benchmark, co-crystal contact analysis, and retrospective Vina redocking.
 
