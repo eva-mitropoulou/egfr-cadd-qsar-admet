@@ -68,7 +68,7 @@ The selected practical baseline is a Morgan fingerprint Random Forest. It was th
 
 High-similarity molecules perform better than low-similarity molecules. In the applicability-domain analysis, high-similarity records had MAE 0.513, while low-similarity records had MAE 0.957. That gap is why the ranking table includes similarity bins and model-risk categories instead of treating every prediction as equally trustworthy.
 
-The uncertainty checks use retrospective residual intervals and applicability-domain context. The intervals are review aids: they help identify predictions that should be interpreted more cautiously, especially for low-similarity molecules or molecules outside the model's stronger support region.
+The uncertainty checks use residual intervals from validation results together with applicability-domain context. These intervals are review aids: they help flag predictions that should be interpreted more cautiously, especially for low-similarity molecules or molecules outside the model’s stronger support region.
 
 <p align="center">
   <img src="docs/assets/egfr_applicability_uncertainty.png" alt="Applicability-domain and uncertainty checks for EGFR QSAR predictions" width="100%">
@@ -80,7 +80,7 @@ QED and Lipinski features are used as medicinal-chemistry review aids. They summ
 
 PAINS and Brenk flags are also review annotations. They identify molecules that may need chemistry caution because of known problematic substructure patterns, but they are not automatic proof that a molecule is inactive, invalid, or an assay artifact.
 
-This layer is not full ADMET prediction. It is a transparent triage layer attached to the QSAR ranking table.
+This layer adds transparent triage information to the QSAR ranking table, using simple drug-likeness and alert checks rather than a full ADMET model.
 
 <p align="center">
   <img src="docs/assets/egfr_review_and_structure.png" alt="EGFR existing-molecule triage, med-chem alert review, and structure sanity checks" width="100%">
@@ -90,21 +90,7 @@ This layer is not full ADMET prediction. It is a transparent triage layer attach
 
 The structure module adds limited retrospective context. It includes co-crystal/contact analysis and a 5UG9 redocking check with the co-crystallized ligand 8AM. The 5UG9/8AM redocking recovered the prepared reference pose with 0.968 A heavy-atom RMSD.
 
-Vina is used only as a retrospective sanity check. The top-5 docking step docks a small set of already-ranked existing molecules into the validated 5UG9 setup and records Vina scores as structure-aware annotations. Top-5 docking does not confirm binding, potency, inhibition, or discovery status.
-
-## Scope and Limits
-
-This is a retrospective public-record project.
-
-It does not claim new EGFR inhibitors.
-
-It has no experimental validation.
-
-It does not make a prospective drug discovery claim.
-
-Docking is not binding confirmation.
-
-The rankings are for expert review only.
+Vina is used as a limited docking-based check. The top-5 docking step docks a small set of already-ranked existing molecules into the validated 5UG9 setup and records Vina scores as additional review annotations.
 
 ## Reproduce
 
