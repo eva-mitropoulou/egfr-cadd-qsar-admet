@@ -39,11 +39,11 @@ The final scoring workflow uses the selected QSAR baseline to rank existing mole
 
 ## Model Benchmarking and Selection
 
-The model comparison uses several validation settings because a random train/test split is not enough for medicinal chemistry interpretation. A random split is the optimistic interpolation case: train and test molecules are shuffled by row, so close analogs can appear across both sides. A scaffold split is harder because it asks whether the model transfers across chemical scaffold families.
+The models were tested with both random and scaffold splits. The random split measures performance when similar molecules may appear in both training and test data. The scaffold split is stricter because it tests whether the model can generalize to different chemical scaffold families.
 
 I also ran assay-group and document-group splits to test robustness against public-data context. These splits hold out assay or publication groups and therefore better reflect the heterogeneity of public IC50 records.
 
-The selected practical baseline is a Morgan fingerprint Random Forest. It was the strongest practical scorer across the final benchmark reports, especially under the scaffold-aware comparison. The GCN model is kept as an exploratory benchmark, not the selected scorer, because it did not improve over the Morgan Random Forest in this run.
+The selected practical baseline is a Morgan fingerprint Random Forest. It was the strongest practical scorer across the final benchmark reports, including the stricter scaffold split. The GCN model is kept as an exploratory benchmark, not the selected scorer, because it did not improve over the Morgan Random Forest in this run.
 
 <p align="center">
   <img src="docs/assets/egfr_model_benchmark.png" alt="EGFR QSAR model validation summary across random, scaffold, assay, and document splits" width="100%">
