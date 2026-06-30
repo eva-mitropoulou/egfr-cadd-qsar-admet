@@ -18,6 +18,10 @@ This project tests how much useful modeling can be done from public EGFR IC50 da
 
 ## Project Workflow
 
+<p align="center">
+  <img src="assets/egfr_project_workflow.png" alt="EGFR CADD/QSAR workflow overview" width="100%">
+</p>
+
 The workflow starts from public ChEMBL activity records for EGFR target `CHEMBL203`. I kept IC50 measurements, cleaned activity units and values, converted the usable records to pIC50, and aggregated repeated measurements into a molecule-level activity table.
 
 The model-ready dataset is built after molecular standardization. Molecules are standardized, checked for invalid structures and duplicates, and then represented with RDKit physicochemical descriptors, Morgan fingerprints, and combined feature sets. These features are aligned to the molecule-level pIC50 labels before model training.
