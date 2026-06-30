@@ -86,7 +86,7 @@ The redocking result is a retrospective pose-recovery check on a known co-crysta
 
 ## Scope and Limits
 
-This is a retrospective public-record modeling and review project. It does not claim new EGFR inhibitors, clinical candidates, or experimentally validated hits.
+This is a retrospective public-record modeling and review project. It does not claim new EGFR inhibitors, development-stage molecules, or experimentally validated hits.
 
 The drug-likeness and alert layer is a transparent rule-based review aid. It is not a full ADMET prediction system.
 

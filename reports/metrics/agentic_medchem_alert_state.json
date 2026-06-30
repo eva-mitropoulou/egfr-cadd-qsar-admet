@@ -1,0 +1,183 @@
+{
+  "FINAL_MEDCHEM_ALERT_STATUS": "DONE",
+  "files_updated": [
+    "src/chem/medchem_alerts.py",
+    "src/triage/admet_risk_scoring.py",
+    "src/triage/rank_egfr_existing_molecules.py",
+    "src/analysis/egfr_medchem_alert_sensitivity.py",
+    "src/analysis/patch_medchem_alert_reports.py",
+    "reports/egfr_medchem_alerts_report.md",
+    "reports/egfr_medchem_alert_sensitivity_report.md",
+    "reports/metrics/egfr_medchem_alerts_metrics.json",
+    "reports/metrics/egfr_medchem_alert_sensitivity_metrics.json",
+    "reports/egfr_ranked_existing_molecules.csv",
+    "reports/final_egfr_cadd_qsar_report.md",
+    "reports/final_egfr_cv_bullets.md",
+    "portfolio_assets/egfr_project_card.md",
+    "README.md",
+    "tests/test_egfr_medchem_alerts.py"
+  ],
+  "next_recommended_action": "Review reports/egfr_medchem_alerts_report.md and reports/egfr_medchem_alert_sensitivity_report.md.",
+  "stages": [
+    {
+      "attempts": 1,
+      "command": [
+        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "src/chem/medchem_alerts.py"
+      ],
+      "expected_outputs_found": [
+        "data/processed/egfr_model_ready_with_medchem_alerts.csv",
+        "reports/egfr_medchem_alerts_report.md",
+        "reports/metrics/egfr_medchem_alerts_metrics.json"
+      ],
+      "expected_outputs_missing": [],
+      "fallback_strategies": [
+        "continue with RDKit PAINS/Brenk/NIH only if external CSV is absent"
+      ],
+      "name": "Annotate PAINS/Brenk/external SMARTS alerts",
+      "quality_gates": [
+        "row count unchanged from model-ready input",
+        "PAINS, Brenk, unwanted, and combined alert columns exist",
+        "external CSV absence is degraded-but-valid"
+      ],
+      "repair_strategies": [
+        "retry after path/import check"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 163.956,
+      "stage_id": "stage_01_medchem_alert_annotation",
+      "status": "PASS",
+      "stderr_log": "reports/run_logs/stage_01_medchem_alert_annotation.stderr.log",
+      "stdout_log": "reports/run_logs/stage_01_medchem_alert_annotation.stdout.log",
+      "warnings": []
+    },
+    {
+      "attempts": 1,
+      "command": [
+        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "src/triage/rank_egfr_existing_molecules.py"
+      ],
+      "expected_outputs_found": [
+        "reports/egfr_candidate_triage_report.md",
+        "reports/egfr_ranked_existing_molecules.csv",
+        "reports/metrics/egfr_candidate_triage_metrics.json"
+      ],
+      "expected_outputs_missing": [],
+      "fallback_strategies": [
+        "preserve previous ranked table and mark triage degraded"
+      ],
+      "name": "Refresh alert-aware candidate triage",
+      "quality_gates": [
+        "ranked table keeps all existing molecules",
+        "ranked table contains alert-risk columns",
+        "top-20 alert composition is reported"
+      ],
+      "repair_strategies": [
+        "retry after column-name check"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 8.805,
+      "stage_id": "stage_02_triage_refresh",
+      "status": "PASS",
+      "stderr_log": "reports/run_logs/stage_02_triage_refresh.stderr.log",
+      "stdout_log": "reports/run_logs/stage_02_triage_refresh.stdout.log",
+      "warnings": []
+    },
+    {
+      "attempts": 1,
+      "command": [
+        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "src/analysis/egfr_medchem_alert_sensitivity.py"
+      ],
+      "expected_outputs_found": [
+        "reports/egfr_medchem_alert_sensitivity_report.md",
+        "reports/metrics/egfr_medchem_alert_sensitivity_metrics.json",
+        "reports/figures/medchem_alert_activity_distribution.png",
+        "reports/figures/medchem_alert_subset_model_performance.png",
+        "reports/figures/top_ranked_medchem_alert_composition.png"
+      ],
+      "expected_outputs_missing": [],
+      "fallback_strategies": [
+        "report composition-only sensitivity if RF retraining fails"
+      ],
+      "name": "Run alert-exclusion sensitivity analysis",
+      "quality_gates": [
+        "all four subsets attempted or explicitly marked unavailable",
+        "random and scaffold metrics reported for full vs PAINS-excluded",
+        "main benchmark files are not overwritten"
+      ],
+      "repair_strategies": [
+        "retry after path/import check"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 82.728,
+      "stage_id": "stage_03_sensitivity_analysis",
+      "status": "PASS",
+      "stderr_log": "reports/run_logs/stage_03_sensitivity_analysis.stderr.log",
+      "stdout_log": "reports/run_logs/stage_03_sensitivity_analysis.stdout.log",
+      "warnings": []
+    },
+    {
+      "attempts": 1,
+      "command": [
+        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "src/analysis/patch_medchem_alert_reports.py"
+      ],
+      "expected_outputs_found": [
+        "reports/final_egfr_cadd_qsar_report.md",
+        "reports/final_egfr_cv_bullets.md",
+        "portfolio_assets/egfr_project_card.md",
+        "README.md"
+      ],
+      "expected_outputs_missing": [],
+      "fallback_strategies": [
+        "leave standalone medchem reports if patching fails"
+      ],
+      "name": "Patch final report, README, and project card",
+      "quality_gates": [
+        "required wording about annotations and sensitivity filters present",
+        "counts and fractions included",
+        "no overclaiming language added"
+      ],
+      "repair_strategies": [
+        "retry after metrics-file check"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 0.091,
+      "stage_id": "stage_04_report_patch",
+      "status": "PASS",
+      "stderr_log": "reports/run_logs/stage_04_report_patch.stderr.log",
+      "stdout_log": "reports/run_logs/stage_04_report_patch.stdout.log",
+      "warnings": []
+    },
+    {
+      "attempts": 1,
+      "command": [
+        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_egfr_medchem_alerts.py"
+      ],
+      "expected_outputs_found": [],
+      "expected_outputs_missing": [],
+      "fallback_strategies": [
+        "write state with tests failed"
+      ],
+      "name": "Run medchem-alert tests",
+      "quality_gates": [
+        "pytest medchem-alert tests pass"
+      ],
+      "repair_strategies": [
+        "retry after test assertion review"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 2.046,
+      "stage_id": "stage_05_medchem_tests",
+      "status": "PASS",
+      "stderr_log": "reports/run_logs/stage_05_medchem_tests.stderr.log",
+      "stdout_log": "reports/run_logs/stage_05_medchem_tests.stdout.log",
+      "warnings": []
+    }
+  ]
+}

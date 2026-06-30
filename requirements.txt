@@ -6,3 +6,4 @@ matplotlib
 seaborn
 chembl_webresource_client
 jupyter
+pytest

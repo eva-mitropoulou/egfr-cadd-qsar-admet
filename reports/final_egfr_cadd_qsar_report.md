@@ -58,6 +58,22 @@ This is a retrospective uncertainty proxy using residual quantiles and applicabi
 
 This is transparent drug-likeness and model-risk triage over existing molecules.
 
+## Medicinal-Chemistry Alerts And Sensitivity
+
+PAINS, Brenk, and external unwanted-substructure SMARTS alerts were used as medicinal-chemistry risk annotations and sensitivity-analysis filters, not automatic exclusions from the primary EGFR QSAR benchmark.
+
+- PAINS-flagged molecules: 847 (8.0%)
+- Brenk-flagged molecules: 6,074 (57.3%)
+- External unwanted-substructure flagged molecules: 0 (0.0%)
+- Any medicinal-chemistry alert: 6,924 (65.4%)
+- External SMARTS catalog found: False
+- Top-20 molecules without medchem alerts: 20/20
+- Diverse top-20 molecules without medchem alerts: 20/20
+- Strict medchem-clean scaffold RMSE delta versus full sensitivity baseline: 0.118
+- Sensitivity interpretation: Strict medchem-clean sensitivity produced a higher scaffold-split RMSE than the full sensitivity baseline.
+
+Alert-containing molecules remain visible in triage outputs and are not treated as proven false positives or assay artifacts.
+
 ## Structure-Based Module
 
 - Structure module status: completed_redocking

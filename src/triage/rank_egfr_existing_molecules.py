@@ -6,7 +6,6 @@ import sys
 from pathlib import Path
 
 import pandas as pd
-from rdkit import Chem
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -16,6 +15,7 @@ from egfr_pipeline_utils import (  # noqa: E402
     DESCRIPTOR_COLUMNS,
     FIGURES_DIR,
     METRICS_DIR,
+    PROCESSED_DIR,
     REPORTS_DIR,
     load_standardized_or_model_ready,
     markdown_table,
@@ -30,6 +30,8 @@ from triage.admet_risk_scoring import (  # noqa: E402
     model_risk_from_similarity,
     property_penalty,
     risk_penalty,
+    triage_reason,
+    triage_risk_bin,
     uncertainty_penalty,
 )
 
@@ -40,51 +42,59 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 AD_PREDICTIONS_PATH = REPORTS_DIR / "egfr_applicability_domain_predictions.csv"
 UNCERTAINTY_PATH = REPORTS_DIR / "egfr_uncertainty_predictions.csv"
+MEDCHEM_ALERTS_PATH = PROCESSED_DIR / "egfr_model_ready_with_medchem_alerts.csv"
 RANKED_PATH = REPORTS_DIR / "egfr_ranked_existing_molecules.csv"
 REPORT_PATH = REPORTS_DIR / "egfr_candidate_triage_report.md"
 METRICS_PATH = METRICS_DIR / "egfr_candidate_triage_metrics.json"
 
+ALERT_COLUMNS = [
+    "pains_flag",
+    "pains_alert_count",
+    "brenk_flag",
+    "brenk_alert_count",
+    "nih_alert_flag",
+    "nih_alert_count",
+    "unwanted_substructure_flag",
+    "unwanted_substructure_count",
+    "medchem_alert_flag",
+    "medchem_alert_count",
+    "medchem_alert_summary",
+]
 
-def alert_flags(smiles: pd.Series) -> tuple[list[bool], list[bool], str]:
-    """Calculate PAINS/Brenk alerts when RDKit filter catalogs are available."""
-    try:
-        from rdkit.Chem.FilterCatalog import FilterCatalog, FilterCatalogParams
 
-        pains_params = FilterCatalogParams()
-        pains_params.AddCatalog(FilterCatalogParams.FilterCatalogs.PAINS_A)
-        pains_params.AddCatalog(FilterCatalogParams.FilterCatalogs.PAINS_B)
-        pains_params.AddCatalog(FilterCatalogParams.FilterCatalogs.PAINS_C)
-        pains_catalog = FilterCatalog(pains_params)
-
-        brenk_params = FilterCatalogParams()
-        brenk_params.AddCatalog(FilterCatalogParams.FilterCatalogs.BRENK)
-        brenk_catalog = FilterCatalog(brenk_params)
-    except Exception:
-        return [False] * len(smiles), [False] * len(smiles), "degraded_filter_catalog_unavailable"
-
-    pains: list[bool] = []
-    brenk: list[bool] = []
-    for value in smiles:
-        mol = Chem.MolFromSmiles(str(value))
-        if mol is None:
-            pains.append(False)
-            brenk.append(False)
-            continue
-        pains.append(bool(pains_catalog.HasMatch(mol)))
-        brenk.append(bool(brenk_catalog.HasMatch(mol)))
-    return pains, brenk, "available"
+def load_molecule_table_with_alerts() -> tuple[pd.DataFrame, str]:
+    """Load molecule properties plus alert annotations when available."""
+    if MEDCHEM_ALERTS_PATH.exists():
+        return pd.read_csv(MEDCHEM_ALERTS_PATH), "medchem_alerts_available"
+    df = load_standardized_or_model_ready()
+    for column in ALERT_COLUMNS:
+        if column.endswith("_flag"):
+            df[column] = False
+        elif column.endswith("_summary"):
+            df[column] = "none"
+        else:
+            df[column] = 0
+    return df, "medchem_alerts_missing_default_zero"
 
 
 def main() -> None:
     """Create model-risk-aware ranked table for existing EGFR molecules."""
-    df = load_standardized_or_model_ready()
+    df, alert_catalog_status = load_molecule_table_with_alerts()
     ad = pd.read_csv(AD_PREDICTIONS_PATH)
     uncertainty = pd.read_csv(UNCERTAINTY_PATH)
 
     join_columns = ["molecule_chembl_id"]
-    base_columns = join_columns + ["molecule_hash", "scaffold_hash", *DESCRIPTOR_COLUMNS]
-    smiles_column = "standardized_smiles" if "standardized_smiles" in df.columns else "canonical_smiles"
-    base = df[base_columns + [smiles_column]].copy()
+    base_columns = join_columns + ["molecule_hash", "scaffold_hash", *DESCRIPTOR_COLUMNS, *ALERT_COLUMNS]
+    available_base_columns = [column for column in base_columns if column in df.columns]
+    base = df[available_base_columns].copy()
+    for column in ALERT_COLUMNS:
+        if column not in base.columns:
+            if column.endswith("_flag"):
+                base[column] = False
+            elif column.endswith("_summary"):
+                base[column] = "none"
+            else:
+                base[column] = 0
 
     ranked = ad[
         join_columns
@@ -101,9 +111,6 @@ def main() -> None:
     uncertainty_cols = join_columns + ["rf_prediction_std", "interval_lower_90", "interval_upper_90"]
     ranked = ranked.merge(uncertainty[uncertainty_cols], on=join_columns, how="left", validate="one_to_one")
 
-    pains, brenk, catalog_status = alert_flags(ranked[smiles_column])
-    ranked["pains_alert"] = pains
-    ranked["brenk_alert"] = brenk
     ranked["synthetic_accessibility_status"] = "not_available"
     ranked["synthetic_accessibility_score"] = pd.NA
     ranked["lipinski_violations"] = lipinski_violations(ranked)
@@ -118,6 +125,8 @@ def main() -> None:
         - ranked["uncertainty_penalty"]
         - ranked["property_penalty"]
     )
+    ranked["triage_risk_bin"] = ranked.apply(triage_risk_bin, axis=1)
+    ranked["triage_reason"] = ranked.apply(triage_reason, axis=1)
     ranked["final_triage_category"] = ranked.apply(final_triage_category, axis=1)
 
     output_columns = [
@@ -140,14 +149,23 @@ def main() -> None:
         "NumHAcceptors",
         "NumRotatableBonds",
         "lipinski_violations",
-        "pains_alert",
-        "brenk_alert",
+        "pains_flag",
+        "pains_alert_count",
+        "brenk_flag",
+        "brenk_alert_count",
+        "unwanted_substructure_flag",
+        "unwanted_substructure_count",
+        "medchem_alert_flag",
+        "medchem_alert_count",
+        "medchem_alert_summary",
         "synthetic_accessibility_status",
         "synthetic_accessibility_score",
         "property_penalty",
         "model_risk_penalty",
         "uncertainty_penalty",
         "final_score",
+        "triage_risk_bin",
+        "triage_reason",
         "final_triage_category",
         "true_pIC50",
         "absolute_error",
@@ -158,19 +176,29 @@ def main() -> None:
     diverse_top = ranked.drop_duplicates("scaffold_hash").head(20).copy()
     risk_counts = ranked["model_risk_category"].value_counts().to_dict()
     triage_counts = ranked["final_triage_category"].value_counts().to_dict()
+    triage_risk_counts = ranked["triage_risk_bin"].value_counts().to_dict()
     lipinski_counts = ranked["lipinski_violations"].value_counts().sort_index().to_dict()
+    top20 = ranked.head(20).copy()
 
     metrics = {
         "ranked_molecule_count": int(len(ranked)),
+        "ranked_table_preserved_all_molecules": int(len(ranked)) == int(len(df)),
         "diverse_top20_unique_scaffolds": int(diverse_top["scaffold_hash"].nunique()),
         "diverse_top20_low_or_medium_risk_count": int(diverse_top["model_risk_category"].isin(["low", "medium"]).sum()),
         "diverse_top20_lipinski_clean_count": int((diverse_top["lipinski_violations"] == 0).sum()),
+        "top20_clean_medchem_alert_count": int((~top20["medchem_alert_flag"]).sum()),
+        "top20_alert_flagged_count": int(top20["medchem_alert_flag"].sum()),
+        "diverse_top20_clean_medchem_alert_count": int((~diverse_top["medchem_alert_flag"]).sum()),
+        "diverse_top20_alert_flagged_count": int(diverse_top["medchem_alert_flag"].sum()),
         "risk_counts": {str(key): int(value) for key, value in risk_counts.items()},
+        "triage_risk_bin_counts": {str(key): int(value) for key, value in triage_risk_counts.items()},
         "triage_counts": {str(key): int(value) for key, value in triage_counts.items()},
         "lipinski_violation_counts": {str(key): int(value) for key, value in lipinski_counts.items()},
-        "pains_alert_count": int(ranked["pains_alert"].sum()),
-        "brenk_alert_count": int(ranked["brenk_alert"].sum()),
-        "alert_catalog_status": catalog_status,
+        "pains_flagged_count": int(ranked["pains_flag"].sum()),
+        "brenk_flagged_count": int(ranked["brenk_flag"].sum()),
+        "unwanted_substructure_flagged_count": int(ranked["unwanted_substructure_flag"].sum()),
+        "combined_medchem_alert_count": int(ranked["medchem_alert_flag"].sum()),
+        "alert_catalog_status": alert_catalog_status,
         "retrospective_limitation": "Existing-molecule ChEMBL triage with drug-likeness and model-risk proxy rules.",
     }
     save_json(METRICS_PATH, metrics)
@@ -212,8 +240,11 @@ def main() -> None:
             "molecule_chembl_id",
             "predicted_pIC50",
             "model_risk_category",
+            "triage_risk_bin",
             "QED",
             "lipinski_violations",
+            "medchem_alert_flag",
+            "medchem_alert_count",
             "final_score",
             "final_triage_category",
         ]
@@ -228,7 +259,14 @@ def main() -> None:
         f"- Diverse top-20 unique scaffolds: {metrics['diverse_top20_unique_scaffolds']}",
         f"- Diverse top-20 low/medium model risk: {metrics['diverse_top20_low_or_medium_risk_count']}/20",
         f"- Diverse top-20 Lipinski-clean: {metrics['diverse_top20_lipinski_clean_count']}/20",
-        f"- PAINS/Brenk catalog status: {catalog_status}",
+        f"- Top-20 with no medicinal-chemistry alert: {metrics['top20_clean_medchem_alert_count']}/20",
+        f"- Diverse top-20 with no medicinal-chemistry alert: {metrics['diverse_top20_clean_medchem_alert_count']}/20",
+        f"- PAINS-flagged ranked molecules: {metrics['pains_flagged_count']:,}",
+        f"- Brenk-flagged ranked molecules: {metrics['brenk_flagged_count']:,}",
+        f"- External unwanted-substructure flagged ranked molecules: {metrics['unwanted_substructure_flagged_count']:,}",
+        f"- Medicinal-chemistry alert status: {alert_catalog_status}",
+        "",
+        "PAINS, Brenk, and external unwanted-substructure SMARTS alerts are risk annotations and sensitivity-analysis filters, not automatic exclusions from the primary EGFR QSAR benchmark.",
         "",
         "## Diverse Top 20 Summary",
         "",
@@ -241,6 +279,7 @@ def main() -> None:
 
     print(f"Ranked molecules: {len(ranked)}")
     print(f"Diverse top-20 scaffolds: {metrics['diverse_top20_unique_scaffolds']}")
+    print(f"Top-20 clean medchem-alert count: {metrics['top20_clean_medchem_alert_count']}")
     print(f"Metrics: {METRICS_PATH}")
 
 

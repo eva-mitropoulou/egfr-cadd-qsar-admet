@@ -1,6 +1,9 @@
 {
-  "alert_catalog_status": "available",
-  "brenk_alert_count": 6074,
+  "alert_catalog_status": "medchem_alerts_available",
+  "brenk_flagged_count": 6074,
+  "combined_medchem_alert_count": 6924,
+  "diverse_top20_alert_flagged_count": 0,
+  "diverse_top20_clean_medchem_alert_count": 20,
   "diverse_top20_lipinski_clean_count": 18,
   "diverse_top20_low_or_medium_risk_count": 20,
   "diverse_top20_unique_scaffolds": 20,
@@ -11,18 +14,26 @@
     "3": 115,
     "4": 3
   },
-  "pains_alert_count": 847,
+  "pains_flagged_count": 847,
   "ranked_molecule_count": 10593,
-  "retrospective_limitation": "Existing-molecule ChEMBL triage only; not prospective drug discovery or true ADMET prediction.",
+  "ranked_table_preserved_all_molecules": true,
+  "retrospective_limitation": "Existing-molecule ChEMBL triage with drug-likeness and model-risk proxy rules.",
   "risk_counts": {
     "high": 149,
     "low": 6259,
     "medium": 4185
   },
+  "top20_alert_flagged_count": 0,
+  "top20_clean_medchem_alert_count": 20,
   "triage_counts": {
-    "deprioritize_high_model_risk": 464,
-    "deprioritize_property_risk": 3500,
-    "prioritize": 586,
-    "review": 6043
-  }
+    "prioritize": 275,
+    "review": 2904,
+    "review_high_risk": 7414
+  },
+  "triage_risk_bin_counts": {
+    "high": 7414,
+    "low": 2055,
+    "medium": 1124
+  },
+  "unwanted_substructure_flagged_count": 0
 }
