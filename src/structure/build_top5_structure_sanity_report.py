@@ -316,7 +316,7 @@ def main() -> None:
         "## Reproducibility",
         "",
         "```bash",
-        "python scripts/agentic_top5_structure_sanity.py",
+        "python src/structure/build_top5_structure_sanity_report.py",
         "```",
         "",
     ]

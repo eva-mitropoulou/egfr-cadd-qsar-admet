@@ -40,7 +40,6 @@ def fmt_int(value: object) -> str:
 
 
 REQUIRED_OUTPUTS = [
-    "reports/project_completion_audit.md",
     "reports/molecular_standardization_report.md",
     "reports/qsar_matched_benchmark_report.md",
     "reports/applicability_domain_report.md",
