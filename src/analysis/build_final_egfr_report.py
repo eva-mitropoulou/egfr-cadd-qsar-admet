@@ -12,7 +12,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 METRICS_DIR = PROJECT_ROOT / "reports" / "metrics"
 REPORTS_DIR = PROJECT_ROOT / "reports"
-PORTFOLIO_DIR = PROJECT_ROOT / "portfolio_assets"
+DOCS_DIR = PROJECT_ROOT / "docs"
 
 
 def read_json(path: Path) -> dict:
@@ -49,7 +49,7 @@ REQUIRED_OUTPUTS = [
     "reports/egfr_active_learning_report.md",
     "reports/final_egfr_cadd_qsar_report.md",
     "reports/final_egfr_cv_bullets.md",
-    "portfolio_assets/egfr_project_card.md",
+    "docs/project_card.md",
     ]
 
 
@@ -275,8 +275,8 @@ def main() -> None:
         "A complete, model-risk-aware CADD and QSAR workflow for existing public EGFR records. No molecule generation or efficacy claim.",
         "",
     ]
-    PORTFOLIO_DIR.mkdir(parents=True, exist_ok=True)
-    write_text(PORTFOLIO_DIR / "egfr_project_card.md", "\n".join(project_card))
+    DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    write_text(DOCS_DIR / "project_card.md", "\n".join(project_card))
 
     status_payload = {
         "FINAL_STATUS": final_status,

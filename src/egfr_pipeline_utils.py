@@ -20,7 +20,6 @@ RAW_DIR = DATA_DIR / "raw"
 REPORTS_DIR = PROJECT_ROOT / "reports"
 METRICS_DIR = REPORTS_DIR / "metrics"
 FIGURES_DIR = REPORTS_DIR / "figures"
-RUN_LOGS_DIR = REPORTS_DIR / "run_logs"
 MODELS_DIR = PROJECT_ROOT / "models"
 
 MODEL_READY_PATH = PROCESSED_DIR / "egfr_model_ready.csv"
@@ -53,10 +52,9 @@ def ensure_project_dirs() -> None:
         REPORTS_DIR,
         METRICS_DIR,
         FIGURES_DIR,
-        RUN_LOGS_DIR,
         MODELS_DIR,
-        PROJECT_ROOT / "scripts",
-        PROJECT_ROOT / "portfolio_assets",
+        PROJECT_ROOT / "docs",
+        PROJECT_ROOT / "docs" / "assets",
     ]:
         path.mkdir(parents=True, exist_ok=True)
 
@@ -276,4 +274,3 @@ def save_figure(path: Path) -> None:
     plt.tight_layout()
     plt.savefig(path, dpi=200)
     plt.close()
-

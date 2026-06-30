@@ -9,7 +9,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 REPORTS_DIR = PROJECT_ROOT / "reports"
 METRICS_DIR = REPORTS_DIR / "metrics"
-PORTFOLIO_DIR = PROJECT_ROOT / "portfolio_assets"
+DOCS_DIR = PROJECT_ROOT / "docs"
 
 
 REQUIRED_WORDING = (
@@ -142,7 +142,7 @@ def patch_cv_bullets() -> None:
 def patch_project_card(alerts: dict, sensitivity: dict, triage: dict) -> None:
     """Patch the project card in a factual, organic tone."""
     composition = sensitivity.get("top20_candidate_composition", {})
-    path = PORTFOLIO_DIR / "egfr_project_card.md"
+    path = DOCS_DIR / "project_card.md"
     content = "\n".join(
         [
             "# EGFR CADD and QSAR Decision Workflow",
@@ -216,7 +216,7 @@ def main() -> None:
 
     print(f"Updated: {REPORTS_DIR / 'final_egfr_cadd_qsar_report.md'}")
     print(f"Updated: {REPORTS_DIR / 'final_egfr_cv_bullets.md'}")
-    print(f"Updated: {PORTFOLIO_DIR / 'egfr_project_card.md'}")
+    print(f"Updated: {DOCS_DIR / 'project_card.md'}")
     print(f"Updated: {PROJECT_ROOT / 'README.md'}")
 
 

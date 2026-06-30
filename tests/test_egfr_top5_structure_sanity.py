@@ -86,7 +86,7 @@ def test_report_mentions_score_only_triage_language():
 
 def test_public_reports_do_not_contain_removed_overlap_or_overclaims():
     offenders = []
-    for path in [TOP5_REPORT, FINAL_REPORT, ROOT / "README.md", ROOT / "portfolio_assets" / "egfr_project_card.md"]:
+    for path in [TOP5_REPORT, FINAL_REPORT, ROOT / "README.md", ROOT / "docs" / "project_card.md"]:
         if not path.exists():
             continue
         text = public_text(path)

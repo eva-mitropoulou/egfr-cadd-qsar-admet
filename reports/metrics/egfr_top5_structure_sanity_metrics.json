@@ -5,7 +5,7 @@
   "patched_files": [
     "reports/final_egfr_cadd_qsar_report.md",
     "reports/final_egfr_cv_bullets.md",
-    "portfolio_assets/egfr_project_card.md",
+    "docs/project_card.md",
     "README.md"
   ],
   "redocking_validation_preserved": {

@@ -29,7 +29,7 @@ REDOCKING_METRICS_PATH = METRICS_DIR / "egfr_redocking_metrics.json"
 FIGURE_PATH = FIGURES_DIR / "egfr_top5_vina_scores.png"
 FINAL_REPORT_PATH = REPORTS_DIR / "final_egfr_cadd_qsar_report.md"
 CV_BULLETS_PATH = REPORTS_DIR / "final_egfr_cv_bullets.md"
-PROJECT_CARD_PATH = PROJECT_ROOT / "portfolio_assets" / "egfr_project_card.md"
+PROJECT_CARD_PATH = PROJECT_ROOT / "docs" / "project_card.md"
 README_PATH = PROJECT_ROOT / "README.md"
 
 DOC_CLAIM = (

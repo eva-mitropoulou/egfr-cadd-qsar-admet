@@ -15,7 +15,7 @@ METRICS_PATH = PROJECT_ROOT / "reports" / "metrics" / "egfr_structure_module_met
 REDOCKING_METRICS_PATH = PROJECT_ROOT / "reports" / "metrics" / "egfr_redocking_metrics.json"
 REPORT_PATH = PROJECT_ROOT / "reports" / "egfr_redocking_report.md"
 FINAL_REPORT_PATH = PROJECT_ROOT / "reports" / "final_egfr_cadd_qsar_report.md"
-PROJECT_CARD_PATH = PROJECT_ROOT / "portfolio_assets" / "egfr_project_card.md"
+PROJECT_CARD_PATH = PROJECT_ROOT / "docs" / "project_card.md"
 
 
 def read_json(path: Path) -> dict:

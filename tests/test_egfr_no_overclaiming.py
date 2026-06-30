@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC_PATHS = list((ROOT / "reports").glob("*.md")) + list((ROOT / "portfolio_assets").glob("*.md")) + [ROOT / "README.md"]
+PUBLIC_PATHS = list((ROOT / "reports").glob("*.md")) + list((ROOT / "docs").glob("*.md")) + [ROOT / "README.md"]
 BANNED_CLAIM_PHRASES = [
     "clinical candidate",
     "prospective discovery",

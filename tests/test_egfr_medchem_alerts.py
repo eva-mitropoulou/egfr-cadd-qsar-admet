@@ -84,7 +84,7 @@ def test_final_report_defines_alerts_as_annotations_not_exclusions():
 
 
 def test_public_markdown_reports_do_not_expose_obvious_raw_smiles():
-    public_paths = list((ROOT / "reports").glob("*.md")) + list((ROOT / "portfolio_assets").glob("*.md")) + [ROOT / "README.md"]
+    public_paths = list((ROOT / "reports").glob("*.md")) + list((ROOT / "docs").glob("*.md")) + [ROOT / "README.md"]
     offenders = []
     for path in public_paths:
         if not path.exists():
@@ -96,7 +96,7 @@ def test_public_markdown_reports_do_not_expose_obvious_raw_smiles():
 
 
 def test_public_markdown_reports_do_not_overclaim_medchem_alerts():
-    public_paths = list((ROOT / "reports").glob("*.md")) + list((ROOT / "portfolio_assets").glob("*.md")) + [ROOT / "README.md"]
+    public_paths = list((ROOT / "reports").glob("*.md")) + list((ROOT / "docs").glob("*.md")) + [ROOT / "README.md"]
     offenders = []
     for path in public_paths:
         if not path.exists():

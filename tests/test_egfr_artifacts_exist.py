@@ -12,7 +12,7 @@ def test_required_public_artifacts_exist():
         "reports/egfr_redocking_audit_report.md",
         "reports/final_egfr_cadd_qsar_report.md",
         "reports/final_egfr_cv_bullets.md",
-        "portfolio_assets/egfr_project_card.md",
+        "docs/project_card.md",
     ]
     missing = [path for path in required if not (ROOT / path).exists()]
     assert not missing

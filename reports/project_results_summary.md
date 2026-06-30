@@ -61,11 +61,11 @@ Top diverse candidates are saved in `reports/top_20_diverse_candidates.md`.
 - This is a retrospective ChEMBL portfolio project over existing records.
 - IC50 values come from heterogeneous assays and publications.
 - The ADMET layer is proxy drug-likeness and model-risk triage.
-- Docking was not included.
+- Docking is included only as retrospective redocking and Vina-score sanity-check evidence, not as binding confirmation.
 - Predictions are less reliable outside the model applicability domain.
 
 ## Generated Figures
 
-- `figures/model_performance_comparison.png`
-- `figures/random_vs_scaffold_validation.png`
-- `figures/applicability_domain_bins.png`
+- `reports/figures/random_vs_scaffold_performance.png`
+- `reports/figures/conformal_coverage_by_split.png`
+- `reports/figures/error_vs_similarity.png`

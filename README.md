@@ -19,7 +19,7 @@ This project tests how much useful modeling can be done from public EGFR IC50 da
 ## Project Workflow
 
 <p align="center">
-  <img src="assets/egfr_project_workflow.png" alt="EGFR CADD/QSAR workflow overview" width="100%">
+  <img src="docs/assets/egfr_project_workflow.png" alt="EGFR CADD/QSAR workflow overview" width="100%">
 </p>
 
 The workflow starts from public ChEMBL activity records for EGFR target `CHEMBL203`. I kept IC50 measurements, cleaned activity units and values, converted the usable records to pIC50, and aggregated repeated measurements into a molecule-level activity table.
@@ -104,7 +104,7 @@ make test
 README figures can be refreshed with:
 
 ```bash
-.micromamba/envs/egfr-cadd/bin/python scripts/build_readme_figures.py
+.micromamba/envs/egfr-cadd/bin/python src/analysis/build_readme_figures.py
 ```
 
 The full rebuild requires local regenerated ChEMBL-derived data under `data/raw/` and `data/processed/`.
@@ -118,4 +118,4 @@ The full rebuild requires local regenerated ChEMBL-derived data under `data/raw/
 - `reports/egfr_conformal_uncertainty_report.md`
 - `reports/egfr_sar_interpretability_report.md`
 - `reports/egfr_redocking_audit_report.md`
-- `portfolio_assets/egfr_project_card.md`
+- `docs/project_card.md`
