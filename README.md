@@ -60,9 +60,9 @@ The selected practical baseline is a Morgan fingerprint Random Forest. It was th
 | Best scaffold split | Morgan RF: MAE 0.667, RMSE 0.871, R2 0.550 | Harder chemistry-aware validation. |
 | Assay-group split | MAE 0.796, RMSE 1.014, R2 0.448, group overlap 0 | Public-assay robustness check. |
 | Document-group split | MAE 0.881, RMSE 1.143, R2 0.212, group overlap 0 | Publication/source robustness check. |
-| Exploratory GCN scaffold split | RMSE 1.149, R2 0.198 | Kept as benchmark evidence, not selected scorer. |
+| Exploratory GCN scaffold split | RMSE 1.149, R2 0.198 | Kept as benchmark evidence. |
 | Ranked existing molecules | 10,593 | Existing-record review table from the selected scoring workflow. |
-| Diverse top-20 review set | 20 unique scaffolds; 20/20 low or medium model risk; 18/20 Lipinski-clean | Compact review set for inspection, not a hit list. |
+| Diverse top-20 review set | 20 unique scaffolds; 20/20 low or medium model risk; 18/20 Lipinski-clean | Compact review set for inspection. |
 
 ### Applicability Domain and Uncertainty Checks
 
