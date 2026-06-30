@@ -35,7 +35,7 @@ The final scoring workflow uses the selected QSAR baseline to rank existing mole
 | Clean molecule-level pIC50 rows | 10,834 | Curated activity table after IC50 cleaning and aggregation. |
 | Model-ready molecules | 10,593 | Standardized molecules with labels and generated features. |
 | Feature families | RDKit descriptors, Morgan fingerprints, combined features | QSAR model inputs. |
-| Final ranking table | 10,593 existing molecules | Retrospective review table, not a discovery claim. |
+| Final ranking table | 10,593 existing molecules | Retrospective review table. |
 
 ## Model Benchmarking and Selection
 
