@@ -1,0 +1,6 @@
+molecule_id,rank_before_docking,scaffold_id,predicted_pIC50,conformal_interval_width,applicability_domain_bin,pains_flag,brenk_flag,unwanted_substructure_flag,medchem_alert_flag,selection_reason
+CHEMBL5997498,1,ebdc73040f55,10.029329632441904,2.7249036233254245,high,False,False,False,False,strict_clean_unique_scaffold
+CHEMBL5790648,2,a7d5a3b39d24,9.872261831642932,2.7249036233254245,high,False,False,False,False,strict_clean_unique_scaffold
+CHEMBL174426,5,c28414362dcd,9.70966039212096,2.7249036233254245,high,False,False,False,False,strict_clean_unique_scaffold
+CHEMBL4749862,8,7a4199cf9767,9.337821553363057,2.7249036233254245,high,False,False,False,False,strict_clean_unique_scaffold
+CHEMBL2031299,9,3cefafe781c8,9.131105424301444,2.7249036233254245,high,False,False,False,False,strict_clean_unique_scaffold

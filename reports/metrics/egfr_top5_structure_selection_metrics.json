@@ -1,0 +1,14 @@
+{
+  "medchem_alert_clean_selected_count": 5,
+  "molecule_table": "data/processed/egfr_model_ready_with_medchem_alerts.csv",
+  "ranked_row_count": 10593,
+  "ranked_table": "reports/egfr_ranked_existing_molecules.csv",
+  "raw_smiles_in_public_selection_table": false,
+  "relaxation_rounds_attempted": [
+    "strict_clean_unique_scaffold"
+  ],
+  "selected_count": 5,
+  "selection_output": "reports/egfr_top5_structure_selection.csv",
+  "selection_status": "completed",
+  "unique_scaffold_count": 5
+}

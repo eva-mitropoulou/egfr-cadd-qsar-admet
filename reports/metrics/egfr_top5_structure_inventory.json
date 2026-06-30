@@ -1,0 +1,275 @@
+{
+  "available_selection_fields": [
+    "MolLogP",
+    "MolWt",
+    "NumHAcceptors",
+    "NumHDonors",
+    "NumRotatableBonds",
+    "QED",
+    "TPSA",
+    "absolute_error",
+    "brenk_alert_count",
+    "brenk_flag",
+    "final_score",
+    "final_triage_category",
+    "interval_lower_90",
+    "interval_upper_90",
+    "lipinski_violations",
+    "max_tanimoto_to_train",
+    "medchem_alert_count",
+    "medchem_alert_flag",
+    "medchem_alert_summary",
+    "model_risk_category",
+    "model_risk_penalty",
+    "molecule_chembl_id",
+    "molecule_hash",
+    "out_of_domain_flag",
+    "pains_alert_count",
+    "pains_flag",
+    "predicted_pIC50",
+    "property_penalty",
+    "rf_prediction_std",
+    "scaffold_hash",
+    "similarity_bin",
+    "synthetic_accessibility_score",
+    "synthetic_accessibility_status",
+    "triage_reason",
+    "triage_risk_bin",
+    "true_pIC50",
+    "uncertainty_penalty",
+    "unwanted_substructure_count",
+    "unwanted_substructure_flag"
+  ],
+  "files": {
+    "receptor_pdbqt": {
+      "bytes": 194865,
+      "found": true,
+      "path": "data/structure_prepared/5UG9_receptor.pdbqt"
+    },
+    "redocking_case": {
+      "found": true,
+      "path": "data/processed/egfr_redocking_case.json"
+    },
+    "redocking_metrics": {
+      "found": true,
+      "path": "reports/metrics/egfr_redocking_metrics.json"
+    },
+    "reference_ligand_pdbqt": {
+      "bytes": 3311,
+      "found": true,
+      "path": "data/structure_prepared/5UG9_8AM_ligand.pdbqt"
+    }
+  },
+  "quality_gates": {
+    "molecule_id_column_found": true,
+    "ranked_table_found": true,
+    "receptor_pdbqt_found": true,
+    "redocking_metrics_found": true,
+    "required_selection_fields_found": true,
+    "smiles_source_found": true
+  },
+  "tables": {
+    "applicability_domain_predictions": {
+      "columns": [
+        "molecule_chembl_id",
+        "fold",
+        "true_pIC50",
+        "predicted_pIC50",
+        "absolute_error",
+        "max_tanimoto_to_train",
+        "molecule_hash",
+        "scaffold_hash",
+        "similarity_bin",
+        "out_of_domain_flag"
+      ],
+      "found": true,
+      "path": "reports/egfr_applicability_domain_predictions.csv",
+      "shape": [
+        10593,
+        10
+      ]
+    },
+    "medchem_alert_table": {
+      "columns": [
+        "molecule_chembl_id",
+        "canonical_smiles",
+        "median_pIC50",
+        "median_IC50_nM",
+        "n_measurements",
+        "MolWt",
+        "MolLogP",
+        "TPSA",
+        "NumHDonors",
+        "NumHAcceptors",
+        "NumRotatableBonds",
+        "RingCount",
+        "HeavyAtomCount",
+        "QED",
+        "standardized_smiles",
+        "molecule_hash",
+        "standardization_valid",
+        "scaffold",
+        "scaffold_hash",
+        "pains_alert_count",
+        "pains_flag",
+        "pains_alert_names",
+        "brenk_alert_count",
+        "brenk_flag",
+        "brenk_alert_names",
+        "nih_alert_count",
+        "nih_alert_flag",
+        "unwanted_substructure_count",
+        "unwanted_substructure_flag",
+        "unwanted_substructure_names",
+        "medchem_alert_count",
+        "medchem_alert_flag",
+        "medchem_alert_summary"
+      ],
+      "found": true,
+      "path": "data/processed/egfr_model_ready_with_medchem_alerts.csv",
+      "shape": [
+        10593,
+        33
+      ]
+    },
+    "model_ready_with_medchem_alerts": {
+      "columns": [
+        "molecule_chembl_id",
+        "canonical_smiles",
+        "median_pIC50",
+        "median_IC50_nM",
+        "n_measurements",
+        "MolWt",
+        "MolLogP",
+        "TPSA",
+        "NumHDonors",
+        "NumHAcceptors",
+        "NumRotatableBonds",
+        "RingCount",
+        "HeavyAtomCount",
+        "QED",
+        "standardized_smiles",
+        "molecule_hash",
+        "standardization_valid",
+        "scaffold",
+        "scaffold_hash",
+        "pains_alert_count",
+        "pains_flag",
+        "pains_alert_names",
+        "brenk_alert_count",
+        "brenk_flag",
+        "brenk_alert_names",
+        "nih_alert_count",
+        "nih_alert_flag",
+        "unwanted_substructure_count",
+        "unwanted_substructure_flag",
+        "unwanted_substructure_names",
+        "medchem_alert_count",
+        "medchem_alert_flag",
+        "medchem_alert_summary"
+      ],
+      "found": true,
+      "path": "data/processed/egfr_model_ready_with_medchem_alerts.csv",
+      "shape": [
+        10593,
+        33
+      ]
+    },
+    "ranked_existing_molecules": {
+      "columns": [
+        "molecule_chembl_id",
+        "molecule_hash",
+        "scaffold_hash",
+        "predicted_pIC50",
+        "max_tanimoto_to_train",
+        "similarity_bin",
+        "out_of_domain_flag",
+        "rf_prediction_std",
+        "interval_lower_90",
+        "interval_upper_90",
+        "model_risk_category",
+        "QED",
+        "MolWt",
+        "MolLogP",
+        "TPSA",
+        "NumHDonors",
+        "NumHAcceptors",
+        "NumRotatableBonds",
+        "lipinski_violations",
+        "pains_flag",
+        "pains_alert_count",
+        "brenk_flag",
+        "brenk_alert_count",
+        "unwanted_substructure_flag",
+        "unwanted_substructure_count",
+        "medchem_alert_flag",
+        "medchem_alert_count",
+        "medchem_alert_summary",
+        "synthetic_accessibility_status",
+        "synthetic_accessibility_score",
+        "property_penalty",
+        "model_risk_penalty",
+        "uncertainty_penalty",
+        "final_score",
+        "triage_risk_bin",
+        "triage_reason",
+        "final_triage_category",
+        "true_pIC50",
+        "absolute_error"
+      ],
+      "found": true,
+      "path": "reports/egfr_ranked_existing_molecules.csv",
+      "shape": [
+        10593,
+        39
+      ]
+    },
+    "reference_contacts": {
+      "columns": [
+        "pdb_id",
+        "ligand_id",
+        "chain",
+        "resname",
+        "resseq",
+        "icode",
+        "min_distance_angstrom",
+        "contact_atom_count",
+        "hydrophobic_contact",
+        "hydrogen_bond_candidate",
+        "aromatic_contact",
+        "charged_contact"
+      ],
+      "found": true,
+      "path": "data/processed/egfr_binding_site_residues.csv",
+      "shape": [
+        68,
+        12
+      ]
+    },
+    "uncertainty_predictions": {
+      "columns": [
+        "molecule_chembl_id",
+        "fold",
+        "true_pIC50",
+        "predicted_pIC50",
+        "absolute_error",
+        "max_tanimoto_to_train",
+        "molecule_hash",
+        "scaffold_hash",
+        "similarity_bin",
+        "out_of_domain_flag",
+        "rf_prediction_std",
+        "interval_lower_90",
+        "interval_upper_90",
+        "interval_covered_90",
+        "uncertainty_bin"
+      ],
+      "found": true,
+      "path": "reports/egfr_uncertainty_predictions.csv",
+      "shape": [
+        10593,
+        15
+      ]
+    }
+  }
+}

@@ -40,6 +40,10 @@ BANNED_PHRASES = [
     "production grade",
     "prospective discovery",
 ]
+ALLOWED_NEGATED_LIMITATION = (
+    "Docking of top-ranked molecules was used as a structure-aware sanity check, "
+    "not as proof of binding affinity, therapeutic efficacy, or prospective discovery."
+)
 
 
 def require_local_processed_data() -> None:
@@ -98,6 +102,7 @@ def test_public_markdown_reports_do_not_overclaim_medchem_alerts():
         if not path.exists():
             continue
         text = path.read_text(encoding="utf-8", errors="replace").lower().replace("-", " ")
+        text = text.replace(ALLOWED_NEGATED_LIMITATION.lower().replace("-", " "), "")
         for phrase in BANNED_PHRASES:
             if phrase in text:
                 offenders.append(f"{path.relative_to(ROOT)}:{phrase}")

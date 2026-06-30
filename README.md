@@ -28,7 +28,7 @@ The workflow is supported by several validation and benchmarking layers: molecul
 | Applicability domain | Uses max Tanimoto similarity to separate higher- and lower-support predictions. |
 | Uncertainty checks | Uses residual quantiles and applicability-domain proxies to inspect interval behavior. |
 | Existing-molecule review | Ranks existing molecules with predicted activity, model-risk context, QED/Lipinski checks, and PAINS/Brenk alerts. |
-| Structure module | Runs co-crystal contact analysis and one retrospective redocking pose-recovery audit. |
+| Structure module | Runs co-crystal contact analysis, one retrospective redocking pose-recovery audit, and a top-5 structure-aware sanity check. |
 
 ## Project Workflow
 
@@ -63,6 +63,7 @@ The final review layer ranks existing molecules only. It combines predicted acti
 | PAINS alert count | 847 |
 | Brenk alert count | 6,074 |
 | Redocking case | 5UG9 with ligand 8AM, RMSD 0.968 angstrom |
+| Top-5 structure sanity check | 5/5 docked; scores -8.991 to -8.386 kcal/mol; 5 warning labels |
 
 ## Selected Model View
 
@@ -82,7 +83,7 @@ The assay-aware and document-aware splits are even more skeptical. They test whe
 
 The applicability-domain result is one of the clearest practical findings. High-similarity molecules have lower MAE than low-similarity molecules, so the ranking table carries model-risk context instead of treating every prediction as equally supported. The PAINS/Brenk flags play a different role: they do not judge potency, but they help mark molecules that need extra chemistry review before anyone over-interprets a high score.
 
-The redocking result is a retrospective pose-recovery check on a known co-crystal case. It is useful structure-based context, but it is not a prospective docking campaign.
+The redocking result is a retrospective pose-recovery check on a known co-crystal case. The top-5 docking step uses that validated 5UG9 pocket to sanity-check existing ranked molecules by Vina score, pocket localization, and shared contacts with the 8AM reference ligand. In this run, all five docked molecules were kept as structure-sanity warnings because their shared 8AM contact fraction was 0.0.
 
 ## Scope and Limits
 
@@ -91,6 +92,8 @@ This is a retrospective public-record modeling and review project. It does not c
 The drug-likeness and alert layer is a transparent rule-based review aid. It is not a full ADMET prediction system.
 
 Docking is used as a pose-recovery audit on an existing co-crystal setup. Protein-ligand MD and prospective docking remain outside the default workflow.
+
+The top-5 docking layer is a structure-aware sanity check over already-ranked existing molecules, not binding confirmation.
 
 All rankings are for existing-molecule review and model interpretation, not for direct experimental recommendation.
 
@@ -116,6 +119,8 @@ Full rebuilds require the local Python/RDKit environment and regenerated ChEMBL-
 - `reports/egfr_sar_interpretability_report.md`
 - `reports/egfr_ranked_existing_molecules.csv`
 - `reports/egfr_redocking_audit_report.md`
+- `reports/egfr_top5_structure_sanity_report.md`
+- `reports/egfr_top5_structure_sanity_table.csv`
 - `portfolio_assets/egfr_project_card.md`
 
 Machine-readable summaries are under `reports/metrics/`.

@@ -1,0 +1,22 @@
+{
+  "best_docking_score_kcal_mol": -8.991,
+  "docking_backend_preference": "vina_python_then_cli",
+  "docking_box_center": {
+    "x": -13.8704375,
+    "y": 14.9338125,
+    "z": -26.729937500000002
+  },
+  "docking_box_size": {
+    "x": 21.697,
+    "y": 22.433999999999997,
+    "z": 22.741
+  },
+  "docking_status_table": "reports/egfr_top5_docking_status.csv",
+  "pdb_id": "5UG9",
+  "receptor_pdbqt": "data/structure_prepared/5UG9_receptor.pdbqt",
+  "reference_ligand_id": "8AM",
+  "selected_molecule_count": 5,
+  "successful_docking_count": 5,
+  "successful_ligand_preparation_count": 5,
+  "worst_docking_score_kcal_mol": -8.386
+}
