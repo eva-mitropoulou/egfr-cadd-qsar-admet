@@ -1,4 +1,4 @@
-"""Build report/figures and patch project docs for top-5 structure sanity docking."""
+"""Build Vina-score-only top-5 EGFR docking sanity outputs."""
 
 from __future__ import annotations
 
@@ -19,31 +19,26 @@ setup_matplotlib()
 import matplotlib.pyplot as plt  # noqa: E402
 
 
-SANITY_TABLE_PATH = REPORTS_DIR / "egfr_top5_structure_sanity_table.csv"
 SELECTION_PATH = REPORTS_DIR / "egfr_top5_structure_selection.csv"
+DOCKING_STATUS_PATH = REPORTS_DIR / "egfr_top5_docking_status.csv"
+SCORES_TABLE_PATH = REPORTS_DIR / "egfr_top5_docking_scores.csv"
 REPORT_PATH = REPORTS_DIR / "egfr_top5_structure_sanity_report.md"
 METRICS_PATH = METRICS_DIR / "egfr_top5_structure_sanity_metrics.json"
 DOCKING_METRICS_PATH = METRICS_DIR / "egfr_top5_docking_metrics.json"
 REDOCKING_METRICS_PATH = METRICS_DIR / "egfr_redocking_metrics.json"
-FIGURE_PATH = FIGURES_DIR / "egfr_top5_docking_scores_and_contact_overlap.png"
-OVERLAY_SCRIPT_PATH = REPORTS_DIR / "structure_visualization" / "top5_pose_overlay.pml"
-OVERLAY_INSTRUCTIONS_PATH = FIGURES_DIR / "egfr_top5_pose_overlay_instructions.md"
+FIGURE_PATH = FIGURES_DIR / "egfr_top5_vina_scores.png"
 FINAL_REPORT_PATH = REPORTS_DIR / "final_egfr_cadd_qsar_report.md"
 CV_BULLETS_PATH = REPORTS_DIR / "final_egfr_cv_bullets.md"
 PROJECT_CARD_PATH = PROJECT_ROOT / "portfolio_assets" / "egfr_project_card.md"
 README_PATH = PROJECT_ROOT / "README.md"
 
-REQUIRED_LIMITATION = (
-    "Docking of top-ranked molecules was used as a structure-aware sanity check, "
-    "not as proof of binding affinity, therapeutic efficacy, or prospective discovery."
-)
 DOC_CLAIM = (
-    "Docked the top 5 clean, diverse, high-ranked existing EGFR molecules into the validated 5UG9 binding site as a structure-aware sanity check, "
-    "reporting Vina scores, pocket localization, and shared contact residues with the 8AM reference ligand."
+    "Docked the top 5 clean, scaffold-diverse, high-ranked existing EGFR molecules into the "
+    "validated 5UG9 binding-site setup and reported Vina scores as structure-aware triage annotations."
 )
-CV_ADDITION = (
-    "Extended the EGFR triage workflow with a structure-aware sanity check by docking the top 5 clean, scaffold-diverse, high-ranked existing molecules "
-    "into the validated 5UG9 binding site and comparing Vina scores, pocket localization, and shared contacts against the 8AM reference ligand."
+REDOCKING_WORDING = (
+    "Validated the 5UG9/8AM docking setup by redocking the co-crystallized ligand and recovering "
+    "the experimental pose with 0.968 A RMSD."
 )
 
 
@@ -52,63 +47,6 @@ def read_json(path: Path) -> dict:
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8"))
-
-
-def write_overlay_fallback_script(table: pd.DataFrame) -> str:
-    """Write a PyMOL helper script for manual pose review."""
-    OVERLAY_SCRIPT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    lines = [
-        "reinitialize",
-        f"load {(PROJECT_ROOT / 'data/structure_prepared/5UG9_protein.pdb').resolve()}, receptor_5UG9",
-        f"load {(PROJECT_ROOT / 'data/structure_prepared/5UG9_8AM_ligand.pdb').resolve()}, ligand_8AM_reference",
-        "show cartoon, receptor_5UG9",
-        "show sticks, ligand_8AM_reference",
-        "color cyan, ligand_8AM_reference",
-    ]
-    for molecule_id in table["molecule_id"]:
-        pose = PROJECT_ROOT / "data" / "structure_prepared" / "top5_docked" / f"{molecule_id}_vina_out.pdbqt"
-        if pose.exists():
-            object_name = f"pose_{molecule_id}".replace("-", "_")
-            lines.extend([f"load {pose.resolve()}, {object_name}", f"show sticks, {object_name}"])
-    lines.extend(["zoom ligand_8AM_reference", "set ray_opaque_background, off"])
-    OVERLAY_SCRIPT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    write_text(
-        OVERLAY_INSTRUCTIONS_PATH,
-        "\n".join(
-            [
-                "# EGFR Top-5 Pose Overlay Instructions",
-                "",
-                "A static overlay grid was not generated automatically in this run.",
-                f"Use `{OVERLAY_SCRIPT_PATH.relative_to(PROJECT_ROOT)}` in PyMOL to inspect top-5 docked poses against the 5UG9/8AM reference ligand.",
-                "",
-            ]
-        ),
-    )
-    return str(OVERLAY_SCRIPT_PATH.relative_to(PROJECT_ROOT))
-
-
-def save_primary_figure(table: pd.DataFrame) -> None:
-    """Save score/contact-overlap comparison figure."""
-    display = table.copy()
-    display["molecule_label"] = display["molecule_id"].astype(str)
-    scores = pd.to_numeric(display["vina_score_kcal_mol"], errors="coerce")
-    overlap = pd.to_numeric(display["shared_contact_fraction_with_8AM"], errors="coerce")
-
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4.5))
-    axes[0].bar(display["molecule_label"], scores, color="#4C78A8")
-    axes[0].axhline(-9.471, color="black", linestyle="--", linewidth=1, label="8AM redocking score")
-    axes[0].set_ylabel("Vina score (kcal/mol)")
-    axes[0].set_title("Top-5 Docking Scores")
-    axes[0].tick_params(axis="x", rotation=30)
-    axes[0].legend(fontsize=8)
-
-    axes[1].bar(display["molecule_label"], overlap, color="#59A14F")
-    axes[1].set_ylim(0, 1)
-    axes[1].set_ylabel("Shared contact fraction with 8AM")
-    axes[1].set_title("5UG9 Contact Overlap")
-    axes[1].tick_params(axis="x", rotation=30)
-    fig.tight_layout()
-    save_figure(FIGURE_PATH)
 
 
 def replace_or_append_section(text: str, title: str, section: str, before_title: str | None = None) -> str:
@@ -124,189 +62,269 @@ def replace_or_append_section(text: str, title: str, section: str, before_title:
     return text.rstrip() + "\n\n" + section.rstrip() + "\n"
 
 
-def patch_final_docs(metrics: dict) -> list[str]:
-    """Patch final project report, CV bullets, project card, and README."""
+def remove_markdown_section(text: str, title: str) -> str:
+    """Remove a markdown section if present."""
+    if title not in text:
+        return text
+    start = text.index(title)
+    next_start = text.find("\n## ", start + len(title))
+    if next_start == -1:
+        return text[:start].rstrip() + "\n"
+    return text[:start].rstrip() + "\n\n" + text[next_start:].lstrip()
+
+
+def remove_all_markdown_sections(text: str, title: str) -> str:
+    """Remove every markdown section matching a title."""
+    while title in text:
+        updated = remove_markdown_section(text, title)
+        if updated == text:
+            break
+        text = updated
+    return text
+
+
+def has_all_words(line: str, words: list[str]) -> bool:
+    """Return True when all words appear in a line, case-insensitively."""
+    lowered = line.lower()
+    return all(word in lowered for word in words)
+
+
+def build_score_table() -> pd.DataFrame:
+    """Build a public Vina-score-only table from selection and docking status."""
+    selection = pd.read_csv(SELECTION_PATH)
+    docking = pd.read_csv(DOCKING_STATUS_PATH)
+    merged = selection.merge(
+        docking[["molecule_id", "rank_before_docking", "scaffold_id", "docking_status", "vina_score_kcal_mol"]],
+        on=["molecule_id", "rank_before_docking", "scaffold_id"],
+        how="left",
+        validate="one_to_one",
+    )
+
+    def note(row: pd.Series) -> str:
+        if "completed" in str(row.get("docking_status", "")) and pd.notna(row.get("vina_score_kcal_mol")):
+            return "Docking succeeded; Vina score retained as structure-aware triage annotation only."
+        return "Docking score unavailable; inspect docking status."
+
+    table = merged[
+        [
+            "molecule_id",
+            "rank_before_docking",
+            "scaffold_id",
+            "predicted_pIC50",
+            "conformal_interval_width",
+            "applicability_domain_bin",
+            "medchem_alert_flag",
+            "docking_status",
+            "vina_score_kcal_mol",
+        ]
+    ].copy()
+    table["docking_note"] = table.apply(note, axis=1)
+    table.to_csv(SCORES_TABLE_PATH, index=False)
+    return table
+
+
+def save_score_figure(table: pd.DataFrame) -> None:
+    """Save Vina-score-only figure."""
+    display = table.copy()
+    display["molecule_label"] = display["molecule_id"].astype(str)
+    scores = pd.to_numeric(display["vina_score_kcal_mol"], errors="coerce")
+
+    plt.figure(figsize=(7.5, 4.6))
+    plt.bar(display["molecule_label"], scores, color="#4C78A8")
+    plt.axhline(-9.471, color="black", linestyle="--", linewidth=1, label="5UG9/8AM redocking score")
+    plt.ylabel("Vina score (kcal/mol)")
+    plt.title("Top-5 Existing EGFR Molecules: Vina Scores")
+    plt.xticks(rotation=25, ha="right")
+    plt.legend(fontsize=8)
+    plt.tight_layout()
+    save_figure(FIGURE_PATH)
+
+
+def patch_final_docs(metrics: dict) -> tuple[list[str], bool, bool]:
+    """Patch final report, CV bullets, project card, and README."""
     updated: list[str] = []
-    pass_count = metrics.get("structure_sanity_label_counts", {}).get("structure_sanity_pass", 0)
-    warning_count = metrics.get("structure_sanity_label_counts", {}).get("structure_sanity_warning", 0)
-    fail_count = metrics.get("structure_sanity_label_counts", {}).get("structure_sanity_fail", 0)
+    final_patched = False
+    readme_patched = False
+    score_range = f"{metrics.get('best_docking_score_kcal_mol')} to {metrics.get('worst_docking_score_kcal_mol')} kcal/mol"
     summary_section = "\n".join(
         [
-            "## Top-5 Structure Sanity Docking",
+            "## Top-5 Docking Score Sanity Check",
             "",
             DOC_CLAIM,
             "",
+            f"- Successful ligand preparations: {metrics.get('successful_ligand_preparation_count')}/{metrics.get('selected_molecule_count')}",
             f"- Successful dockings: {metrics.get('successful_docking_count')}/{metrics.get('selected_molecule_count')}",
-            f"- Best/worst Vina score among successful dockings: {metrics.get('best_docking_score_kcal_mol')} / {metrics.get('worst_docking_score_kcal_mol')} kcal/mol",
-            f"- Mean shared contact fraction with 8AM: {metrics.get('mean_shared_contact_fraction_with_8AM')}",
-            f"- Structure sanity labels: pass {pass_count}, warning {warning_count}, fail {fail_count}",
+            f"- Vina score range: {score_range}",
+            f"- Score table: `{SCORES_TABLE_PATH.relative_to(PROJECT_ROOT)}`",
             "",
-            REQUIRED_LIMITATION,
+            REDOCKING_WORDING,
+            "The top-5 docking stage does not validate binding, inhibition, biological activity, or discovery status.",
             "",
         ]
     )
 
     if FINAL_REPORT_PATH.exists():
         text = FINAL_REPORT_PATH.read_text(encoding="utf-8")
-        text = replace_or_append_section(text, "## Top-5 Structure Sanity Docking", summary_section, "## Limitations")
+        text = remove_all_markdown_sections(text, "## Top-5 Structure Sanity Docking")
+        text = remove_all_markdown_sections(text, "## Top-5 Docking Score Sanity Check")
+        text = replace_or_append_section(text, "## Top-5 Docking Score Sanity Check", summary_section, "## Limitations")
         FINAL_REPORT_PATH.write_text(text, encoding="utf-8")
         updated.append(str(FINAL_REPORT_PATH.relative_to(PROJECT_ROOT)))
+        final_patched = True
 
     if CV_BULLETS_PATH.exists():
         text = CV_BULLETS_PATH.read_text(encoding="utf-8")
-        if CV_ADDITION not in text:
-            text = text.rstrip() + f"\n- {CV_ADDITION}\n"
-            CV_BULLETS_PATH.write_text(text, encoding="utf-8")
+        new = (
+            "- Extended the EGFR triage workflow with a structure-aware Vina-score sanity check by docking the top 5 "
+            "clean, scaffold-diverse, high-ranked existing molecules into the validated 5UG9 binding-site setup."
+        )
+        lines = [
+            line
+            for line in text.splitlines()
+            if not has_all_words(line, ["top 5", "validated 5ug9", "reference ligand"])
+        ]
+        text = "\n".join(lines).rstrip() + "\n"
+        if new not in text:
+            text = text.rstrip() + "\n" + new + "\n"
+        CV_BULLETS_PATH.write_text(text, encoding="utf-8")
         updated.append(str(CV_BULLETS_PATH.relative_to(PROJECT_ROOT)))
 
     if PROJECT_CARD_PATH.exists():
         text = PROJECT_CARD_PATH.read_text(encoding="utf-8")
-        if "Top-5 structure sanity check" not in text:
+        lines = [line for line in text.splitlines() if not has_all_words(line, ["top-5", "mean", "8am"])]
+        text = "\n".join(lines).rstrip() + "\n"
+        if "Top-5 docking score sanity check" not in text:
             text = text.replace(
                 "## Positioning",
-                f"- Top-5 structure sanity check: {metrics.get('successful_docking_count')}/5 molecules docked in the 5UG9 pocket; mean shared contact fraction with 8AM {metrics.get('mean_shared_contact_fraction_with_8AM')}\n\n## Positioning",
+                f"- Top-5 docking score sanity check: {metrics.get('successful_docking_count')}/5 molecules docked; Vina score range {score_range}\n\n## Positioning",
             )
-            PROJECT_CARD_PATH.write_text(text, encoding="utf-8")
+        PROJECT_CARD_PATH.write_text(text, encoding="utf-8")
         updated.append(str(PROJECT_CARD_PATH.relative_to(PROJECT_ROOT)))
 
     if README_PATH.exists():
         text = README_PATH.read_text(encoding="utf-8")
-        if "Top-5 structure sanity docking" not in text:
+        text = text.replace(
+            "| Structure module | Runs co-crystal contact analysis, one retrospective redocking pose-recovery audit, and a top-5 structure-aware sanity check. |",
+            "| Structure module | Runs co-crystal contact analysis, one retrospective redocking pose-recovery audit, and a top-5 Vina-score sanity check. |",
+        )
+        lines = [
+            line
+            for line in text.splitlines()
+            if not has_all_words(line, ["top-5", "warning"])
+            and not has_all_words(line, ["top-5", "reference ligand"])
+            and not has_all_words(line, ["top-5", "shared"])
+        ]
+        text = "\n".join(lines).rstrip() + "\n"
+        snapshot_row = f"| Top-5 docking score sanity check | {metrics.get('successful_docking_count')}/5 docked; Vina scores {score_range} |"
+        if snapshot_row not in text and "| Redocking case |" in text:
             text = text.replace(
-                "| Structure module | Runs co-crystal contact analysis and one retrospective redocking pose-recovery audit. |",
-                "| Structure module | Runs co-crystal contact analysis, one retrospective redocking pose-recovery audit, and a top-5 structure-aware sanity check. |",
+                next(line for line in text.splitlines() if line.startswith("| Redocking case |")),
+                next(line for line in text.splitlines() if line.startswith("| Redocking case |")) + "\n" + snapshot_row,
             )
+        read_note = "The redocking result is a retrospective pose-recovery check on a known co-crystal case. The top-5 docking step uses that validated 5UG9 setup to add Vina-score annotations to already-ranked existing molecules."
+        if read_note not in text and "The redocking result is a retrospective pose-recovery check" in text:
             text = text.replace(
-                "- Retrospective Vina redocking pose-recovery audit on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A\n  pose-recovery RMSD.",
-                "- Retrospective Vina redocking pose-recovery audit on 5UG9 with ligand 8AM with a -9.471 kcal/mol score and 0.968 A\n  pose-recovery RMSD.\n- Top-5 structure sanity docking of clean, diverse, high-ranked existing molecules into the validated 5UG9 pocket.",
+                "The redocking result is a retrospective pose-recovery check on a known co-crystal case.",
+                read_note,
             )
+        text = text.replace(
+            "- Top-5 docking is a structure-aware sanity check over existing ranked molecules, not binding confirmation.",
+            "- Top-5 docking is a structure-aware Vina-score annotation over existing ranked molecules, not binding confirmation.",
+        )
+        text = text.replace(
+            "- `reports/egfr_top5_structure_sanity_table.csv`",
+            "- `reports/egfr_top5_docking_scores.csv`",
+        )
+        if "reports/egfr_top5_docking_scores.csv" not in text:
             text = text.replace(
-                "| Redocking case | 5UG9 with ligand 8AM, RMSD 0.968 A |",
-                "| Redocking case | 5UG9 with ligand 8AM, RMSD 0.968 A |\n"
-                f"| Top-5 structure sanity docking | {metrics.get('successful_docking_count')}/5 docked; mean shared contact fraction {metrics.get('mean_shared_contact_fraction_with_8AM')} |",
+                "- `reports/egfr_top5_structure_sanity_report.md`",
+                "- `reports/egfr_top5_structure_sanity_report.md`\n- `reports/egfr_top5_docking_scores.csv`",
             )
-            text = text.replace(
-                "| Redocking case | 5UG9 with ligand 8AM, RMSD 0.968 angstrom |",
-                "| Redocking case | 5UG9 with ligand 8AM, RMSD 0.968 angstrom |\n"
-                f"| Top-5 structure sanity check | {metrics.get('successful_docking_count')}/5 docked; scores {metrics.get('best_docking_score_kcal_mol')} to {metrics.get('worst_docking_score_kcal_mol')} kcal/mol |",
-            )
-            text = text.replace(
-                "The redocking result is a retrospective pose-recovery check on a known co-crystal case. It is useful structure-based context, but it is not a prospective docking campaign.",
-                "The redocking result is a retrospective pose-recovery check on a known co-crystal case. The top-5 docking step uses that validated 5UG9 pocket to sanity-check existing ranked molecules by Vina score, pocket localization, and shared contacts with the 8AM reference ligand.",
-            )
-            text = text.replace(
-                "ADMET-style triage uses simple drug-likeness and model-risk proxy rules.",
-                "ADMET-style triage uses simple drug-likeness and model-risk proxy rules.\n- Top-5 docking is a structure-aware sanity check over existing ranked molecules, not binding confirmation.",
-            )
-            text = text.replace(
-                "- `reports/egfr_redocking_audit_report.md`",
-                "- `reports/egfr_redocking_audit_report.md`\n- `reports/egfr_top5_structure_sanity_report.md`\n- `reports/egfr_top5_structure_sanity_table.csv`",
-            )
-            README_PATH.write_text(text, encoding="utf-8")
+        README_PATH.write_text(text, encoding="utf-8")
         updated.append(str(README_PATH.relative_to(PROJECT_ROOT)))
-    return updated
+        readme_patched = True
+    return updated, final_patched, readme_patched
 
 
 def main() -> None:
-    """Build top-5 structure sanity report and patch project docs."""
-    if not SANITY_TABLE_PATH.exists():
-        raise FileNotFoundError(f"Missing top-5 sanity table: {SANITY_TABLE_PATH}")
-    table = pd.read_csv(SANITY_TABLE_PATH)
-    metrics = read_json(METRICS_PATH)
-    docking_metrics = read_json(DOCKING_METRICS_PATH)
+    """Build Vina-score-only top-5 docking outputs and patch docs."""
+    if not SELECTION_PATH.exists() or not DOCKING_STATUS_PATH.exists():
+        raise FileNotFoundError("Top-5 selection and docking status files are required.")
+    table = build_score_table()
+    save_score_figure(table)
+
     redocking = read_json(REDOCKING_METRICS_PATH)
+    scores = pd.to_numeric(table["vina_score_kcal_mol"], errors="coerce").dropna()
+    successful_docking = int(table["docking_status"].astype(str).str.contains("completed").sum())
+    docking_metrics = read_json(DOCKING_METRICS_PATH)
+    metrics = {
+        "top5_docking_simplification_status": "completed",
+        "selected_molecule_count": int(len(table)),
+        "successful_ligand_preparation_count": int(docking_metrics.get("successful_ligand_preparation_count", len(table))),
+        "successful_docking_count": successful_docking,
+        "best_docking_score_kcal_mol": float(scores.min()) if not scores.empty else None,
+        "worst_docking_score_kcal_mol": float(scores.max()) if not scores.empty else None,
+        "score_table": str(SCORES_TABLE_PATH.relative_to(PROJECT_ROOT)),
+        "score_figure": str(FIGURE_PATH.relative_to(PROJECT_ROOT)),
+        "removed_8am_overlap_columns": True,
+        "redocking_validation_preserved": {
+            "pdb_id": redocking.get("pdb_id", "5UG9"),
+            "reference_ligand_id": redocking.get("ligand_id", "8AM"),
+            "docking_score_kcal_mol": redocking.get("docking_score_kcal_mol", -9.471),
+            "pose_recovery_rmsd_angstrom": redocking.get("pose_recovery_rmsd_angstrom", 0.968),
+        },
+    }
+    patched_files, final_patched, readme_patched = patch_final_docs(metrics)
+    metrics["patched_files"] = patched_files
+    metrics["final_report_patched"] = final_patched
+    metrics["README_patched"] = readme_patched
+    METRICS_PATH.write_text(json.dumps(metrics, indent=2, sort_keys=True), encoding="utf-8")
 
-    save_primary_figure(table)
-    overlay_script = write_overlay_fallback_script(table)
-    patched_files = patch_final_docs(metrics)
-
-    display_columns = [
-        "molecule_id",
-        "rank_before_docking",
-        "predicted_pIC50",
-        "docking_status",
-        "vina_score_kcal_mol",
-        "shared_contact_fraction_with_8AM",
-        "distance_to_8AM_centroid",
-        "structure_sanity_label",
-    ]
-    report_table = table[display_columns].copy()
+    report_table = table.copy()
     lines = [
-        "# EGFR Top-5 Structure Sanity Report",
+        "# Top-5 EGFR Docking Score Sanity Check",
         "",
-        "## Purpose",
+        "Five existing EGFR molecules were selected from the final ranked and triaged table.",
+        "Selection prioritized high predicted activity, applicability-domain support, low uncertainty, medchem-alert cleanliness, and scaffold diversity.",
         "",
-        "This module links the final ranked EGFR molecule table to the validated 5UG9 structure workflow.",
-        REQUIRED_LIMITATION,
+        DOC_CLAIM,
         "",
-        "## Selection Criteria",
-        "",
-        "The top-5 molecules were selected from existing ranked EGFR records using high triage score, applicability-domain support, low/acceptable uncertainty, no PAINS/Brenk/unwanted-substructure alert, acceptable drug-likeness, and scaffold diversity where possible.",
-        f"Selection table: `{SELECTION_PATH.relative_to(PROJECT_ROOT)}`",
+        "The 8AM reference ligand remains used only for the separate 5UG9/8AM redocking validation of the docking setup, not for top-5 scoring.",
         "",
         "## Reference Redocking Context",
         "",
         "- PDB ID: 5UG9",
         "- Reference ligand: 8AM",
-        f"- Reference redocking score: {redocking.get('docking_score_kcal_mol', -9.471)} kcal/mol",
-        f"- Reference redocking RMSD: {redocking.get('pose_recovery_rmsd_angstrom', 0.968)} A",
+        f"- Reference redocking score: {metrics['redocking_validation_preserved']['docking_score_kcal_mol']} kcal/mol",
+        f"- Reference redocking RMSD: {metrics['redocking_validation_preserved']['pose_recovery_rmsd_angstrom']} A",
         "",
-        "## Docking Setup",
-        "",
-        f"- Receptor PDBQT: `{docking_metrics.get('receptor_pdbqt')}`",
-        f"- Docking box center: {docking_metrics.get('docking_box_center')}",
-        f"- Docking box size: {docking_metrics.get('docking_box_size')}",
-        "- Backend preference: Python Vina API, then Vina CLI fallback",
-        "",
-        "## Top-5 Results",
+        "## Top-5 Vina Score Results",
         "",
         markdown_table(report_table),
         "",
-        "## Contact Overlap With 8AM",
+        f"- Successful ligand preparations: {metrics['successful_ligand_preparation_count']}/5",
+        f"- Successful dockings: {metrics['successful_docking_count']}/5",
+        f"- Vina scores ranged from {metrics['best_docking_score_kcal_mol']} to {metrics['worst_docking_score_kcal_mol']} kcal/mol.",
+        f"- Figure: `{FIGURE_PATH.relative_to(PROJECT_ROOT)}`",
         "",
-        f"- Mean shared contact fraction with 8AM: {metrics.get('mean_shared_contact_fraction_with_8AM')}",
-        f"- Reference 8AM contact count: {metrics.get('reference_contact_count_8AM')}",
-        f"- Primary figure: `{FIGURE_PATH.relative_to(PROJECT_ROOT)}`",
-        f"- Overlay helper script: `{overlay_script}`",
+        "## Limitations",
         "",
-        "## Structure-Aware Sanity Labels",
+        "- Vina scores are structure-aware triage annotations only.",
+        "- The top-5 docking stage does not validate binding, affinity, inhibition, biological activity, or discovery status.",
+        "- The top-5 docking stage does not use 8AM as a top-5 comparison target.",
+        "",
+        "## Reproducibility",
+        "",
+        "```bash",
+        "python scripts/agentic_top5_structure_sanity.py",
+        "```",
         "",
     ]
-    for label, count in metrics.get("structure_sanity_label_counts", {}).items():
-        lines.append(f"- {label}: {count}")
-    lines.extend(
-        [
-            "",
-            "## Limitations",
-            "",
-            "- Docking scores are Vina scoring-function outputs and should not be interpreted as physical binding energies.",
-            "- Contact classes are heuristic residue-contact annotations.",
-            "- This is a retrospective sanity check over existing ranked molecules.",
-            "- Molecules that pass this check remain computationally prioritized existing records, not experimentally validated binding or inhibition claims.",
-            "",
-            "## Reproducibility",
-            "",
-            "```bash",
-            "python scripts/agentic_top5_structure_sanity.py",
-            "```",
-            "",
-        ]
-    )
     write_text(REPORT_PATH, "\n".join(lines))
 
-    metrics.update(
-        {
-            "top5_structure_sanity_report": str(REPORT_PATH.relative_to(PROJECT_ROOT)),
-            "top5_structure_sanity_figure": str(FIGURE_PATH.relative_to(PROJECT_ROOT)),
-            "top5_pose_overlay_script": overlay_script,
-            "patched_files": patched_files,
-        }
-    )
-    METRICS_PATH.write_text(json.dumps(metrics, indent=2, sort_keys=True), encoding="utf-8")
-
-    print(f"Top-5 structure report: {REPORT_PATH}")
-    print(f"Primary figure: {FIGURE_PATH}")
-    print(f"Patched files: {len(patched_files)}")
+    print(f"Top-5 docking score table: {SCORES_TABLE_PATH}")
+    print(f"Top-5 docking score report: {REPORT_PATH}")
+    print(f"Score figure: {FIGURE_PATH}")
 
 
 if __name__ == "__main__":

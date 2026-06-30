@@ -1,211 +1,54 @@
 {
-  "FINAL_TOP5_STRUCTURE_SANITY_STATUS": "DONE",
+  "FINAL_TOP5_DOCKING_SIMPLIFICATION_STATUS": "DONE",
+  "selected_molecule_count": 5,
+  "successful_ligand_preparation_count": 5,
+  "successful_docking_count": 5,
   "best_docking_score_kcal_mol": -8.991,
+  "worst_docking_score_kcal_mol": -8.386,
+  "removed_8am_overlap_columns": true,
+  "final_report_patched": true,
+  "README_patched": true,
+  "tests_status": "PASS",
+  "stages": [
+    {
+      "stage_id": "stage_01_artifact_inventory",
+      "name": "Artifact inventory",
+      "status": "PASS"
+    },
+    {
+      "stage_id": "stage_02_top5_selection",
+      "name": "Select top-5 clean diverse molecules",
+      "status": "PASS"
+    },
+    {
+      "stage_id": "stage_03_ligand_prep_and_docking",
+      "name": "Prepare ligands and dock into 5UG9 pocket",
+      "status": "PASS"
+    },
+    {
+      "stage_id": "stage_04_report_figures_docs",
+      "name": "Build Vina-score report, figure, and patch docs",
+      "status": "PASS"
+    },
+    {
+      "stage_id": "stage_05_tests",
+      "name": "Run top-5 docking score tests",
+      "status": "PASS"
+    }
+  ],
   "files_updated": [
-    "src/structure/select_top5_for_structure_sanity.py",
-    "src/structure/dock_top5_ranked_molecules.py",
     "src/structure/analyze_top5_docking_contacts.py",
     "src/structure/build_top5_structure_sanity_report.py",
     "scripts/agentic_top5_structure_sanity.py",
     "reports/egfr_top5_structure_sanity_report.md",
-    "reports/egfr_top5_structure_sanity_table.csv",
+    "reports/egfr_top5_docking_scores.csv",
     "reports/metrics/egfr_top5_structure_sanity_metrics.json",
-    "reports/figures/egfr_top5_docking_scores_and_contact_overlap.png",
+    "reports/metrics/agentic_top5_structure_sanity_state.json",
+    "reports/figures/egfr_top5_vina_scores.png",
     "reports/final_egfr_cadd_qsar_report.md",
     "reports/final_egfr_cv_bullets.md",
     "portfolio_assets/egfr_project_card.md",
     "README.md",
     "tests/test_egfr_top5_structure_sanity.py"
-  ],
-  "mean_shared_contact_fraction_with_8AM": 0.0,
-  "pdb_used": "5UG9",
-  "reference_ligand_used": "8AM",
-  "selected_molecule_count": 5,
-  "stages": [
-    {
-      "attempts": 1,
-      "command": [
-        "internal:inventory"
-      ],
-      "expected_outputs_found": [
-        "reports/metrics/egfr_top5_structure_inventory.json"
-      ],
-      "expected_outputs_missing": [],
-      "fallback_strategies": [
-        "stop if receptor or ranked table is absent"
-      ],
-      "name": "Artifact inventory",
-      "quality_gates": [
-        "ranked table, molecule table, receptor PDBQT, and redocking metrics found"
-      ],
-      "repair_strategies": [
-        "check expected paths and columns"
-      ],
-      "returncode": 0,
-      "runtime_seconds": 1.224,
-      "stage_id": "stage_01_artifact_inventory",
-      "status": "PASS",
-      "stderr_log": "reports/run_logs/stage_01_artifact_inventory.stderr.log",
-      "stdout_log": "reports/run_logs/stage_01_artifact_inventory.stdout.log",
-      "warnings": []
-    },
-    {
-      "attempts": 1,
-      "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
-        "src/structure/select_top5_for_structure_sanity.py"
-      ],
-      "expected_outputs_found": [
-        "reports/egfr_top5_structure_selection.csv",
-        "reports/metrics/egfr_top5_structure_selection_metrics.json"
-      ],
-      "expected_outputs_missing": [],
-      "fallback_strategies": [
-        "relax selection while keeping medchem-alert clean"
-      ],
-      "name": "Select top-5 clean diverse molecules",
-      "quality_gates": [
-        "exactly five selected if possible",
-        "no raw SMILES in public selection table"
-      ],
-      "repair_strategies": [
-        "retry after column-name/path check"
-      ],
-      "returncode": 0,
-      "runtime_seconds": 1.225,
-      "stage_id": "stage_02_top5_selection",
-      "status": "PASS",
-      "stderr_log": "reports/run_logs/stage_02_top5_selection.stderr.log",
-      "stdout_log": "reports/run_logs/stage_02_top5_selection.stdout.log",
-      "warnings": []
-    },
-    {
-      "attempts": 1,
-      "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
-        "src/structure/dock_top5_ranked_molecules.py"
-      ],
-      "expected_outputs_found": [
-        "reports/egfr_top5_docking_status.csv",
-        "reports/metrics/egfr_top5_docking_metrics.json"
-      ],
-      "expected_outputs_missing": [],
-      "fallback_strategies": [
-        "continue with per-molecule degraded status"
-      ],
-      "name": "Prepare ligands and dock into 5UG9 pocket",
-      "quality_gates": [
-        "each selected molecule has status",
-        "at least three successful dockings if feasible"
-      ],
-      "repair_strategies": [
-        "retry after prep-tool/path check"
-      ],
-      "returncode": 0,
-      "runtime_seconds": 91.558,
-      "stage_id": "stage_03_ligand_prep_and_docking",
-      "status": "PASS",
-      "stderr_log": "reports/run_logs/stage_03_ligand_prep_and_docking.stderr.log",
-      "stdout_log": "reports/run_logs/stage_03_ligand_prep_and_docking.stdout.log",
-      "warnings": []
-    },
-    {
-      "attempts": 1,
-      "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
-        "src/structure/analyze_top5_docking_contacts.py"
-      ],
-      "expected_outputs_found": [
-        "reports/egfr_top5_structure_sanity_table.csv",
-        "reports/metrics/egfr_top5_structure_sanity_metrics.json"
-      ],
-      "expected_outputs_missing": [],
-      "fallback_strategies": [
-        "mark failed molecules as not evaluable"
-      ],
-      "name": "Analyze contacts and 8AM overlap",
-      "quality_gates": [
-        "every selected molecule has a sanity row",
-        "8AM contact overlap reported where feasible"
-      ],
-      "repair_strategies": [
-        "retry after pose/contact path check"
-      ],
-      "returncode": 0,
-      "runtime_seconds": 1.224,
-      "stage_id": "stage_04_contact_analysis",
-      "status": "PASS",
-      "stderr_log": "reports/run_logs/stage_04_contact_analysis.stderr.log",
-      "stdout_log": "reports/run_logs/stage_04_contact_analysis.stdout.log",
-      "warnings": []
-    },
-    {
-      "attempts": 1,
-      "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
-        "src/structure/build_top5_structure_sanity_report.py"
-      ],
-      "expected_outputs_found": [
-        "reports/egfr_top5_structure_sanity_report.md",
-        "reports/figures/egfr_top5_docking_scores_and_contact_overlap.png",
-        "reports/structure_visualization/top5_pose_overlay.pml"
-      ],
-      "expected_outputs_missing": [],
-      "fallback_strategies": [
-        "write report without optional overlay grid"
-      ],
-      "name": "Build report, figures, and patch docs",
-      "quality_gates": [
-        "report exists",
-        "primary figure exists",
-        "limitations explicit"
-      ],
-      "repair_strategies": [
-        "retry after metrics/table path check"
-      ],
-      "returncode": 0,
-      "runtime_seconds": 3.993,
-      "stage_id": "stage_05_report_figures_docs",
-      "status": "PASS",
-      "stderr_log": "reports/run_logs/stage_05_report_figures_docs.stderr.log",
-      "stdout_log": "reports/run_logs/stage_05_report_figures_docs.stdout.log",
-      "warnings": []
-    },
-    {
-      "attempts": 1,
-      "command": [
-        "/home/dimit/eva/Computational-Chemistry/pharma_project/egfr-cadd-qsar-admet/.micromamba/envs/egfr-cadd/bin/python",
-        "-m",
-        "pytest",
-        "-q",
-        "tests/test_egfr_top5_structure_sanity.py"
-      ],
-      "expected_outputs_found": [],
-      "expected_outputs_missing": [],
-      "fallback_strategies": [
-        "state records failed tests"
-      ],
-      "name": "Run top-5 structure sanity tests",
-      "quality_gates": [
-        "pytest top-5 tests pass"
-      ],
-      "repair_strategies": [
-        "retry after assertion/path wording review"
-      ],
-      "returncode": 0,
-      "runtime_seconds": 1.899,
-      "stage_id": "stage_06_tests",
-      "status": "PASS",
-      "stderr_log": "reports/run_logs/stage_06_tests.stderr.log",
-      "stdout_log": "reports/run_logs/stage_06_tests.stdout.log",
-      "warnings": []
-    }
-  ],
-  "structure_sanity_label_counts": {
-    "structure_sanity_warning": 5
-  },
-  "successful_docking_count": 5,
-  "successful_ligand_preparation_count": 5,
-  "tests_status": "PASS",
-  "worst_docking_score_kcal_mol": -8.386
+  ]
 }

@@ -1,124 +1,131 @@
 # EGFR CADD and QSAR Decision Workflow
 
-This project builds an EGFR CADD and QSAR workflow using public ChEMBL IC50 records. I curated molecule-level activity data, standardized molecules, generated descriptor and fingerprint features, trained QSAR models, and then used the scoring workflow to rank existing EGFR inhibitor-like records for closer expert review.
+This project builds an EGFR CADD/QSAR workflow using public ChEMBL IC50 records. I curated molecule-level activity data, standardized molecules, generated RDKit descriptor and Morgan fingerprint features, benchmarked QSAR models under multiple validation settings, and used the trained scoring workflow to review existing EGFR inhibitor-like records.
 
 This project tests how much useful modeling can be done from public EGFR IC50 data, while also checking where the model becomes unreliable.
 
 ## Table of Contents
 
-- [At a Glance](#at-a-glance)
-- [Project Workflow](#project-workflow)
-- [Current Snapshot](#current-snapshot)
-- [Selected Model View](#selected-model-view)
-- [How To Read This](#how-to-read-this)
-- [Scope and Limits](#scope-and-limits)
-- [Reproduce](#reproduce)
-- [Useful Outputs](#useful-outputs)
-
-## At a Glance
-
-| Part | What it does |
-|---|---|
-| Data curation | Starts from public ChEMBL EGFR IC50 rows and builds a molecule-level pIC50 table. |
-| Molecular standardization | Standardizes structures and tracks duplicates before modeling. |
-| Feature generation | Builds RDKit descriptors, Morgan fingerprints, and combined feature matrices. |
-| QSAR benchmarks | Compares model families under random, scaffold, assay-aware, and document-aware splits. |
-| Applicability domain | Uses max Tanimoto similarity to separate higher- and lower-support predictions. |
-| Uncertainty checks | Uses residual quantiles and applicability-domain proxies to inspect interval behavior. |
-| Existing-molecule review | Ranks existing molecules with predicted activity, model-risk context, QED/Lipinski checks, and PAINS/Brenk alerts. |
-| Structure module | Runs co-crystal contact analysis, one retrospective redocking pose-recovery audit, and a top-5 structure-aware sanity check. |
+* [Project Workflow](#project-workflow)
+* [Model Benchmarking and Selection](#model-benchmarking-and-selection)
+* [Main Results](#main-results)
+  * [Applicability Domain and Uncertainty Checks](#applicability-domain-and-uncertainty-checks)
+  * [Drug-Likeness and Alert Review](#drug-likeness-and-alert-review)
+  * [Structure-Based Sanity Check](#structure-based-sanity-check)
+* [Scope and Limits](#scope-and-limits)
+* [Reproduce](#reproduce)
+* [Useful Files](#useful-files)
 
 ## Project Workflow
 
-The workflow begins with public ChEMBL records for EGFR target CHEMBL203. IC50 records are cleaned, aggregated to molecule-level pIC50 values, and filtered into a model-ready table that can support both QSAR benchmarking and later review of existing molecules.
+The workflow starts from public ChEMBL activity records for EGFR target `CHEMBL203`. I kept IC50 measurements, cleaned activity units and values, converted the usable records to pIC50, and aggregated repeated measurements into a molecule-level activity table.
 
-The model-ready set contains 10,593 molecules. The project standardizes those molecules, generates RDKit descriptor and Morgan fingerprint features, and checks that feature matrices stay aligned with labels before training.
+The model-ready dataset is built after molecular standardization. Molecules are standardized, checked for invalid structures and duplicates, and then represented with RDKit physicochemical descriptors, Morgan fingerprints, and combined feature sets. These features are aligned to the molecule-level pIC50 labels before model training.
 
-The central QSAR comparison uses Random Forest models with Morgan fingerprints as the strongest baseline in the final reports. Random splits show how well the model interpolates across a shuffled molecule table. Scaffold splits ask a harder question: whether the model can generalize across chemical scaffolds.
+The final scoring workflow uses the selected QSAR baseline to rank existing molecules already present in the curated EGFR activity table. The ranking table keeps the model prediction together with applicability-domain context, uncertainty interval fields, QED/Lipinski review features, PAINS/Brenk alert flags, and triage categories for expert review.
 
-The project then adds more skeptical checks. Assay-aware and document-aware validation hold out assay or publication groups. Applicability-domain analysis compares performance for high-similarity and low-similarity molecules. Conformal-style uncertainty checks use residual quantiles and similarity context to estimate whether uncertainty bands behave sensibly.
+| Stage | Output | Role |
+|---|---:|---|
+| Public target | `CHEMBL203` | EGFR target used for activity retrieval. |
+| Raw IC50 activity rows | 26,600 | Starting ChEMBL activity records before molecule-level aggregation. |
+| Clean molecule-level pIC50 rows | 10,834 | Curated activity table after IC50 cleaning and aggregation. |
+| Model-ready molecules | 10,593 | Standardized molecules with labels and generated features. |
+| Feature families | RDKit descriptors, Morgan fingerprints, combined features | QSAR model inputs. |
+| Final ranking table | 10,593 existing molecules | Retrospective review table, not a discovery claim. |
 
-The final review layer ranks existing molecules only. It combines predicted activity with model-risk context, QED and Lipinski-style drug-likeness checks, and PAINS/Brenk alert flags from RDKit filter catalogs. The output keeps a diverse top-20 review set by scaffold. The structure module adds context from EGFR co-crystals and a retrospective redocking check, but it does not turn the QSAR workflow into prospective drug discovery.
+## Model Benchmarking and Selection
 
-## Current Snapshot
+The model comparison uses several validation settings because a random train/test split is not enough for medicinal chemistry interpretation. A random split is the optimistic interpolation case: train and test molecules are shuffled by row, so close analogs can appear across both sides. A scaffold split is harder because it asks whether the model transfers across chemical scaffold families.
 
-| Check | Result |
-|---|---:|
-| Raw ChEMBL IC50 rows | 26,600 |
-| Clean molecule-level pIC50 rows | 10,834 |
-| Model-ready molecules | 10,593 |
-| Best random-split Morgan RF | MAE 0.516, RMSE 0.712, R2 0.719 |
-| Best scaffold-split Morgan RF | MAE 0.667, RMSE 0.871, R2 0.550 |
-| Assay-group split | RMSE 1.014, R2 0.448, group overlap 0 |
-| Document-group split | RMSE 1.143, R2 0.212, group overlap 0 |
-| High-similarity applicability-domain MAE | 0.513 |
-| Low-similarity applicability-domain MAE | 0.957 |
-| 90 percent uncertainty interval coverage | 0.900 |
-| Ranked existing molecules | 10,593 |
-| Diverse top-20 low/medium risk count | 20/20 |
-| Diverse top-20 Lipinski-clean count | 18/20 |
-| PAINS/Brenk catalog status | available |
-| PAINS alert count | 847 |
-| Brenk alert count | 6,074 |
-| Redocking case | 5UG9 with ligand 8AM, RMSD 0.968 angstrom |
-| Top-5 structure sanity check | 5/5 docked; scores -8.991 to -8.386 kcal/mol; 5 warning labels |
+I also ran assay-group and document-group splits to test robustness against public-data context. These splits hold out assay or publication groups and therefore better reflect the heterogeneity of public IC50 records.
 
-## Selected Model View
+The selected practical baseline is a Morgan fingerprint Random Forest. It was the strongest practical scorer across the final benchmark reports, especially under the scaffold-aware comparison. The GCN model is kept as an exploratory benchmark, not the selected scorer, because it did not improve over the Morgan Random Forest in this run.
 
-The strongest QSAR baseline in the final report is a Morgan-fingerprint Random Forest. It performs well on the random split and remains the best scaffold-split model among the reported baselines, but the scaffold split is clearly harder than the random split.
+<p align="center">
+  <img src="docs/assets/egfr_model_benchmark.png" alt="EGFR QSAR model validation summary across random, scaffold, assay, and document splits" width="100%">
+</p>
 
-The exploratory custom PyTorch dense GCN is kept as benchmark evidence, not as the selected scorer. In this run, it did not beat the Morgan Random Forest on scaffold RMSE.
+## Main Results
 
-The activity scores are used for retrospective ranking and review of existing molecules. They are not prospective potency guarantees.
+| Area | Result | Interpretation |
+|---|---:|---|
+| Raw ChEMBL IC50 rows | 26,600 | Starting public EGFR activity records. |
+| Clean molecule-level pIC50 rows | 10,834 | Curated molecule-level table after IC50 cleaning and aggregation. |
+| Model-ready molecules | 10,593 | Standardized labeled molecules used for features, validation, and ranking. |
+| Best random split | Morgan RF: MAE 0.516, RMSE 0.712, R2 0.719 | Optimistic interpolation benchmark. |
+| Best scaffold split | Morgan RF: MAE 0.667, RMSE 0.871, R2 0.550 | Harder chemistry-aware validation. |
+| Assay-group split | MAE 0.796, RMSE 1.014, R2 0.448, group overlap 0 | Public-assay robustness check. |
+| Document-group split | MAE 0.881, RMSE 1.143, R2 0.212, group overlap 0 | Publication/source robustness check. |
+| Exploratory GCN scaffold split | RMSE 1.149, R2 0.198 | Kept as benchmark evidence, not selected scorer. |
+| Ranked existing molecules | 10,593 | Existing-record review table from the selected scoring workflow. |
+| Diverse top-20 review set | 20 unique scaffolds; 20/20 low or medium model risk; 18/20 Lipinski-clean | Compact review set for inspection, not a hit list. |
 
-## How To Read This
+### Applicability Domain and Uncertainty Checks
 
-The random split is the optimistic benchmark. It answers how well the model works when train and test molecules are mixed by row.
+High-similarity molecules perform better than low-similarity molecules. In the applicability-domain analysis, high-similarity records had MAE 0.513, while low-similarity records had MAE 0.957. That gap is why the ranking table includes similarity bins and model-risk categories instead of treating every prediction as equally trustworthy.
 
-The scaffold split is the more useful QSAR stress test. It asks whether the model can handle new scaffold families rather than close analogs from the same chemical neighborhood.
+The uncertainty checks use retrospective residual intervals and applicability-domain context. The intervals are review aids: they help identify predictions that should be interpreted more cautiously, especially for low-similarity molecules or molecules outside the model's stronger support region.
 
-The assay-aware and document-aware splits are even more skeptical. They test whether performance survives changes in experimental context and publication source, which matters because public IC50 values come from heterogeneous assays.
+<p align="center">
+  <img src="docs/assets/egfr_applicability_uncertainty.png" alt="Applicability-domain and uncertainty checks for EGFR QSAR predictions" width="100%">
+</p>
 
-The applicability-domain result is one of the clearest practical findings. High-similarity molecules have lower MAE than low-similarity molecules, so the ranking table carries model-risk context instead of treating every prediction as equally supported. The PAINS/Brenk flags play a different role: they do not judge potency, but they help mark molecules that need extra chemistry review before anyone over-interprets a high score.
+### Drug-Likeness and Alert Review
 
-The redocking result is a retrospective pose-recovery check on a known co-crystal case. The top-5 docking step uses that validated 5UG9 pocket to sanity-check existing ranked molecules by Vina score, pocket localization, and shared contacts with the 8AM reference ligand. In this run, all five docked molecules were kept as structure-sanity warnings because their shared 8AM contact fraction was 0.0.
+QED and Lipinski features are used as medicinal-chemistry review aids. They summarize simple property constraints and help separate molecules that are easier to inspect from molecules that need more caution.
+
+PAINS and Brenk flags are also review annotations. They identify molecules that may need chemistry caution because of known problematic substructure patterns, but they are not automatic proof that a molecule is inactive, invalid, or an assay artifact.
+
+This layer is not full ADMET prediction. It is a transparent triage layer attached to the QSAR ranking table.
+
+<p align="center">
+  <img src="docs/assets/egfr_review_and_structure.png" alt="EGFR existing-molecule triage, med-chem alert review, and structure sanity checks" width="100%">
+</p>
+
+### Structure-Based Sanity Check
+
+The structure module adds limited retrospective context. It includes co-crystal/contact analysis and a 5UG9 redocking check with the co-crystallized ligand 8AM. The 5UG9/8AM redocking recovered the prepared reference pose with 0.968 A heavy-atom RMSD.
+
+Vina is used only as a retrospective sanity check. The top-5 docking step docks a small set of already-ranked existing molecules into the validated 5UG9 setup and records Vina scores as structure-aware annotations. Top-5 docking does not confirm binding, potency, inhibition, or discovery status.
 
 ## Scope and Limits
 
-This is a retrospective public-record modeling and review project. It does not claim new EGFR inhibitors, development-stage molecules, or experimentally validated hits.
+This is a retrospective public-record project.
 
-The drug-likeness and alert layer is a transparent rule-based review aid. It is not a full ADMET prediction system.
+It does not claim new EGFR inhibitors.
 
-Docking is used as a pose-recovery audit on an existing co-crystal setup. Protein-ligand MD and prospective docking remain outside the default workflow.
+It has no experimental validation.
 
-The top-5 docking layer is a structure-aware sanity check over already-ranked existing molecules, not binding confirmation.
+It does not make a prospective drug discovery claim.
 
-All rankings are for existing-molecule review and model interpretation, not for direct experimental recommendation.
+Docking is not binding confirmation.
+
+The rankings are for expert review only.
 
 ## Reproduce
 
-The final reports and metrics are committed. Raw and processed ChEMBL-derived tables are local regenerable artifacts.
-
-Fast public checks from existing artifacts:
+Lightweight checks from committed artifacts:
 
 ```bash
 make reproduce-small
 make test
 ```
 
-Full rebuilds require the local Python/RDKit environment and regenerated ChEMBL-derived tables under `data/raw/` and `data/processed/`.
+README figures can be refreshed with:
 
-## Useful Outputs
+```bash
+.micromamba/envs/egfr-cadd/bin/python scripts/build_readme_figures.py
+```
+
+The full rebuild requires local regenerated ChEMBL-derived data under `data/raw/` and `data/processed/`.
+
+## Useful Files
 
 - `reports/final_egfr_cadd_qsar_report.md`
 - `reports/final_egfr_cv_bullets.md`
+- `reports/egfr_ranked_existing_molecules.csv`
 - `reports/egfr_assay_aware_validation_report.md`
 - `reports/egfr_conformal_uncertainty_report.md`
 - `reports/egfr_sar_interpretability_report.md`
-- `reports/egfr_ranked_existing_molecules.csv`
 - `reports/egfr_redocking_audit_report.md`
-- `reports/egfr_top5_structure_sanity_report.md`
-- `reports/egfr_top5_structure_sanity_table.csv`
 - `portfolio_assets/egfr_project_card.md`
-
-Machine-readable summaries are under `reports/metrics/`.

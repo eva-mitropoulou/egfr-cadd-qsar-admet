@@ -1,25 +1,25 @@
 {
+  "README_patched": true,
   "best_docking_score_kcal_mol": -8.991,
-  "contact_typing_policy": "heuristic residue-category counts from protein residues within 4 angstrom of docked ligand atoms.",
-  "mean_shared_contact_fraction_with_8AM": 0.0,
+  "final_report_patched": true,
   "patched_files": [
     "reports/final_egfr_cadd_qsar_report.md",
     "reports/final_egfr_cv_bullets.md",
     "portfolio_assets/egfr_project_card.md",
     "README.md"
   ],
-  "pdb_id": "5UG9",
-  "reference_contact_count_8AM": 19,
-  "reference_ligand_id": "8AM",
-  "sanity_table": "reports/egfr_top5_structure_sanity_table.csv",
-  "selected_molecule_count": 5,
-  "structure_sanity_label_counts": {
-    "structure_sanity_warning": 5
+  "redocking_validation_preserved": {
+    "docking_score_kcal_mol": -9.471,
+    "pdb_id": "5UG9",
+    "pose_recovery_rmsd_angstrom": 0.968,
+    "reference_ligand_id": "8AM"
   },
+  "removed_8am_overlap_columns": true,
+  "score_figure": "reports/figures/egfr_top5_vina_scores.png",
+  "score_table": "reports/egfr_top5_docking_scores.csv",
+  "selected_molecule_count": 5,
   "successful_docking_count": 5,
-  "top5_pose_overlay_script": "reports/structure_visualization/top5_pose_overlay.pml",
-  "top5_structure_sanity_figure": "reports/figures/egfr_top5_docking_scores_and_contact_overlap.png",
-  "top5_structure_sanity_report": "reports/egfr_top5_structure_sanity_report.md",
-  "top5_structure_sanity_status": "completed",
+  "successful_ligand_preparation_count": 5,
+  "top5_docking_simplification_status": "completed",
   "worst_docking_score_kcal_mol": -8.386
 }

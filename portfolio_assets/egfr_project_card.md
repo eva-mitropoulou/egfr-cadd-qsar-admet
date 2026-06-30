@@ -14,7 +14,7 @@ Retrospective EGFR inhibitor-like molecule prioritization using ChEMBL, RDKit, M
 - Structure module: four EGFR co-crystals parsed; retrospective 5UG9/8AM Vina redocking pose-recovery RMSD 0.968 A
 - Exploratory custom PyTorch dense GCN benchmark did not beat the Morgan RF baseline
 
-- Top-5 structure sanity check: 5/5 molecules docked in the 5UG9 pocket; mean shared contact fraction with 8AM 0.0
+- Top-5 docking score sanity check: 5/5 molecules docked; Vina score range -8.991 to -8.386 kcal/mol
 
 ## Positioning
 

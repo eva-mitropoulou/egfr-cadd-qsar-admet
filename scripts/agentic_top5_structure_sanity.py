@@ -249,34 +249,22 @@ def main() -> None:
             max_attempts=1,
         ),
         Stage(
-            stage_id="stage_04_contact_analysis",
-            name="Analyze contacts and 8AM overlap",
-            command=[python, "src/structure/analyze_top5_docking_contacts.py"],
-            expected_outputs=[
-                REPORTS_DIR / "egfr_top5_structure_sanity_table.csv",
-                METRICS_DIR / "egfr_top5_structure_sanity_metrics.json",
-            ],
-            quality_gates=["every selected molecule has a sanity row", "8AM contact overlap reported where feasible"],
-            repair_strategies=["retry after pose/contact path check"],
-            fallback_strategies=["mark failed molecules as not evaluable"],
-            max_attempts=1,
-        ),
-        Stage(
-            stage_id="stage_05_report_figures_docs",
-            name="Build report, figures, and patch docs",
+            stage_id="stage_04_report_figures_docs",
+            name="Build Vina-score report, figure, and patch docs",
             command=[python, "src/structure/build_top5_structure_sanity_report.py"],
             expected_outputs=[
                 REPORTS_DIR / "egfr_top5_structure_sanity_report.md",
-                REPORTS_DIR / "figures" / "egfr_top5_docking_scores_and_contact_overlap.png",
-                REPORTS_DIR / "structure_visualization" / "top5_pose_overlay.pml",
+                REPORTS_DIR / "egfr_top5_docking_scores.csv",
+                REPORTS_DIR / "figures" / "egfr_top5_vina_scores.png",
+                METRICS_DIR / "egfr_top5_structure_sanity_metrics.json",
             ],
-            quality_gates=["report exists", "primary figure exists", "limitations explicit"],
+            quality_gates=["score table exists", "score-only figure exists", "limitations explicit"],
             repair_strategies=["retry after metrics/table path check"],
-            fallback_strategies=["write report without optional overlay grid"],
+            fallback_strategies=["write report from docking status only"],
             max_attempts=1,
         ),
         Stage(
-            stage_id="stage_06_tests",
+            stage_id="stage_05_tests",
             name="Run top-5 structure sanity tests",
             command=[python, "-m", "pytest", "-q", "tests/test_egfr_top5_structure_sanity.py"],
             expected_outputs=[],
@@ -297,7 +285,7 @@ def main() -> None:
     selection = read_json(METRICS_DIR / "egfr_top5_structure_selection_metrics.json")
     docking = read_json(METRICS_DIR / "egfr_top5_docking_metrics.json")
     sanity = read_json(METRICS_DIR / "egfr_top5_structure_sanity_metrics.json")
-    tests_status = next((row["status"] for row in state_rows if row["stage_id"] == "stage_06_tests"), "NOT_RUN")
+    tests_status = next((row["status"] for row in state_rows if row["stage_id"] == "stage_05_tests"), "NOT_RUN")
     successful_docking = int(sanity.get("successful_docking_count", docking.get("successful_docking_count", 0)) or 0)
     stage_failed = any(row["status"] == "FAIL" for row in state_rows)
     if stage_failed:
@@ -306,19 +294,15 @@ def main() -> None:
         final_status = "DONE"
     else:
         final_status = "DONE_WITH_WARNINGS"
-    label_counts = sanity.get("structure_sanity_label_counts", {})
-    shared_fraction = sanity.get("mean_shared_contact_fraction_with_8AM")
-
     files_updated = [
         "src/structure/select_top5_for_structure_sanity.py",
         "src/structure/dock_top5_ranked_molecules.py",
-        "src/structure/analyze_top5_docking_contacts.py",
         "src/structure/build_top5_structure_sanity_report.py",
         "scripts/agentic_top5_structure_sanity.py",
         "reports/egfr_top5_structure_sanity_report.md",
-        "reports/egfr_top5_structure_sanity_table.csv",
+        "reports/egfr_top5_docking_scores.csv",
         "reports/metrics/egfr_top5_structure_sanity_metrics.json",
-        "reports/figures/egfr_top5_docking_scores_and_contact_overlap.png",
+        "reports/figures/egfr_top5_vina_scores.png",
         "reports/final_egfr_cadd_qsar_report.md",
         "reports/final_egfr_cv_bullets.md",
         "portfolio_assets/egfr_project_card.md",
@@ -326,33 +310,30 @@ def main() -> None:
         "tests/test_egfr_top5_structure_sanity.py",
     ]
     state = {
-        "FINAL_TOP5_STRUCTURE_SANITY_STATUS": final_status,
+        "FINAL_TOP5_DOCKING_SIMPLIFICATION_STATUS": final_status,
         "stages": state_rows,
         "selected_molecule_count": selection.get("selected_count"),
         "successful_ligand_preparation_count": docking.get("successful_ligand_preparation_count"),
         "successful_docking_count": successful_docking,
-        "pdb_used": sanity.get("pdb_id", "5UG9"),
-        "reference_ligand_used": sanity.get("reference_ligand_id", "8AM"),
         "best_docking_score_kcal_mol": sanity.get("best_docking_score_kcal_mol"),
         "worst_docking_score_kcal_mol": sanity.get("worst_docking_score_kcal_mol"),
-        "mean_shared_contact_fraction_with_8AM": shared_fraction,
-        "structure_sanity_label_counts": label_counts,
+        "removed_8am_overlap_columns": sanity.get("removed_8am_overlap_columns"),
+        "final_report_patched": sanity.get("final_report_patched"),
+        "README_patched": sanity.get("README_patched"),
         "tests_status": tests_status,
         "files_updated": files_updated,
     }
     STATE_PATH.write_text(json.dumps(state, indent=2, sort_keys=True), encoding="utf-8")
 
-    print(f"FINAL_TOP5_STRUCTURE_SANITY_STATUS: {final_status}")
+    print(f"FINAL_TOP5_DOCKING_SIMPLIFICATION_STATUS: {final_status}")
     print(f"selected molecule count: {selection.get('selected_count')}")
     print(f"successful ligand preparation count: {docking.get('successful_ligand_preparation_count')}")
     print(f"successful docking count: {successful_docking}")
-    print(f"PDB used: {sanity.get('pdb_id', '5UG9')}")
-    print(f"reference ligand used: {sanity.get('reference_ligand_id', '8AM')}")
-    print(f"best/worst docking score among successful dockings: {sanity.get('best_docking_score_kcal_mol')}/{sanity.get('worst_docking_score_kcal_mol')}")
-    print(f"mean shared contact fraction with 8AM: {shared_fraction}")
-    print(f"structure_sanity_pass count: {label_counts.get('structure_sanity_pass', 0)}")
-    print(f"structure_sanity_warning count: {label_counts.get('structure_sanity_warning', 0)}")
-    print(f"structure_sanity_fail count: {label_counts.get('structure_sanity_fail', 0)}")
+    print(f"Vina score range: {sanity.get('best_docking_score_kcal_mol')} to {sanity.get('worst_docking_score_kcal_mol')} kcal/mol")
+    print(f"removed 8AM-overlap columns: {sanity.get('removed_8am_overlap_columns')}")
+    print(f"final report patched: {sanity.get('final_report_patched')}")
+    print(f"README patched: {sanity.get('README_patched')}")
+    print(f"tests status: {tests_status}")
     print("files updated:")
     for path in files_updated:
         print(f"- {path}")

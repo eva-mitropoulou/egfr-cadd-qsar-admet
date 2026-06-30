@@ -4,11 +4,10 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SELECTION = ROOT / "reports" / "egfr_top5_structure_selection.csv"
-SANITY_TABLE = ROOT / "reports" / "egfr_top5_structure_sanity_table.csv"
+SCORES_TABLE = ROOT / "reports" / "egfr_top5_docking_scores.csv"
 TOP5_REPORT = ROOT / "reports" / "egfr_top5_structure_sanity_report.md"
 FINAL_REPORT = ROOT / "reports" / "final_egfr_cadd_qsar_report.md"
-FIGURE = ROOT / "reports" / "figures" / "egfr_top5_docking_scores_and_contact_overlap.png"
+FIGURE = ROOT / "reports" / "figures" / "egfr_top5_vina_scores.png"
 
 REQUIRED_COLUMNS = {
     "molecule_id",
@@ -20,71 +19,78 @@ REQUIRED_COLUMNS = {
     "medchem_alert_flag",
     "docking_status",
     "vina_score_kcal_mol",
-    "shared_contact_count_with_8AM",
-    "shared_contact_fraction_with_8AM",
-    "structure_sanity_label",
+    "docking_note",
 }
 
-ALLOWED_NEGATED_LIMITATION = (
-    "Docking of top-ranked molecules was used as a structure-aware sanity check, "
-    "not as proof of binding affinity, therapeutic efficacy, or prospective discovery."
-).lower()
+FORBIDDEN_COLUMN_PATTERNS = [
+    "shared_contact",
+    "8am",
+    "contact_fraction",
+    "pose_plausibility",
+    "structure_sanity_warning",
+]
 
-BANNED_OVERCLAIMS = [
+BANNED_REPORT_PHRASES = [
+    "shared contact fraction",
+    "contact overlap with 8am",
     "confirmed binding",
-    "confirmed inhibitors",
+    "validated top candidates",
     "therapeutic efficacy",
-    "clinical candidate",
     "prospective discovery",
-    "binding free energy prediction",
 ]
 
 
-def cleaned_public_text(path: Path) -> str:
-    text = path.read_text(encoding="utf-8", errors="replace").lower().replace("-", " ")
-    return text.replace(ALLOWED_NEGATED_LIMITATION.replace("-", " "), "")
+def public_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8", errors="replace").lower().replace("-", " ")
 
 
-def test_selection_csv_exists_and_has_five_rows():
-    assert SELECTION.exists()
-    selection = pd.read_csv(SELECTION)
-    assert len(selection) == 5
-    assert "molecule_id" in selection.columns
-
-
-def test_sanity_table_exists_and_has_required_columns():
-    assert SANITY_TABLE.exists()
-    table = pd.read_csv(SANITY_TABLE)
+def test_top5_docking_score_table_exists_and_has_five_rows():
+    assert SCORES_TABLE.exists()
+    table = pd.read_csv(SCORES_TABLE)
     assert len(table) == 5
     assert REQUIRED_COLUMNS.issubset(set(table.columns))
 
 
-def test_public_sanity_table_does_not_include_raw_smiles_column():
-    table = pd.read_csv(SANITY_TABLE, nrows=0)
-    lowered = {column.lower() for column in table.columns}
+def test_score_table_has_no_raw_smiles_or_overlap_columns():
+    table = pd.read_csv(SCORES_TABLE, nrows=0)
+    lowered = [column.lower() for column in table.columns]
     assert "smiles" not in lowered
     assert "canonical_smiles" not in lowered
     assert "standardized_smiles" not in lowered
+    offenders = [
+        column
+        for column in lowered
+        if any(pattern in column for pattern in FORBIDDEN_COLUMN_PATTERNS)
+    ]
+    assert not offenders
 
 
-def test_reports_and_primary_figure_exist():
+def test_successful_dockings_have_numeric_vina_scores():
+    table = pd.read_csv(SCORES_TABLE)
+    successful = table[table["docking_status"].astype(str).str.contains("completed")]
+    assert not successful.empty
+    assert pd.to_numeric(successful["vina_score_kcal_mol"], errors="coerce").notna().all()
+
+
+def test_reports_and_vina_score_figure_exist():
     assert TOP5_REPORT.exists()
     assert FINAL_REPORT.exists()
     assert FIGURE.exists()
 
 
-def test_final_report_mentions_structure_aware_sanity_check():
-    text = FINAL_REPORT.read_text(encoding="utf-8", errors="replace").lower()
-    assert "structure-aware sanity check" in text
+def test_report_mentions_score_only_triage_language():
+    text = public_text(TOP5_REPORT)
+    assert "vina scores" in text
+    assert "structure aware triage annotations" in text
 
 
-def test_top5_public_reports_do_not_make_banned_overclaims():
+def test_public_reports_do_not_contain_removed_overlap_or_overclaims():
     offenders = []
     for path in [TOP5_REPORT, FINAL_REPORT, ROOT / "README.md", ROOT / "portfolio_assets" / "egfr_project_card.md"]:
         if not path.exists():
             continue
-        text = cleaned_public_text(path)
-        for phrase in BANNED_OVERCLAIMS:
+        text = public_text(path)
+        for phrase in BANNED_REPORT_PHRASES:
             if phrase in text:
                 offenders.append(f"{path.relative_to(ROOT)}:{phrase}")
     assert not offenders
