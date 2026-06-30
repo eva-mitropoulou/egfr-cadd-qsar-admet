@@ -1,10 +1,10 @@
 # EGFR CADD and QSAR Decision Workflow
 
-This project builds an EGFR CADD and QSAR workflow using public ChEMBL IC50 records. I curated molecule-level activity data, standardized molecules, generated descriptor and fingerprint features, trained QSAR models, and then used the scoring workflow to rank existing EGFR inhibitor-like records for closer review.
+This project builds an EGFR CADD and QSAR workflow using public ChEMBL IC50 records. I curated molecule-level activity data, standardized molecules, generated descriptor and fingerprint features, trained QSAR models, and then used the scoring workflow to rank existing EGFR inhibitor-like records for closer expert review.
 
-The goal is not to claim new EGFR drugs. The goal is to build a transparent retrospective workflow that shows how far public activity records can support activity prediction, uncertainty checks, scaffold-aware validation, drug-likeness triage, and a small structure-based sanity check.
+The goal is not to claim new EGFR drugs. The goal is to build a transparent retrospective workflow that shows how far public activity records can support activity prediction, uncertainty checks, scaffold-aware validation, drug-likeness review, and a small structure-based sanity check.
 
-The workflow is supported by several validation and benchmarking layers: molecule-level pIC50 aggregation, RDKit descriptor and Morgan fingerprint features, random and scaffold splits, assay-aware and document-aware validation, applicability-domain analysis, conformal-style uncertainty checks, SAR/error analysis, ADMET-style triage, an exploratory graph neural network benchmark, co-crystal contact analysis, and retrospective Vina redocking.
+The workflow is supported by several validation and benchmarking layers: molecule-level pIC50 aggregation, RDKit descriptor and Morgan fingerprint features, random and scaffold splits, assay-aware and document-aware validation, applicability-domain analysis, conformal-style uncertainty checks, SAR/error analysis, Lipinski/QED/PAINS/Brenk review flags, an exploratory graph neural network benchmark, co-crystal contact analysis, and retrospective Vina redocking.
 
 ## Table of Contents
 
@@ -27,12 +27,12 @@ The workflow is supported by several validation and benchmarking layers: molecul
 | QSAR benchmarks | Compares model families under random, scaffold, assay-aware, and document-aware splits. |
 | Applicability domain | Uses max Tanimoto similarity to separate higher- and lower-support predictions. |
 | Uncertainty checks | Uses residual quantiles and applicability-domain proxies to inspect interval behavior. |
-| Triage | Ranks existing molecules with activity score, drug-likeness flags, and model-risk context. |
+| Existing-molecule review | Ranks existing molecules with predicted activity, model-risk context, QED/Lipinski checks, and PAINS/Brenk alerts. |
 | Structure module | Runs co-crystal contact analysis and one retrospective redocking pose-recovery audit. |
 
 ## Project Workflow
 
-The workflow begins with public ChEMBL records for EGFR target CHEMBL203. IC50 records are cleaned, aggregated to molecule-level pIC50 values, and filtered into a model-ready table.
+The workflow begins with public ChEMBL records for EGFR target CHEMBL203. IC50 records are cleaned, aggregated to molecule-level pIC50 values, and filtered into a model-ready table that can support both QSAR benchmarking and later review of existing molecules.
 
 The model-ready set contains 10,593 molecules. The project standardizes those molecules, generates RDKit descriptor and Morgan fingerprint features, and checks that feature matrices stay aligned with labels before training.
 
@@ -40,7 +40,7 @@ The central QSAR comparison uses Random Forest models with Morgan fingerprints a
 
 The project then adds more skeptical checks. Assay-aware and document-aware validation hold out assay or publication groups. Applicability-domain analysis compares performance for high-similarity and low-similarity molecules. Conformal-style uncertainty checks use residual quantiles and similarity context to estimate whether uncertainty bands behave sensibly.
 
-The final triage layer ranks existing molecules only. It combines predicted activity with simple drug-likeness and model-risk proxies, then keeps a diverse top-20 review set by scaffold. The structure module adds context from EGFR co-crystals and a retrospective redocking check, but it does not turn the QSAR workflow into prospective drug discovery.
+The final review layer ranks existing molecules only. It combines predicted activity with model-risk context, QED and Lipinski-style drug-likeness checks, and PAINS/Brenk alert flags from RDKit filter catalogs. The output keeps a diverse top-20 review set by scaffold. The structure module adds context from EGFR co-crystals and a retrospective redocking check, but it does not turn the QSAR workflow into prospective drug discovery.
 
 ## Current Snapshot
 
@@ -59,6 +59,9 @@ The final triage layer ranks existing molecules only. It combines predicted acti
 | Ranked existing molecules | 10,593 |
 | Diverse top-20 low/medium risk count | 20/20 |
 | Diverse top-20 Lipinski-clean count | 18/20 |
+| PAINS/Brenk catalog status | available |
+| PAINS alert count | 847 |
+| Brenk alert count | 6,074 |
 | Redocking case | 5UG9 with ligand 8AM, RMSD 0.968 angstrom |
 
 ## Selected Model View
@@ -67,7 +70,7 @@ The strongest QSAR baseline in the final report is a Morgan-fingerprint Random F
 
 The exploratory custom PyTorch dense GCN is kept as benchmark evidence, not as the selected scorer. In this run, it did not beat the Morgan Random Forest on scaffold RMSE.
 
-The activity scores are used for retrospective ranking and triage of existing molecules. They are not prospective potency guarantees.
+The activity scores are used for retrospective ranking and review of existing molecules. They are not prospective potency guarantees.
 
 ## How To Read This
 
@@ -77,15 +80,15 @@ The scaffold split is the more useful QSAR stress test. It asks whether the mode
 
 The assay-aware and document-aware splits are even more skeptical. They test whether performance survives changes in experimental context and publication source, which matters because public IC50 values come from heterogeneous assays.
 
-The applicability-domain result is one of the clearest practical findings. High-similarity molecules have lower MAE than low-similarity molecules, so the ranking table carries model-risk context instead of treating every prediction as equally supported.
+The applicability-domain result is one of the clearest practical findings. High-similarity molecules have lower MAE than low-similarity molecules, so the ranking table carries model-risk context instead of treating every prediction as equally supported. The PAINS/Brenk flags play a different role: they do not judge potency, but they help mark molecules that need extra chemistry review before anyone over-interprets a high score.
 
 The redocking result is a retrospective pose-recovery check on a known co-crystal case. It is useful structure-based context, but it is not a prospective docking campaign.
 
 ## Scope and Limits
 
-This is a retrospective public-record modeling and triage project. It does not claim new EGFR inhibitors, clinical candidates, or experimentally validated hits.
+This is a retrospective public-record modeling and review project. It does not claim new EGFR inhibitors, clinical candidates, or experimentally validated hits.
 
-The ADMET-style layer is a transparent rule-based review aid. It is not a full ADMET prediction system.
+The drug-likeness and alert layer is a transparent rule-based review aid. It is not a full ADMET prediction system.
 
 Docking is used as a pose-recovery audit on an existing co-crystal setup. Protein-ligand MD and prospective docking remain outside the default workflow.
 
@@ -111,7 +114,7 @@ Full rebuilds require the local Python/RDKit environment and regenerated ChEMBL-
 - `reports/egfr_assay_aware_validation_report.md`
 - `reports/egfr_conformal_uncertainty_report.md`
 - `reports/egfr_sar_interpretability_report.md`
-- `reports/egfr_candidate_triage_report.md`
+- `reports/egfr_ranked_existing_molecules.csv`
 - `reports/egfr_redocking_audit_report.md`
 - `portfolio_assets/egfr_project_card.md`
 
